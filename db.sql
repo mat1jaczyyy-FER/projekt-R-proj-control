@@ -116,3 +116,14 @@ CREATE TABLE dodijeljenJe
   FOREIGN KEY (idZaposlenika) REFERENCES Zaposlenik(idZaposlenika),
   FOREIGN KEY (idZadatka) REFERENCES Zadatak(idZadatka)
 );
+
+-- connect-pg-simple A simple, minimal PostgreSQL session store for Express/Connect
+-- this should be omitted and generated with `npm run seed-session` if necessary
+CREATE TABLE session (
+  sid varchar NOT NULL COLLATE "default",
+  sess json NOT NULL,
+  expire timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+ALTER TABLE session ADD CONSTRAINT session_pkey PRIMARY KEY (sid) NOT DEFERRABLE INITIALLY IMMEDIATE
+CREATE INDEX IDX_session_expire ON session(expire)
