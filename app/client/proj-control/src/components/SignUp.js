@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 
 const SignUp = ({ setAuth }) => {
     const [SignupData, setSignupData] = useState({
+      username: "",
       email: "",
       password: "",
       name: "",
       surname: ""
     });
 
-    const { email, password, name, surname } = SignupData;
+    const {username, email, password, name, surname } = SignupData;
 
     const onChange = e =>
     setSignupData({ ...SignupData, [e.target.name]: e.target.value });
@@ -20,7 +21,7 @@ const SignUp = ({ setAuth }) => {
         e.preventDefault();
 
         try {
-          const body = { email, password, name, surname };
+          const body = { username, email, password, name, surname };
           const response = await fetch(
             "http://localhost:5000/auth/signup",
             {
@@ -57,6 +58,15 @@ const SignUp = ({ setAuth }) => {
             </div>
             <div className = 'form-box'>
                         <form onSubmit={onSubmit}>
+
+                          <input
+                                type="text"
+                                name="username"
+                                value={username}
+                                placeholder="Korisničko ime"
+                                onChange={e => onChange(e)}
+                                className="form-control"
+                            />
                                                
                             <input
                                 type="text"

@@ -7,7 +7,7 @@ module.exports = class Zaposlenik {
         this.email = email;
         this.imeZaposlenika = imeZaposlenika;
         this.prezimeZaposlenika = prezimeZaposlenika;
-        // todo idUloge
+        this.idUloge = idUloge
     }
 
     static async fetchByEmail(email) {
@@ -19,7 +19,25 @@ module.exports = class Zaposlenik {
             if (results.length > 0) {
                 newUser = new Zaposlenik(
                     results[0].korisnicko_ime, results[0].lozinka, results[0].email,
-                    results[0].imeZaposlenika, results[0].prezimeZaposlenika
+                    results[0].imeZaposlenika, results[0].prezimeZaposlenika, results[0].idUloge
+                );
+            }
+            return newUser;
+
+        } catch (err) {
+            return null;
+        }
+    }
+    static async fetchByUsername(username) {
+        // todo fix sql injection vuln
+        const sql = `SELECT * FROM Zaposlenik WHERE korisnickoIme = '${username}'`;
+        try {
+            const results = (await db.query(sql, [])).rows;
+            let newUser = new Zaposlenik();
+            if (results.length > 0) {
+                newUser = new Zaposlenik(
+                    results[0].korisnicko_ime, results[0].lozinka, results[0].email,
+                    results[0].imeZaposlenika, results[0].prezimeZaposlenika, results[0].idUloge
                 );
             }
             return newUser;
@@ -31,8 +49,8 @@ module.exports = class Zaposlenik {
 
     async apply() {
         // todo fix sql injection vuln
-        const sql = "INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika) VALUES ('" +
-            `${this.korisnickoIme}, ${this.lozinka}, ${this.email}, ${this.imeZaposlenika}, ${this.prezimeZaposlenika})`;
+        const sql = "INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika, idUloge) VALUES (" +
+            `'${this.korisnickoIme}', '${this.lozinka}', '${this.email}', '${this.imeZaposlenika}', '${this.prezimeZaposlenika}', '${this.idUloge}')`;
 
         try {
             await db.query(sql, []);

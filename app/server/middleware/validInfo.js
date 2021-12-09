@@ -1,5 +1,5 @@
 module.exports = function (req, res, next) {
-    const { email, name, password } = req.body;
+    const { username, email, name, surname, password } = req.body;
   
     // check a valid email has been entered by using a regex function
     function validEmail(userEmail) {
@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
   
     if (req.path === "/register") {
       console.log(!email.length);
-      if (![email, name, password].every(Boolean)) {
+      if (![username, email, name, surname, password].every(Boolean)) {
         return res.json("Missing Credentials");
       } else if (!validEmail(email)) {
         return res.json("Invalid Email");
