@@ -1,6 +1,6 @@
 :root {
   --primary: #1e1e1f;
-  --secondary:#d400ff;
+  --secondary: #a9d1ff;
   --important: #c51616;
   --primary-text: #1e1e1f;
   --secondary-text: #FFC300;
@@ -14,7 +14,6 @@
 body {
   margin: 0;
   background-color: #1e1e1f
-  
 }
 
 
@@ -34,9 +33,10 @@ body {
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0em 0.875em 1.75em, rgba(0, 0, 0, 0.22) 0em 0.875em 0.875em;
   background-color: #2f2f30;
-  
+
 }
-.content h1{
+
+.content h1 {
   font-family: 'Montserrat', sans-serif;
   color: var(--secondary);
   display: inline;
@@ -88,7 +88,7 @@ body {
   font-size: 1em;
   font-family: 'Montserrat', sans-serif;
   color: var(--secondary) !important;
-  background-color:var(--ligher-dark);
+  background-color: var(--ligher-dark);
   outline: none;
   border: none;
   border-radius: 0em 0.3125em 0.3125em 0em;
@@ -120,7 +120,7 @@ body {
 }
 
 .popup-overlay {
-  background:rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
 }
 
 .popup-text {
@@ -146,8 +146,9 @@ body {
   padding: 0.14em 0.412em;
   max-height: 5em;
   text-align: center;
-  background-color: #2f2f30; 
+  background-color: #2f2f30;
 }
+
 .left-navbar {
   justify-self: left;
 }
@@ -156,7 +157,7 @@ body {
   justify-self: right;
   background-color: transparent;
   margin-right: 2em;
-  
+
 }
 
 .button-primary:hover {
@@ -209,7 +210,7 @@ body {
   cursor: pointer;
 }
 
-.signIN{
+.signIN {
   font-family: 'Montserrat', sans-serif;
   width: 28.125em;
   min-height: 31.25em;
@@ -217,7 +218,7 @@ body {
   border-radius: 1.25em;
   margin: 2% auto;
   padding: 2%;
-  background : var(--secondary);
+  background: var(--secondary);
 }
 
 
@@ -241,11 +242,12 @@ body {
   margin: 2% auto 10% auto;
   background-color: var(--secondary);
 }
-.login-naslov h1 { 
-  background-color:var(--secondary);
+
+.login-naslov h1 {
+  background-color: var(--secondary);
 }
 
-.login-naslov p{
+.login-naslov p {
   background-color: var(--secondary);
   font-weight: bold;
   font-size: 1.25em;
@@ -262,10 +264,11 @@ body {
   height: 1.5625em;
   width: auto;
   margin-right: 0.1875em;
-  position: relative;  
+  position: relative;
   background-color: var(--lighterdark);
   color: var(--secondary);
 }
+
 .icon-hehe {
   height: 1.5625em;
   width: auto;
@@ -273,73 +276,75 @@ body {
   background-color: var(--lighterdark);
   color: transparent;
 }
+
 .icon-eye {
   height: 1.5625em;
   width: auto;
   margin-right: 0.1875em;
-  position: relative;  
+  position: relative;
   background-color: var(--lighterdark);
   top: 0.3125em;
-  
+
 }
+
 form {
-  display: inline-block;  
+  display: inline-block;
   min-height: 9.375em;
   height: auto;
   border-radius: 0.3125em;
   margin: 2% auto;
-  padding: 2%;  
+  padding: 2%;
   background-color: var(--ligher-dark);
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-.form-box{
+.form-box {
   display: block;
   text-align: center;
 }
 
-.form-control{
+.form-control {
   width: 18.75em;
   height: 1.5625em;
 
   margin-top: 2%;
   padding: 0.9375em;
-  
+
   font-size: 1em;
   font-family: 'Montserrat', sans-serif;
   color: var(--secondary) !important;
 
-  background-color:var(--ligher-dark);
+  background-color: var(--ligher-dark);
 
   outline: none;
   border: none;
 
   border-radius: 0em 0.3125em 0.3125em 0em;
   transition: 0.2s linear;
-  
+
 }
 
-.form-control-email{
+.form-control-email {
   width: 18.75em;
   height: 1.5625em;
 
   margin-top: 2%;
   padding: 0.9375em;
-  
+
   font-size: 1em;
   font-family: 'Montserrat', sans-serif;
   color: var(--secondary) !important;
 
-  background-color:var(--ligher-dark);
+  background-color: var(--ligher-dark);
 
   outline: none;
   border: none;
 
   border-radius: 0em 0.3125em 0.3125em 0em;
   transition: 0.2s linear;
-  
+
 }
 
 input:focus {
@@ -348,15 +353,15 @@ input:focus {
 }
 
 input[id="email-input"] {
-  width: 18.75em; 
+  width: 18.75em;
 }
 
-.email-form{
+.email-form {
   background-color: var(--ligher-dark);
-  
+
 }
 
-.resetpassBox{
+.resetpassBox {
   font-family: 'Montserrat', sans-serif;
   width: 28.125em;
   min-height: 12.5em;
@@ -364,7 +369,7 @@ input[id="email-input"] {
   border-radius: 1.25em;
   margin: 2% auto;
   padding: 2%;
-  background : var(--secondary);
+  background: var(--secondary);
   z-index: -1;
 }
 
@@ -379,17 +384,17 @@ input[id="email-input"] {
   height: 3.75em;
   padding: 0 1.25em;
   background: var(--secondary);
-  border-radius: 0.3125em;  
+  border-radius: 0.3125em;
   outline: none;
   border: none;
   cursor: pointer;
   text-align: center;
-  transition: all 0.2s linear;  
+  transition: all 0.2s linear;
   margin: 7% auto;
   letter-spacing: 0.05em;
 }
 
-.ostaloLogin{
+.ostaloLogin {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.25em;
@@ -400,7 +405,7 @@ input[id="email-input"] {
   font-family: 'Montserrat', sans-serif;
 }
 
-.frgt-pass{
+.frgt-pass {
   color: var(--secondary-text);
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -409,7 +414,8 @@ input[id="email-input"] {
 
 
 
-.sign-up-option, .pass-reset-option{
+.sign-up-option,
+.pass-reset-option {
   background-color: var(--secondary);
   text-align: center;
 }
@@ -426,13 +432,15 @@ input[id="email-input"] {
   border-radius: 0.3125em;
 }
 
-button:visited
-{
- color: var(--primary-text);
- text-decoration: none;
+button:visited {
+  color: var(--primary-text);
+  text-decoration: none;
 }
 
-a, a:hover, a:focus, a:active {
+a,
+a:hover,
+a:focus,
+a:active {
   text-decoration: none;
   color: inherit;
   background-color: transparent;
@@ -441,48 +449,49 @@ a, a:hover, a:focus, a:active {
 
 
 .home-container {
-    font-family: 'Montserrat', sans-serif;
-    
-    border-radius: 1.25em;
-    margin: 2% auto;
-    padding: 0.5%;
-    /*background : var(--secondary);*/
-    position: fixed;
-    top: 10%;
-    right: 10%;
-    left: 10%;
-    bottom: 10%;
-    background-color: #FFC300;
+  font-family: 'Montserrat', sans-serif;
+
+  border-radius: 1.25em;
+  margin: 2% auto;
+  padding: 0.5%;
+  /*background : var(--secondary);*/
+  position: fixed;
+  top: 10%;
+  right: 10%;
+  left: 10%;
+  bottom: 10%;
+  background-color: #FFC300;
 }
 
 .slide-image {
   height: auto;
-  max-width: 90% ;
+  max-width: 90%;
   border-radius: 0.5em;
   position: absolute;
   right: 0;
   top: 0;
-  left: 5%; 
+  left: 5%;
   padding-top: 0.5em;
   padding-bottom: 1em;
 }
 
 .slide-image-container {
-  position: relative; 
-  width: 100%; /* for IE 6 */
+  position: relative;
+  width: 100%;
+  /* for IE 6 */
   height: 100%;
   border-radius: 5em;
   background-color: var(--secondary);
   text-align: center;
-  
+
 }
 
-h2 { 
-  position: absolute; 
-  top: 3%; 
-  left: 8%; 
+h2 {
+  position: absolute;
+  top: 3%;
+  left: 8%;
   width: 25%;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);
   font-size: 300%;
   color: white;
   margin: 2% auto;
@@ -490,27 +499,27 @@ h2 {
 }
 
 .slide-description {
-  position: absolute; 
-  top: 45%; 
-  left: 13%; 
+  position: absolute;
+  top: 45%;
+  left: 13%;
   width: 75%;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);
   font-size: 200%;
   color: white;
-  padding:0 0.155em;
+  padding: 0 0.155em;
   margin-left: auto;
   margin-right: auto;
 
 }
 
-.slider{
+.slider {
   height: 100% !important;
   border-radius: 0.5em;
   background-color: var(--secondary);
-  
+
   position: absolute;
-    top: 0%;
-    right: 0;
+  top: 0%;
+  right: 0;
 
 }
 
@@ -542,11 +551,12 @@ polygon {
   font-size: 1.875em;
   font-family: 'Montserrat', sans-serif;
 }
+
 .alert--error {
-  background-color:rgba(220, 53, 69, 0.75);  
+  background-color: rgba(220, 53, 69, 0.75);
   font-size: 1.875em;
   font-family: 'Montserrat', sans-serif;
-  
+
 }
 
 .anew {
@@ -574,22 +584,22 @@ polygon {
   text-decoration: none;
   text-transform: uppercase;
   width: 100%;
-  text-align: center;  
+  text-align: center;
   position: relative;
-  right: 0.35em;  
+  right: 0.35em;
 }
 
- 
+
 
 .btn:hover {
   text-decoration: none;
-  color:var(--secondary);
+  color: var(--secondary);
 }
 
 .btn-2:after,
 .btn-2:before {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border: 0.025em solid rgba(255, 255, 255, 0);
   bottom: 0em;
   content: " ";
@@ -603,7 +613,7 @@ polygon {
 .btn-2:hover:after,
 .btn-2:hover:before {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border-color: var(--secondary);
   transition: width 350ms ease-in-out;
   width: 90%;
@@ -615,7 +625,7 @@ polygon {
   width: 90%;
 }
 
-.homelink{
+.homelink {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   text-align: center;
@@ -623,32 +633,32 @@ polygon {
 
 }
 
-.navbarlinkholder{
+.navbarlinkholder {
   height: 4.2675em;
 }
 
-.navlinkother{
+.navlinkother {
   font-family: 'Montserrat', sans-serif;
-  font-weight: bold;    
+  font-weight: bold;
   text-align: center;
   font-size: 1.4225em;
 }
 
-.form-test{
+.form-test {
   background-color: #2f2f30;
 }
 
-.btn-noborder{
+.btn-noborder {
   border-top: none;
   border-right: none;
-  border-left: none;  
+  border-left: none;
 }
 
 .a4 {
   background: rgba(255, 255, 255, 0);
   border-bottom: 0.125em solid;
   color: #fff;
-  line-height: 2.5em;  
+  line-height: 2.5em;
   text-decoration: none;
   max-height: 3.75em;
 }
@@ -665,7 +675,7 @@ polygon {
   text-decoration: none;
   text-transform: uppercase;
   width: 100%;
-  text-align: center;  
+  text-align: center;
   font-weight: bold;
 }
 
@@ -677,7 +687,7 @@ polygon {
 .btn-4:after,
 .btn-4:before {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border: 0.0625em solid rgba(255, 255, 255, 0);
   bottom: 0em;
   content: " ";
@@ -691,7 +701,7 @@ polygon {
 .btn-4:hover:after,
 .btn-4:hover:before {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border-color: var(--ligher-dark);
   transition: width 350ms ease-in-out;
   width: 90%;
@@ -703,7 +713,7 @@ polygon {
   width: 90%;
 }
 
-.accview-title{
+.accview-title {
   display: block;
   position: relative;
   top: 1.5625em;
@@ -715,7 +725,7 @@ polygon {
 .icon-acc {
   font-size: 2.5em;
   margin-right: 0.25em;
-  position: relative;  
+  position: relative;
   background-color: var(--lighterdark);
   color: var(--secondary)
 }
@@ -726,7 +736,7 @@ input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
-.btn-container{
+.btn-container {
   background-color: var(--ligher-dark);
   min-height: 5em;
   position: relative;
@@ -751,22 +761,25 @@ input:-webkit-autofill:focus {
 
 
 
-table{
-  width:100%;
+table {
+  width: 100%;
   table-layout: fixed;
 }
-.tbl-header{
+
+.tbl-header {
   background-color: var(--ligher-dark);
   font-family: 'Montserrat', sans-serif;
-  font-weight: bold;    
- }
-.tbl-content{
-  height:300px;
-  overflow-x:auto;
-  margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
+  font-weight: bold;
 }
-th{
+
+.tbl-content {
+  height: 300px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
   padding: 1em 1em;
   text-align: left;
   font-weight: bold;
@@ -774,40 +787,43 @@ th{
   color: var(--secondary-text);
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
-  font-weight: bold;    
+  font-weight: bold;
 }
-td{
+
+td {
   padding: 0.1em 1em;
   text-align: left;
   vertical-align: middle;
   font-size: 1em;
-  color:var(--secondary-text);
+  color: var(--secondary-text);
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
 
-.timetable-box{
+.timetable-box {
   margin: 50px;
 }
-.timetable-box h1{
+
+.timetable-box h1 {
   font-size: 30px;
   font-family: 'Montserrat', sans-serif;
-  font-weight: bold;    
+  font-weight: bold;
   color: var(--secondary);
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 15px;
 }
+
 .btn-buy {
   color: var(--secondary);
   cursor: pointer;
   font-size: 2em;
   font-weight: bold;
   max-width: 5em;
-  max-height: 1.5em;  
+  max-height: 1.5em;
   text-decoration: none;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   position: relative;
   background: rgba(255, 255, 255, 0);
   border-bottom: 0.05em solid;
