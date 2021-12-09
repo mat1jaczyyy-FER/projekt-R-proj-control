@@ -22,9 +22,10 @@ const SignUp = ({ setAuth }) => {
         try {
           const body = { email, password, name, surname };
           const response = await fetch(
-            "http://localhost:5000/authentication/signup",
+            "http://localhost:5000/auth/signup",
             {
               method: "POST",
+              mode: "cors",
               headers: {
                 "Content-type": "application/json"
               },
