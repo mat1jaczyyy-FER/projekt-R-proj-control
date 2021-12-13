@@ -21,7 +21,7 @@ const SignUp = ({ setAuth }) => {
         e.preventDefault();
 
         try {
-          const body = { username, email, password, name, surname };
+          const body = { username, password, email, name, surname };
           const response = await fetch(
             "http://localhost:5000/auth/signup",
             {
@@ -34,11 +34,13 @@ const SignUp = ({ setAuth }) => {
             }
           );
           const parseRes = await response.json();
+          console.log(parseRes);
     
           if (parseRes.jwtToken) {
             localStorage.setItem("token", parseRes.jwtToken);
             setAuth(true);
             toast.success("Uspješna registracija");
+            this.props.history.push('/homepage')
           } else {
             setAuth(false);
             toast.error('parseRes error: ', parseRes);

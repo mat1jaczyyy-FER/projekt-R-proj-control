@@ -5,6 +5,7 @@ const validInfo = require("../middleware/validInfo");
 const jwtGenerator = require("../utils/jwtGenerator");
 const authorize = require("../middleware/authorize");
 const Zaposlenik = require("../models/Zaposlenik");
+const db = require('../database');
 
 router.post("/signup", validInfo, async (req, res) => {
   const { username, email, password, name, surname } = req.body;
@@ -12,13 +13,13 @@ router.post("/signup", validInfo, async (req, res) => {
   try {
     const user = await Zaposlenik.fetchByEmail(email);
 
-    if (user.email !== undefined) {
+    if (user !== null) {
       return res.status(401).json("Email already taken!");
     }
 
     const user2 = await Zaposlenik.fetchByUsername(username);
 
-    if (user2.korisnickoIme !== undefined) {
+    if (user2 !== null) {
       return res.status(401).json("Username already taken!");
     }
 
@@ -26,9 +27,9 @@ router.post("/signup", validInfo, async (req, res) => {
     const bcryptPassword = await bcrypt.hash(password, salt);
 
     let newUser = new Zaposlenik(username, bcryptPassword, email, name, surname, 2);
-    await newUser.apply();
+    let korisnik = await newUser.apply();
 
-    const jwtToken = jwtGenerator(newUser.username);
+    const jwtToken = jwtGenerator(korisnik.rows[0].idzaposlenika);
     return res.json({ jwtToken });
 
   } catch (err) {
@@ -43,8 +44,8 @@ router.post("/login", validInfo, async (req, res) => {
   try {
     const user = await Zaposlenik.fetchByEmail(email);
 
-    if (user.email === undefined) {
-      return res.status(401).json("Invalid Credential");
+    if (user === null) {
+      return res.status(401).json("Invalid Credentials!");
     }
 
     const validPassword = await bcrypt.compare(
@@ -53,10 +54,19 @@ router.post("/login", validInfo, async (req, res) => {
     );
 
     if (!validPassword) {
-      return res.status(401).json("Invalid Credential");
+      return res.status(401).json("Invalid Credentials!");
+    }
+    let results = null
+    const sql = `SELECT * FROM Zaposlenik WHERE email = '${email}'`
+    try {
+        results = (await db.query(sql, [])).rows;
+
+    } catch (err) {
+        console.log(err);
+        throw err;
     }
 
-    const jwtToken = jwtGenerator(user.korisnickoIme);
+    const jwtToken = jwtGenerator(results.rows[0].idzaposlenika);
     return res.json({ jwtToken });
 
   } catch (err) {

@@ -15,7 +15,7 @@ module.exports = class Zaposlenik {
         const sql = `SELECT * FROM Zaposlenik WHERE email = '${email}'`;
         try {
             const results = (await db.query(sql, [])).rows;
-            let newUser = new Zaposlenik();
+            let newUser = null;
             if (results.length > 0) {
                 newUser = new Zaposlenik(
                     results[0].korisnicko_ime, results[0].lozinka, results[0].email,
@@ -33,7 +33,7 @@ module.exports = class Zaposlenik {
         const sql = `SELECT * FROM Zaposlenik WHERE korisnickoIme = '${username}'`;
         try {
             const results = (await db.query(sql, [])).rows;
-            let newUser = new Zaposlenik();
+            let newUser = null;
             if (results.length > 0) {
                 newUser = new Zaposlenik(
                     results[0].korisnicko_ime, results[0].lozinka, results[0].email,
@@ -50,14 +50,28 @@ module.exports = class Zaposlenik {
     async apply() {
         // todo fix sql injection vuln
         const sql = "INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika, idUloge) VALUES (" +
-            `'${this.korisnickoIme}', '${this.lozinka}', '${this.email}', '${this.imeZaposlenika}', '${this.prezimeZaposlenika}', '${this.idUloge}')`;
+            `'${this.korisnickoIme}', '${this.lozinka}', '${this.email}', '${this.imeZaposlenika}', '${this.prezimeZaposlenika}', '${this.idUloge}')
+            RETURNING *`;
 
         try {
-            await db.query(sql, []);
+            let korisnik = await db.query(sql, []);
+            return korisnik
 
         } catch (err) {
             console.log(err);
             throw err
+        }
+    }
+
+    async getKorisnikInfo(email) {
+        const sql = `SELECT * FROM Zaposlenik WHERE email = '${email}'`
+        try {
+            const results = (await db.query(sql, [])).rows;
+            return results
+
+        } catch (err) {
+            console.log(err);
+            throw err;
         }
     }
 }
