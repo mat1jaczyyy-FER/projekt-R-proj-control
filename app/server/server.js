@@ -18,6 +18,6 @@ for (const path in routers) {
 }
 
 //pokretanje poslužitelja na portu 5000
-app.listen(5000);
-
-
+app.listen(5000, () => {
+    console.log(`Server radi woohooo`);
+  });
