@@ -1,81 +1,55 @@
 [{
     "id": 1,
-    "task": "Give dog a bath",
+    "task": "Okupaj psa",
     "complete": true
   }, {
     "id": 2,
-    "task": "Do laundry",
+    "task": "Složi veš",
     "complete": true
   }, {
     "id": 3,
-    "task": "Vacuum floor",
+    "task": "Posiši stan",
     "complete": false
   }, {
     "id": 4,
-    "task": "Feed cat",
+    "task": "Nahrani mačku",
     "complete": true
   }, {
     "id": 5,
-    "task": "Change light bulbs",
+    "task": "Zamjeni žarulje",
     "complete": false
   }, {
     "id": 6,
-    "task": "Go to Store",
+    "task": "Odi u dućan",
     "complete": true
   }, {
     "id": 7,
-    "task": "Fill gas tank",
+    "task": "Natoči gorivo",
     "complete": true
   }, {
     "id": 8,
-    "task": "Change linens",
+    "task": "Promijeni posteljinu",
     "complete": false
   }, {
     "id": 9,
-    "task": "Rake leaves",
+    "task": "Riješi zadaću",
     "complete": true
   }, {
     "id": 10,
-    "task": "Bake Cookies",
+    "task": "Ispeci kolače",
     "complete": false
   }, {
     "id": 11,
-    "task": "Take nap",
+    "task": "Odspavaj",
     "complete": true
   }, {
     "id": 12,
-    "task": "Read book",
+    "task": "Pročitaj knjigu",
     "complete": true
   }, {
     "id": 13,
-    "task": "Exercise",
+    "task": "Vježbaj",
     "complete": false
-  }, {
-    "id": 14,
-    "task": "Give dog a bath",
-    "complete": false
-  }, {
-    "id": 15,
-    "task": "Do laundry",
-    "complete": false
-  }, {
-    "id": 16,
-    "task": "Vacuum floor",
-    "complete": false
-  }, {
-    "id": 17,
-    "task": "Feed cat",
-    "complete": true
-  }, {
-    "id": 18,
-    "task": "Change light bulbs",
-    "complete": false
-  }, {
-    "id": 19,
-    "task": "Go to Store",
-    "complete": false
-  }, {
-    "id": 20,
-    "task": "Fill gas tank",
-    "complete": false
-  }]
+  }
+    
+  ]

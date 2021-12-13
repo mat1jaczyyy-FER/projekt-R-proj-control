@@ -31,7 +31,7 @@ function ToDoApp() {
   }
 
   return (
-    <div className="App">
+    <div className="ToDoApp">
       <Header />
       <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
       <ToDoForm addTask={addTask}/>
