@@ -14,7 +14,7 @@ const Login = ({ setAuth }) => {
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
-    const onSubmit = async e => {
+    const onSubmitForm = async e => {
         e.preventDefault();
         try {
           const body = { email, password };
@@ -35,7 +35,7 @@ const Login = ({ setAuth }) => {
           if (parseRes.jwtToken) {
             localStorage.setItem("token", parseRes.jwtToken);
             setAuth(true);
-            toast.success("Uspješna prijava");
+            toast.success("Uspjesna prijava");
           } else {
             setAuth(false);
             toast.error(parseRes);
@@ -53,7 +53,7 @@ const Login = ({ setAuth }) => {
                 <p>Unesite svoje podatke za prijavu:</p>
             </div>
             <div className = 'form-box'>
-                    <form onSubmit={onSubmit} className='formtest'>
+                    <form onSubmit={onSubmitForm} className='formtest'>
 
                         <div className='email-form'>
                             <input

@@ -1,6 +1,6 @@
 const {Pool} = require('pg');
 
-const pool = new Pool({
+/*const pool = new Pool({
     user: 'dgmpezensyynio',
     host: 'ec2-63-33-239-176.eu-west-1.compute.amazonaws.com',
     database: 'deqh32ufo24qd5',
@@ -9,6 +9,14 @@ const pool = new Pool({
     ssl: {
         rejectUnauthorized: false
     }
+});*/
+
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'projektr-pomocna',
+    password: 'bazepodataka',
+    port: 5432
 });
 
 module.exports = {

@@ -66,7 +66,7 @@ router.post("/login", validInfo, async (req, res) => {
         throw err;
     }
 
-    const jwtToken = jwtGenerator(results.rows[0].idzaposlenika);
+    const jwtToken = jwtGenerator(results[0].idzaposlenika);
     return res.json({ jwtToken });
 
   } catch (err) {
