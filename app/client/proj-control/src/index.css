@@ -25,6 +25,9 @@ body {
   margin: auto;
   height: auto;
 }
+.strike {
+  text-decoration: line-through;
+}
 
 .navbar-flex-container {
   display: flex;
