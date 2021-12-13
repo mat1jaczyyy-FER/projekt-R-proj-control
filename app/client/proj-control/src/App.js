@@ -1,10 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, 
-  Route, 
-  Link, 
-  Switch, 
-  Routes,
+  Route,
+  Switch,
 Redirect } 
   from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -63,11 +61,11 @@ function App() {
               exact
               path="/"
               render={props =>
-                !isAuthenticated ? 
+                !isAuthenticated ? (
                   <Homepage {...props} />
-                 : 
+                 ) : (
                   <Redirect to="/landingpage" />
-                
+                 )
               }
             />
             <Route
@@ -84,23 +82,23 @@ function App() {
             <Route
               exact
               path="/signup"
-              element={props =>
-                !isAuthenticated ? 
-                  <SignUp {...props} setAuth={setAuth} />
-                 : 
+              render={props =>
+                isAuthenticated ? (
                   <Redirect to="/landingpage"/>
-                
+                 ) : (
+                  <SignUp {...props} setAuth={setAuth} />
+                 )
               }
             />
             <Route
               exact
               path="/landingpage"
-              element={props =>
-                isAuthenticated ? 
+              render={props =>
+                isAuthenticated ? (
                   <LandingPage {...props} setAuth={setAuth} />
-                 : 
+                 ) : (
                   <Redirect to="/login" />
-                
+                 )
               }
             />
             </Switch>

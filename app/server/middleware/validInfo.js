@@ -6,18 +6,18 @@ module.exports = function (req, res, next) {
       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
     }
   
-    if (req.path === "/register") {
+    if (req.path === "/signup") {
       console.log(!email.length);
       if (![username, email, password, name, surname].every(Boolean)) {
-        return res.json("Missing Credentials");
+        return res.json("Potrebno popuniti sva polja!");
       } else if (!validEmail(email)) {
-        return res.json("Invalid Email");
+        return res.json("Email nevaljan!");
       }
     } else if (req.path === "/login") {
       if (![email, password].every(Boolean)) {
-        return res.json("Missing Credentials");
+        return res.json("Potrebno popuniti sva polja!");
       } else if (!validEmail(email)) {
-        return res.json("Invalid Email");
+        return res.json("Email nevaljan!");
       }
     }
   

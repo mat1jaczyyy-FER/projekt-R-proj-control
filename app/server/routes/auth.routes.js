@@ -14,13 +14,13 @@ router.post("/signup", validInfo, async (req, res) => {
     const user = await Zaposlenik.fetchByEmail(email);
 
     if (user !== null) {
-      return res.status(401).json("Email already taken!");
+      return res.status(401).json("Email vec zauzet!");
     }
 
     const user2 = await Zaposlenik.fetchByUsername(username);
 
     if (user2 !== null) {
-      return res.status(401).json("Username already taken!");
+      return res.status(401).json("Korisnicko ime vec zauzeto!");
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -45,7 +45,7 @@ router.post("/login", validInfo, async (req, res) => {
     const user = await Zaposlenik.fetchByEmail(email);
 
     if (user === null) {
-      return res.status(401).json("Invalid Credentials!");
+      return res.status(401).json("Neispravan email ili lozinka!");
     }
 
     const validPassword = await bcrypt.compare(
@@ -54,7 +54,7 @@ router.post("/login", validInfo, async (req, res) => {
     );
 
     if (!validPassword) {
-      return res.status(401).json("Invalid Credentials!");
+      return res.status(401).json("Neispravan email ili lozinka!");
     }
     let results = null
     const sql = `SELECT * FROM Zaposlenik WHERE email = '${email}'`

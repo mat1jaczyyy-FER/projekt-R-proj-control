@@ -16,12 +16,12 @@ const SignUp = ({ setAuth }) => {
     const onChange = e =>
     setSignupData({ ...SignupData, [e.target.name]: e.target.value });
 
-    const onSubmit = async e => {
+    const onSubmitForm = async e => {
 
         e.preventDefault();
 
         try {
-          const body = { username, password, email, name, surname };
+          const body = { username, email, password, name, surname };
           const response = await fetch(
             "http://localhost:5000/auth/signup",
             {
@@ -34,19 +34,17 @@ const SignUp = ({ setAuth }) => {
             }
           );
           const parseRes = await response.json();
-          console.log(parseRes);
     
           if (parseRes.jwtToken) {
             localStorage.setItem("token", parseRes.jwtToken);
             setAuth(true);
-            toast.success("Uspješna registracija");
-            this.props.history.push('/homepage')
+            toast.success("Uspjesna registracija!");
           } else {
             setAuth(false);
-            toast.error('parseRes error: ', parseRes);
+            toast.error(parseRes);
           }
         } catch (err) {
-          console.error('onSubmit form error: ', err.message);
+          console.error(err.message);
         }
       };
     
@@ -59,7 +57,7 @@ const SignUp = ({ setAuth }) => {
                 <p>Unesite podatke potrebne za registraciju:</p>
             </div>
             <div className = 'form-box'>
-                        <form onSubmit={onSubmit}>
+                        <form onSubmit={onSubmitForm} className="formtest">
 
                           <input
                                 type="text"
