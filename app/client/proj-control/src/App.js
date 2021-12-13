@@ -1,8 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Routes } from 'react-router-dom';
-import { toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter as Router, 
+  Route, 
+  Link, 
+  Switch, 
+  Routes,
+Redirect } 
+  from 'react-router-dom';
+import { toast } from "react-toastify";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
@@ -52,29 +57,27 @@ function App() {
   return (
     <Fragment>
       <Router>
-      <div className="container">
-        
       <Layout>
-        <Routes>
+        <Switch>
             <Route
               exact
               path="/"
-              element={props =>
-                !isAuthenticated ? (
+              render={props =>
+                !isAuthenticated ? 
                   <Homepage {...props} />
-                ) : (
-                  <LandingPage />
-                )
+                 : 
+                  <Redirect to="/landingpage" />
+                
               }
             />
             <Route
               exact
               path="/login"
-              element={props =>
+              render={props =>
                 !isAuthenticated ? (
                   <Login {...props} setAuth={setAuth} />
                 ) : (
-                  <Link to='/landingpage' />
+                  <Redirect to="/landingpage" />
                 )
               }
             />
@@ -82,28 +85,26 @@ function App() {
               exact
               path="/signup"
               element={props =>
-                !isAuthenticated ? (
+                !isAuthenticated ? 
                   <SignUp {...props} setAuth={setAuth} />
-                ) : (
-                  <LandingPage/>
-                )
+                 : 
+                  <Redirect to="/landingpage"/>
+                
               }
             />
             <Route
               exact
               path="/landingpage"
               element={props =>
-                isAuthenticated ? (
+                isAuthenticated ? 
                   <LandingPage {...props} setAuth={setAuth} />
-                ) : (
-                  <Login />
-                )
+                 : 
+                  <Redirect to="/login" />
+                
               }
             />
-            </Routes>
-            
+            </Switch>
             </Layout>
-          </div>
       </Router>
     </Fragment>
   );
