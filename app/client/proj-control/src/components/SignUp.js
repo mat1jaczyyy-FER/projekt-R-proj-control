@@ -39,6 +39,7 @@ const SignUp = ({ setAuth }) => {
             localStorage.setItem("token", parseRes.jwtToken);
             setAuth(true);
             toast.success("Uspjesna registracija!");
+            window.location.reload(false);
           } else {
             setAuth(false);
             toast.error(parseRes);

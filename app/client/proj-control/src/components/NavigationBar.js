@@ -8,7 +8,8 @@ function NavigationBar(){
         try {
           localStorage.removeItem("token");
           setAuth(false);
-          toast.success("Successfully logged out");
+          toast.success("Uspjesno ste se odjavili!");
+          window.location.reload(false);
         } catch (err) {
           console.error(err.message);
         }

@@ -412,7 +412,24 @@ input[id="email-input"] {
   background-color: var(--secondary);
 }
 
+.homepage {
+  font-family: 'Montserrat', sans-serif;
+  width: 78.125em;
+  min-height: 21.25em;
+  height: auto;
+  border-radius: 1.25em;
+  margin: 5% auto;
+  padding: 2%;
+  background: var(--ligher-dark);
+}
 
+#yellow-text {
+  color: var(--secondary-text);
+}
+
+#red-text {
+  color: var(--secondary);
+}
 
 .sign-up-option,
 .pass-reset-option {
@@ -445,6 +462,14 @@ a:active {
   color: inherit;
   background-color: transparent;
   display: inline-block;
+}
+
+.home-container2 {
+  position: fixed;
+  top: 25%;
+  left: 48%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 
