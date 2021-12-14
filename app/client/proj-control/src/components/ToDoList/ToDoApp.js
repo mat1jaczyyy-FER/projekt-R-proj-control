@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 //mock data
 import data from "./data";
 //components
-import Header from "./Header";
 import ToDoList from "./ToDoList";
 import ToDoForm from './ToDoForm';
 
@@ -31,10 +30,15 @@ function ToDoApp() {
   }
 
   return (
-    <div className="ToDoApp">
-      <Header />
+    <div className='signIN'>
+    <div className = 'login-naslov'>
+        <h1>TO DO LISTA </h1>
+        <p>Popis zadataka:</p>
+    </div>
+    <div className="ToDoApp" >
       <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
       <ToDoForm addTask={addTask}/>
+    </div>
     </div>
   );
 }

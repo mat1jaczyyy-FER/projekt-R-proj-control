@@ -44,6 +44,28 @@ body {
   color: var(--secondary);
   display: inline;
 }
+.ToDoApp{
+  color:var(--secondary);
+  text-align:'center';
+  border: '3px grey';
+  display:'block';
+  margin-left:'auto';
+  margin-right:'auto';
+}
+.todo{
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  text-align: center;
+  border: 3px var(--secondary);
+  
+}
+.todoheader{
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  text-align:center;
+  margin-left: 'auto';
+  margin-right: 'auto';
+}
 
 .accview-grid-container {
   display: grid;
@@ -194,6 +216,12 @@ body {
 .button-primary {
   background-color: var(--secondary);
   color: var(--primary-text);
+}
+
+.button-primary-centered {
+  background-color: var(--secondary);
+  color: var(--primary-text);
+  object-position: center;
 }
 
 .button-secondary {
@@ -374,6 +402,11 @@ input[id="email-input"] {
   padding: 2%;
   background: var(--secondary);
   z-index: -1;
+}
+
+.todobox{
+  border-radius: 12.5em;
+  border-color: black;
 }
 
 .btn-login {

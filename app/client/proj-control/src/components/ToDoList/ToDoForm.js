@@ -14,9 +14,10 @@ const ToDoForm = ({ addTask }) => {
         setUserInput("");
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <input value={userInput} type="text" onChange={handleChange} placeholder="Unesi zadatak..."/>
-            <button>Dodaj zadatak</button>
+        <form className='input-item' onSubmit={handleSubmit}>
+            <input className="form-control" style={{marginLeft:'auto'},{marginRight:'auto'}} value={userInput} type="text" onChange={handleChange} placeholder="                      Unesi zadatak..."/>
+            <h1> ---------------------------------- </h1>
+            <button className='anew btn btn-2 navlinkother btn-noborder'>Dodaj zadatak</button>
         </form>
     );
 };

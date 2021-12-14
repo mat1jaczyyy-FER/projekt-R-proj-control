@@ -3,13 +3,16 @@ import ToDo from './ToDo';
 
 const ToDoList = ({toDoList, handleToggle, handleFilter}) => {
     return (
-        <div>
+        <div className='form-box'>
+            <h1> ---------------------------------- </h1>
             {toDoList.map(todo => {
                 return (
                     <ToDo todo={todo} handleToggle={handleToggle} handleFilter={handleFilter}/>
                 )
             })}
-            <button style={{margin: '20px'}} onClick={handleFilter}>Obriši zadatke</button>
+            <h1> ---------------------------------- </h1>
+            <button className='anew btn btn-2 navlinkother btn-noborder' onClick={handleFilter}>Obriši zadatke</button>
+            <h1> ---------------------------------- </h1>
         </div>
     );
 };
