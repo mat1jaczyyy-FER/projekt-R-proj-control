@@ -24,7 +24,7 @@ function ProjektApp() {
   }
 
   const addProjekt = (userInput ) => {
-    let copy = [...ProjektList];
+    let copy = [...projektList];
     copy = [...copy, { id: projektList.length + 1, task: userInput, complete: false }];
     setProjektList(copy);
   }
@@ -33,7 +33,7 @@ function ProjektApp() {
     <div className='signIN'>
     <div className = 'login-naslov'>
         <h1>MOJI PROJEKTI </h1>
-        <p>Popis projekti:</p>
+        <p>Popis projekata:</p>
     </div>
     <div className="ToDoApp" >
       <ProjektList projektList={projektList} handleToggle={handleToggle} handleFilter={handleFilter}/>

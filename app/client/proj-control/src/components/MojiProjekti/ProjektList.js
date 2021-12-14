@@ -1,11 +1,11 @@
 import React from 'react';
 import Projekt from './Projekt';
 
-const ProjektList = ({ProjektList, handleToggle, handleFilter}) => {
+const ProjektList = ({projektList, handleToggle, handleFilter}) => {
     return (
         <div className='form-box'>
             <h1> ---------------------------------- </h1>
-            {ProjektList.map(projekt => {
+            {projektList.map(projekt => {
                 return (
                     <Projekt projekt={projekt} handleToggle={handleToggle} handleFilter={handleFilter}/>
                 )

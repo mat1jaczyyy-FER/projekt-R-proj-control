@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { toast } from "react-toastify";
 
 import Login from "./components/Login";
@@ -16,13 +16,13 @@ function App() {
   return (
     <Router>
       <Layout>
-        <Switch>
+        <Routes>
           <Route exact path = '/' element = {<Homepage/>} />
           <Route exact path = '/login' element = {<Login/>} />
           <Route exact path='/signup' element={<Signup/>}></Route>
           <Route exact path = '/todo' element = {<ToDoApp/>} />
           <Route exact path = '/mojiprojekti' element = {<ProjektApp/>} />
-        </Switch>
+        </Routes>
       </Layout>    
     </Router>
   );

@@ -854,9 +854,7 @@ td {
 .btn-buy {
   color: var(--secondary);
   cursor: pointer;
-  font-size: 2em;
-  font-weight: bold;
-  max-width: 5em;
+  font-size: 1em;
   max-height: 1.5em;
   text-decoration: none;
   text-transform: uppercase;
