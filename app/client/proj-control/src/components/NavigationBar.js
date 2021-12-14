@@ -60,6 +60,12 @@ function NavigationBar(){
       const authLinks = () => (
         <Fragment>
             <div className="btn-con">
+                <a href="./mojiprojekti" className="anew navlinkother btn btn-2 ">
+                    Moji projekti
+                </a>
+            </div>
+
+            <div className="btn-con">
                 <a href="#" className="anew navlinkother btn btn-2 ">
                     Upravljanje računom
                 </a>
