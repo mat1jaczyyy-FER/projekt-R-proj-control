@@ -4,7 +4,8 @@ const cors = require('cors');
 //const process = require('dotenv').config()
 
 const routers = {
-    '/auth': require('./routes/auth.routes')
+    '/auth': require('./routes/auth.routes'),
+    '/project': require('./routes/project.routes')
 };
 
 app.use(cors({
