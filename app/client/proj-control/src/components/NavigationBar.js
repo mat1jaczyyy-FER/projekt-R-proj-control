@@ -1,7 +1,18 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { SideBarData } from './SideBarData';
+import { IconContext } from 'react-icons';
+import './Navbar.css';
+
 
 function NavigationBar(){
+
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
 
     const logout = async (e) => {
         e.preventDefault();
@@ -61,12 +72,6 @@ function NavigationBar(){
       const authLinks = () => (
         <Fragment>
             <div className="btn-con">
-                <a href="./mojiprojekti" className="anew navlinkother btn btn-2 ">
-                    Moji projekti
-                </a>
-            </div>
-
-            <div className="btn-con">
                 <a href="#" className="anew navlinkother btn btn-2 ">
                     Upravljanje računom
                 </a>
@@ -80,7 +85,7 @@ function NavigationBar(){
         </Fragment>
       );
 
-    return (
+    /*return (
         <Fragment>            
         <nav className="navbar-flex-container navbar">
             <div className="left-navbar">
@@ -95,6 +100,41 @@ function NavigationBar(){
             </div>
         </nav>
     </Fragment>
+    );*/
+
+    return (
+      <>
+        <IconContext.Provider value={{ color: '#fff' }}>
+          <div className='navbar'>
+            <Link to='#' className='menu-bars1'>
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
+            <div className="right-navbar">       
+                {isAuthenticated ? authLinks() : guestLinks()}
+            </div>
+          </div>
+          
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <ul className='nav-menu-items' onClick={showSidebar}>
+              <li className='navbar-toggle'>
+                <Link to='#' className='menu-bars'>
+                  <AiIcons.AiOutlineClose />
+                </Link>
+              </li>
+              {SideBarData.map((item, index) => {
+                return (
+                  <li key={index} className={item.cName}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </IconContext.Provider>
+      </>
     );
 };
 
