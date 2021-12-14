@@ -11,10 +11,19 @@ import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import Layout from './hocs/Layout';
+import Projekti from "./components/Projekti";
+import Timovi from "./components/Timovi";
+import Zadaci from "./components/Zadaci";
+
 
 toast.configure();
 
 function App() {
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  
   const checkAuthenticated = async () => {
     try {
       const res = await fetch("http://localhost:5000/auth/verify", {
@@ -101,6 +110,11 @@ function App() {
                  )
               }
             />
+            <Route exact path="/projekti" render={props => isAuthenticated ? (<Projekti {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/timovi" render={props => isAuthenticated ? (<Timovi {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/zadaci" render={props => isAuthenticated ? (<Zadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+
+
             </Switch>
             </Layout>
       </Router>
