@@ -14,6 +14,7 @@ import Layout from './hocs/Layout';
 import Projekti from "./components/Projekti";
 import Timovi from "./components/Timovi";
 import Zadaci from "./components/Zadaci";
+import NoviProjekt from "./components/NoviProjekt";
 
 
 toast.configure();
@@ -113,6 +114,7 @@ function App() {
             <Route exact path="/projekti" render={props => isAuthenticated ? (<Projekti {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/timovi" render={props => isAuthenticated ? (<Timovi {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/zadaci" render={props => isAuthenticated ? (<Zadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/noviprojekt" render={props => isAuthenticated ? (<NoviProjekt {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
 
 
             </Switch>

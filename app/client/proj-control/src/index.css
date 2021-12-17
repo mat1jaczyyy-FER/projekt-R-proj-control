@@ -24,7 +24,7 @@ body {
   width: 70%;
   margin: auto;
   height: auto;
-  }
+}
 
 .navbar-flex-container {
   display: flex;
@@ -143,7 +143,7 @@ body {
   font-size: 0.9375em;
   display: inline-block;
   box-sizing: border-box;
-  
+
   max-height: 5em;
   text-align: center;
   background-color: #2f2f30;
@@ -221,6 +221,17 @@ body {
   background: var(--secondary);
 }
 
+.newProject {
+  font-family: 'Montserrat', sans-serif;
+  width: 80em;
+  min-height: 31.25em;
+  height: auto;
+  border-radius: 1.25em;
+  margin: 2% auto;
+  padding: 2%;
+  background: var(--secondary);
+}
+
 
 .form-box {
   background-color: var(--ligher-dark);
@@ -240,6 +251,14 @@ body {
   border-radius: 1.25em;
   text-align: center;
   margin: 2% auto 10% auto;
+  background-color: var(--secondary);
+}
+
+.newProject-naslov {
+  color: var(--ligher-dark);
+  border-radius: 1.25em;
+  text-align: center;
+  margin: 2% auto 2% auto;
   background-color: var(--secondary);
 }
 
@@ -324,6 +343,37 @@ form {
   border-radius: 0em 0.3125em 0.3125em 0em;
   transition: 0.2s linear;
 
+}
+
+.form-control-newProject {
+  width: 13em;
+  height: 1.5625em;
+
+  margin-top: 2%;
+  padding: 0.9375em;
+
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--secondary) !important;
+
+  background-color: var(--ligher-dark);
+
+  outline: none;
+  border: none;
+
+  border-radius: 0em 0.3125em 0.3125em 0em;
+  transition: 0.2s linear;
+}
+
+.form-control-newProject-opis {
+  width: 60em;
+  height: 5em;
+}
+
+.newProject-label {
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--secondary) !important;
 }
 
 .form-control-email {
@@ -864,14 +914,13 @@ td {
   border-radius: 1.25em;
   margin: 5% auto;
   padding: 2%;
-  
+
 }
 
 #yellow-text {
   color: var(--secondary-text);
 }
+
 #red-text {
   color: var(--secondary);
 }
-
-
