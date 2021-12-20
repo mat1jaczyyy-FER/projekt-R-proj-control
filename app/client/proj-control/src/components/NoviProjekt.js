@@ -4,16 +4,16 @@ import {withRouter} from 'react-router-dom';
 
 const  NoviProjekt = () => {
     const [inputs, setInputs] = useState({
-        nazivprojekta: "",
-        plandatpoc: Date,
-        plandatkraj: Date,
-        datpoc: Date,
-        datkraj: Date,
-        idstatusa: 1,
-        opisprojekta: ""
+        nazivProjekta: "",
+        planDatPoc: Date,
+        planDatKraj: Date,
+        datPoc: Date,
+        datKraj: Date,
+        idStatusa: 1,
+        opisProjekta: ""
     });
 
-    const {nazivprojekta, plandatpoc, plandatkraj, idstatusa, opisprojekta} = inputs;
+    const {nazivProjekta, planDatPoc, planDatKraj, idStatusa, opisProjekta} = inputs;
 
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -22,10 +22,10 @@ const  NoviProjekt = () => {
         e.preventDefault();
         try {
           const idzaposlenika = JSON.parse(localStorage.getItem("user")).idzaposlenika;
-          const idvlasnika = idzaposlenika
-          const body = { nazivprojekta, plandatpoc, plandatkraj, idstatusa, idvlasnika, opisprojekta };
+          const idVlasnika = idzaposlenika
+          const body = { nazivProjekta, planDatPoc, planDatKraj, idStatusa, idVlasnika, opisProjekta };
           const response = await fetch(
-            "http://localhost:5000/api/projekt/add",
+            "http://localhost:5000/project/add",
             {
               method: "POST",
               mode: "cors",
@@ -38,8 +38,8 @@ const  NoviProjekt = () => {
     
           const parseRes = await response.json();
     
-          if (parseRes.status === 200) {
-            toast.success(`Dodan novi projekt: ${nazivprojekta}`);
+          if (parseRes.projekt) {
+            toast.success(`Dodan novi projekt: ${nazivProjekta}`);
             window.location.href = '/projekti';
           } else {
             toast.error(`Greska pri dodavanju projekta!`);
@@ -62,8 +62,8 @@ const  NoviProjekt = () => {
                         
                             <input
                             type="text"
-                            name="nazivprojekta"
-                            value={nazivprojekta}
+                            name="nazivProjekta"
+                            value={nazivProjekta}
                             onChange={e => onChange(e)}
                             className="form-control-newProject form-control-newProject-naslov"
                             placeholder = 'Upišite naziv projekta'
@@ -72,8 +72,8 @@ const  NoviProjekt = () => {
                             <label className="newProject-label">Planirani datum pocetka:</label>
                             <input
                             type="date"
-                            name="plandatpoc"
-                            value={plandatpoc}
+                            name="planDatPoc"
+                            value={planDatPoc}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
                             placeholder = 'Odaberite planirani datum pocetka'
@@ -82,8 +82,8 @@ const  NoviProjekt = () => {
                             <label className="newProject-label">Planirani datum zavrsetka:</label>
                             <input
                             type="date"
-                            name="plandatkraj"
-                            value={plandatkraj}
+                            name="planDatKraj"
+                            value={planDatKraj}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
                             placeholder = 'Odaberite planirani datum kraja'
@@ -91,8 +91,8 @@ const  NoviProjekt = () => {
                             <br />
                             <textarea
                             type="text"
-                            name="opisprojekta"
-                            value={opisprojekta}
+                            name="opisProjekta"
+                            value={opisProjekta}
                             onChange={e => onChange(e)}
                             className="form-control-newProject form-control-newProject-opis"
                             placeholder = 'Napisite kratki opis projekta...'

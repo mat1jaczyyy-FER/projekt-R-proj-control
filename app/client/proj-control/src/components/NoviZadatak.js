@@ -24,7 +24,7 @@ const NoviZadatak = () => {
         try {
           const body = { opis, plandatpoc, plandatkraj, planbrsati, idstatusa, idvrste };
           const response = await fetch(
-            "http://localhost:5000/api/zadatak/add",
+            "http://localhost:5000/zadatak/add",
             {
               method: "POST",
               mode: "cors",
@@ -37,7 +37,7 @@ const NoviZadatak = () => {
     
           const parseRes = await response.json();
     
-          if (parseRes.status === 200) {
+          if (parseRes.zadatak) {
             toast.success(`Dodan novi zadatak`);
             window.location.href = '/projekti';
           } else {
@@ -56,8 +56,6 @@ const NoviZadatak = () => {
             </div>
             <div className = 'form-box'>
                     <form onSubmit={onSubmitForm} className='formtest'>
-
-                        
                             <textarea
                             type="text"
                             name="opis"

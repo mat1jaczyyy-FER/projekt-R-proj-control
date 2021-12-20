@@ -1,7 +1,7 @@
 const db = require('../database');
 
 module.exports = class Projekt {
-    constructor (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika) {
+    constructor (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika, opisProjekta) {
         this.nazivProjekta = nazivProjekta;
         this.planDatPoc = planDatPoc;
         this.planDatKraj = planDatKraj;
@@ -9,12 +9,13 @@ module.exports = class Projekt {
         this.datKraj = datKraj;
         this.idStatusa = idStatusa;
         this.idVlasnika = idVlasnika;
+        this.opisProjekta = opisProjekta;
     }
 
     async apply() {
         // todo fix sql injection vuln
-        const sql = "INSERT INTO projekt (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika) VALUES (" +
-            `'${this.nazivProjekta}', '${this.planDatPoc}', '${this.planDatKraj}', '${this.datPoc}', '${this.datKraj}', '${this.idStatusa}', '${this.idVlasnika}')
+        const sql = "INSERT INTO projekt (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika, opis) VALUES (" +
+            `'${this.nazivProjekta}', '${this.planDatPoc}', '${this.planDatKraj}', '${this.datPoc}', '${this.datKraj}', '${this.idStatusa}', '${this.idVlasnika}', '${this.opisProjekta}')
             RETURNING *`;
 
         try {
