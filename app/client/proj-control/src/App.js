@@ -2,16 +2,17 @@ import React, { Fragment, useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, 
   Route,
-  Switch,
-Redirect } 
+  Redirect, Switch
+  } 
   from 'react-router-dom';
+// import {} from 'react-router'
 import { toast } from "react-toastify";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import Layout from './hocs/Layout';
-import Projekti from "./components/Projekti";
+import Projekti from "./components/ProjectsView/Projekti";
 import Timovi from "./components/Timovi";
 import Zadaci from "./components/Zadaci";
 import NoviProjekt from "./components/NoviProjekt";
