@@ -11,13 +11,13 @@ function Projekti() {
     
 
     useEffect(async()=>{
-        await(fetch('api/project/alluserprojects', {
+        await(fetch('http://localhost:5000/projekt/alluserprojects', {
           method: 'POST',
           headers:{
             'Content-Type':'application/json'
           },
           credentials: 'same-origin',
-          body: JSON.stringify({idVlasnika: localStorage.getItem("token").user_id},)
+          body: JSON.stringify({idVlasnika: JSON.parse(localStorage.getItem("user")).idkorisnika},)
           }))
         .then(function(response) {
           if (response.status === 401) {
