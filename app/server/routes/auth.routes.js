@@ -28,9 +28,15 @@ router.post("/signup", validInfo, async (req, res) => {
 
     let newUser = new Zaposlenik(username, bcryptPassword, email, name, surname, 2);
     let korisnik = await newUser.apply();
+    const data = {email: korisnik.rows[0].email, 
+      iduloge: korisnik.rows[0].iduloge,
+      idzaposlenika: korisnik.rows[0].idzaposlenika,
+      imezaposlenika: korisnik.rows[0].imezaposlenika,
+      korisnickoime: korisnik.rows[0].korisnickoime,
+      prezimezaposlenika: korisnik.rows[0].prezimezaposlenika };
 
     const jwtToken = jwtGenerator(korisnik.rows[0].idzaposlenika);
-    return res.json({ jwtToken });
+    return res.json({ jwtToken, data });
 
   } catch (err) {
     console.error(err.message);
@@ -65,9 +71,17 @@ router.post("/login", validInfo, async (req, res) => {
         console.log(err);
         throw err;
     }
+    //const data = {results.email, results.iduloge, results.idzaposlenika, results.imezaposlenika, results.korisnickoime, results.prezimezaposlenika}
+    const data = {email: results[0].email, 
+      iduloge: results[0].iduloge,
+      idzaposlenika: results[0].idzaposlenika,
+      imezaposlenika: results[0].imezaposlenika,
+      korisnickoime: results[0].korisnickoime,
+      prezimezaposlenika: results[0].prezimezaposlenika };
 
+    console.log(data)
     const jwtToken = jwtGenerator(results[0].idzaposlenika);
-    return res.json({ jwtToken });
+    return res.json({ jwtToken, data });
 
   } catch (err) {
     console.error(err.message);

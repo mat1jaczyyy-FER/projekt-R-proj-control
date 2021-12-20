@@ -2,18 +2,19 @@ import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
 import {withRouter} from 'react-router-dom';
 
-const  NoviProjekt = () => {
+const NoviZadatak = () => {
     const [inputs, setInputs] = useState({
-        nazivprojekta: "",
+        opis: "",
         plandatpoc: Date,
         plandatkraj: Date,
         datpoc: Date,
         datkraj: Date,
+        planbrsati: 1,
         idstatusa: 1,
-        opisprojekta: ""
+        idvrste: 1,
     });
 
-    const {nazivprojekta, plandatpoc, plandatkraj, idstatusa, opisprojekta} = inputs;
+    const {opis, plandatpoc, plandatkraj, planbrsati, idstatusa, idvrste} = inputs;
 
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -21,11 +22,9 @@ const  NoviProjekt = () => {
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
-          const idzaposlenika = JSON.parse(localStorage.getItem("user")).idzaposlenika;
-          const idvlasnika = idzaposlenika
-          const body = { nazivprojekta, plandatpoc, plandatkraj, idstatusa, idvlasnika, opisprojekta };
+          const body = { opis, plandatpoc, plandatkraj, planbrsati, idstatusa, idvrste };
           const response = await fetch(
-            "http://localhost:5000/api/projekt/add",
+            "http://localhost:5000/api/zadatak/add",
             {
               method: "POST",
               mode: "cors",
@@ -39,7 +38,7 @@ const  NoviProjekt = () => {
           const parseRes = await response.json();
     
           if (parseRes.status === 200) {
-            toast.success(`Dodan novi projekt: ${nazivprojekta}`);
+            toast.success(`Dodan novi zadatak`);
             window.location.href = '/projekti';
           } else {
             toast.error(`Greska pri dodavanju projekta!`);
@@ -48,28 +47,27 @@ const  NoviProjekt = () => {
           console.error(err.message);
         }
       };
-
-    return (
+      return (
         <Fragment>
           <div className='newProject'>
             <div className = 'newProject-naslov'>
-                <h1>Dodavanje novog projekta...</h1>
+                <h1>Dodavanje novog zadatka...</h1>
                 <h3>Unesite sve potrebne podatke:</h3>
             </div>
             <div className = 'form-box'>
                     <form onSubmit={onSubmitForm} className='formtest'>
 
                         
-                            <input
+                            <textarea
                             type="text"
-                            name="nazivprojekta"
-                            value={nazivprojekta}
+                            name="opis"
+                            value={opis}
                             onChange={e => onChange(e)}
-                            className="form-control-newProject form-control-newProject-naslov"
-                            placeholder = 'Upišite naziv projekta'
+                            className="form-control-newProject form-control-newTask-opis"
+                            placeholder = 'Napišite opis zadatka'
                             />
                             <br />
-                            <label className="newProject-label">Planirani datum pocetka:</label>
+                            <label className="newProject-label">Planirani datum početka:</label>
                             <input
                             type="date"
                             name="plandatpoc"
@@ -79,7 +77,7 @@ const  NoviProjekt = () => {
                             placeholder = 'Odaberite planirani datum pocetka'
                             />
                             <br />
-                            <label className="newProject-label">Planirani datum zavrsetka:</label>
+                            <label className="newProject-label">Planirani datum završetka:</label>
                             <input
                             type="date"
                             name="plandatkraj"
@@ -89,21 +87,22 @@ const  NoviProjekt = () => {
                             placeholder = 'Odaberite planirani datum kraja'
                             />
                             <br />
-                            <textarea
-                            type="text"
-                            name="opisprojekta"
-                            value={opisprojekta}
+                            <label className="form-control-newProject">Planirano trajanje zadatka:</label>
+                            <input
+                            type="number"
+                            name="planbrsati"
+                            value={planbrsati}
                             onChange={e => onChange(e)}
-                            className="form-control-newProject form-control-newProject-opis"
-                            placeholder = 'Napisite kratki opis projekta...'
+                            className="form-control-newProject"
+                            placeholder = 'Odredite planirano trajanje zadatka'
                             />
-                            <button className='anew btn btn-2 navlinkother btn-noborder' type='submit' >Dodaj projekt</button>
+                            <button className='anew btn btn-2 navlinkother btn-noborder' type='submit' >Dodaj zadatak</button>
                         
                     </form>
                 </div>
             </div>
         </Fragment>
     );
-};
+}
 
-export default NoviProjekt;
+export default NoviZadatak

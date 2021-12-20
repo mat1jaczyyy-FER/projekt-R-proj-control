@@ -368,6 +368,21 @@ form {
 .form-control-newProject-opis {
   width: 60em;
   height: 5em;
+  outline: 1px #a9d1ff;
+  outline-style: solid;
+
+}
+
+.form-control-newProject-naslov {
+  outline: 1px #a9d1ff;
+  outline-style: solid;
+}
+
+.form-control-newTask-opis {
+  width: 30em;
+  height: 5em;
+  outline: 1px #a9d1ff;
+  outline-style: solid;
 }
 
 .newProject-label {
