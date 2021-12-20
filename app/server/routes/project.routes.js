@@ -19,12 +19,13 @@ router.post("/add", validNewProject, async (req, res) => {
   }
 });
 
-router.get("/alluserprojects", async (req, res) => {
-  const { idVlasnika } = req.body;
+router.get("/alluserprojects/:idVlasnika", async (req, res) => {
+ /* const { idVlasnika } = req.body;*/
 
   try {
+    const { idVlasnika } = req.params;
     const results = await Projekt.getProjektiInfo(idVlasnika);
-    return res.json({ results });
+    return res.json(results);
 
   } catch (err) {
     console.error(err.message);
