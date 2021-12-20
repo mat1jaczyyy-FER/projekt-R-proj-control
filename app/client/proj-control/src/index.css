@@ -939,3 +939,75 @@ td {
 #red-text {
   color: var(--secondary);
 }
+
+.project-overview {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "project-info project-info progress-chart"
+    "gantt-chart gantt-chart stats"
+    "gantt-chart gantt-chart .";
+}
+
+.project-info {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "project-name project-name vlasnik"
+    "status-projekta broj-zaposlenih datumi"
+    "opis-projekta opis-projekta opis-projekta"; 
+  grid-area: project-info; 
+  background-color: #97a3ad;
+ 
+}
+
+
+.project-name { grid-area: project-name;  
+}
+
+.project-name h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+  margin-left: 1rem;
+  border: 2px solid black;
+}
+
+
+.vlasnik { grid-area: vlasnik; }
+.vlasnik h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0;
+  border: 2px solid black;
+}
+
+.status-projekta { grid-area: status-projekta; }
+.opis-projekta { grid-area: opis-projekta; }
+.datumi { grid-area: datumi; }
+.broj-zaposlenih { grid-area: broj-zaposlenih; }
+
+.progress-chart {
+  display: grid; 
+  grid-template-columns: 0.5fr 2fr 0.5fr; 
+  grid-template-rows: 0.5fr 2fr 0.5fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . ."
+    ". piechart-box ."
+    ". . ."; 
+  grid-area: progress-chart; 
+}
+
+.piechart-box { grid-area: piechart-box; }
+
+.stats { grid-area: stats; }
+
+.gantt-chart { grid-area: gantt-chart; }
