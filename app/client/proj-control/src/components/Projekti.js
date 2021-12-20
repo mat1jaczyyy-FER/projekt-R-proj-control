@@ -64,23 +64,28 @@ const Projekti = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {Object.values(listaProjekata).map(projekt => (
-                    <tr key={projekt.idprojekta}>
-                        <td>{projekt.idprojekta}</td>
-                        <td>{projekt.nazivprojekta}</td>
-                        <td>{projekt.plandatpoc}</td>  
-                        <td>{projekt.plandatkraj}</td>  
-                        <td>{projekt.datpoc}</td>        
-                        <td>{projekt.datkraj}</td>
-                        <td>{projekt.idstatusa}</td>
-                        <td>{projekt.idvlasnika}</td>
-                        <td>{projekt.opis}</td>                       
-                        
-                    </tr>
-                ))}
+                {Object.values(listaProjekata).map((projekt) => {
+                    return (
+                        <tr key={projekt.idprojekta}>
+                            <td>{projekt.idprojekta}</td>
+                            <td>{projekt.nazivprojekta}</td>
+                            <td>{projekt.plandatpoc}</td>  
+                            <td>{projekt.plandatkraj}</td>  
+                            <td>{projekt.datpoc}</td>        
+                            <td>{projekt.datkraj}</td>
+                            <td>{projekt.idstatusa}</td>
+                            <td>{projekt.idvlasnika}</td>
+                            <td>{projekt.opis}</td>                  
+                         </tr>
+                    )
+                })}                                    
                 </tbody>
             </table>
         </Fragment>
+    );
+};
+
+export default Projekti;
 
 
 
@@ -119,7 +124,3 @@ const Projekti = () => {
 </div>*/
 
         
-    );
-};
-
-export default Projekti;

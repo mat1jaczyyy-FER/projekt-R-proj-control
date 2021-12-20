@@ -73,8 +73,8 @@ function NavigationBar(){
       const authLinks = () => (
         <Fragment>
             <div className="btn-con">
-                <a href="#" className="anew navlinkother btn btn-2 ">
-                    Upravljanje računom
+                <a href='/projekti' className="anew navlinkother btn btn-2 ">
+                    Moji projekti
                 </a>
             </div>
 
@@ -86,22 +86,7 @@ function NavigationBar(){
         </Fragment>
       );
 
-    /*return (
-        <Fragment>            
-        <nav className="navbar-flex-container navbar">
-            <div className="left-navbar">
-                <div className='navbarlinkholder' >
-                    <a href="/" className='anew btn btn-2 homelink'>
-                        ProjControl
-                    </a>
-                </div>
-            </div>            
-            <div className="right-navbar">       
-                {isAuthenticated ? authLinks() : guestLinks()}
-            </div>
-        </nav>
-    </Fragment>
-    );*/
+   
 
     return (
       <>
@@ -132,6 +117,8 @@ function NavigationBar(){
                   </li>
                 );
               })}
+
+              <li>Odjava</li>
             </ul>
           </nav>
         </IconContext.Provider>
