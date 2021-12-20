@@ -25,7 +25,7 @@ router.get("/alluserprojects", async (req, res) => {
 
   try {
     const results = await Projekt.getProjektiInfo(idVlasnika);
-    return res.json({ results });
+    return res.json(results);
 
   } catch (err) {
     console.error(err.message);

@@ -42,10 +42,11 @@ const  NoviProjekt = () => {
             toast.success(`Dodan novi projekt: ${nazivProjekta}`);
             window.location.href = '/projekti';
           } else {
-            toast.error(`Greska pri dodavanju projekta!`);
+            toast.error(parseRes);
           }
         } catch (err) {
           console.error(err.message);
+          toast.error(`GreŠka pri dodavanju projekta!`);
         }
       };
 

@@ -1,7 +1,7 @@
 const db = require('../database');
 
 module.exports = class Zadatak {
-    constructor (opis, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, idGrupe, idVrste, idStatusa, idPrioriteta, idRadnogLista) {
+    constructor (opis, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, idGrupe, idVrste, idStatusa, idPrioriteta, idRadnogLista, idProjekta) {
         this.opis = opis;
         this.planDatPoc = planDatPoc;
         this.planDatKraj = planDatKraj;
@@ -15,15 +15,15 @@ module.exports = class Zadatak {
         this.idStatusa = idStatusa;
         this.idPrioriteta = idPrioriteta;
         this.idRadnogLista = idRadnogLista;
+        this.idProjekta = idProjekta;
     }
 
     async apply() {
         // todo fix sql injection vuln
-        const sql = "INSERT INTO Zadatak (opis, planDatPoc, planDatKraj, planBudzet, budzet, datPoc," +
-                                            "datKraj, planBrSati, idGrupe, idVrste, idStatusa, idPrioriteta, idRadnogLista) VALUES (" +
-            `'${this.opis}', '${this.planDatPoc}', '${this.planDatKraj}', '${this.planBudzet}', '${this.budzet}', '${this.datPoc}',
-             '${this.datKraj}', '${this.planBrSati}', '${this.idGrupe}', '${this.idVrste}', '${this.idStatusa}', 
-             '${this.idPrioriteta}', '${this.idRadnogLista}')
+        const sql = "INSERT INTO Zadatak (opis, planDatPoc, planDatKraj, planBudzet," +
+                                            " planBrSati, idVrste, idStatusa, idPrioriteta, idProjekta) VALUES (" +
+            `'${this.opis}', '${this.planDatPoc}', '${this.planDatKraj}', '${this.planBrSati}', '${this.idVrste}', '${this.idStatusa}', 
+             '${this.idPrioriteta}', '${this.idProjekta}')
             RETURNING *`;
 
         try {
@@ -36,8 +36,8 @@ module.exports = class Zadatak {
         }
     }
 
-    static async getZadatakInfo(idGrupe) {
-        const sql = `SELECT * FROM Zadatak WHERE idGrupe = '${idGrupe}'`
+    static async getZadatakInfo(idProjekta) {
+        const sql = `SELECT * FROM Zadatak WHERE idProjekta = '${idProjekta}'`
         try {
             const results = (await db.query(sql, [])).rows;
             return results

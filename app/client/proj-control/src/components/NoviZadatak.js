@@ -85,7 +85,7 @@ const NoviZadatak = () => {
                             placeholder = 'Odaberite planirani datum kraja'
                             />
                             <br />
-                            <label className="form-control-newProject">Planirano trajanje zadatka:</label>
+                            <label className="form-control-newProject">Težina zadatka (u radnim satima):</label>
                             <input
                             type="number"
                             name="planbrsati"
