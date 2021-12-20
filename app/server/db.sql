@@ -35,6 +35,7 @@ CREATE TABLE Projekt
   datPoc DATE NOT NULL,
   datKraj DATE NOT NULL,
   idStatusa INT NOT NULL,
+  opis VARCHAR(100),
   PRIMARY KEY (idProjekta),
   FOREIGN KEY (idStatusa) REFERENCES Status(idStatusa)
 );

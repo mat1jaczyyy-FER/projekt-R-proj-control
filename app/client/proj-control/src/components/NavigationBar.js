@@ -18,6 +18,7 @@ function NavigationBar(){
         e.preventDefault();
         try {
           localStorage.removeItem("token");
+          localStorage.removeItem("user");
           setAuth(false);
           toast.success("Uspjesno ste se odjavili!");
           window.location.reload(false);
