@@ -4,6 +4,7 @@ const validNewTask = require("../middleware/validNewTask");
 const Zadatak = require("../models/Zadatak");
 
 router.post("/add", validNewTask, async (req, res) => {
+  // todo ovdje se ne dobije id projekta?
   const { opis, planDatPoc, planDatKraj, planBrSati, idProjekta} = req.body;
 
   try {
@@ -21,11 +22,9 @@ router.post("/add", validNewTask, async (req, res) => {
 });
 
 router.get("/allprojecttasks/:idProjekta", async (req, res) => {
- /* const { idVlasnika } = req.body;*/
-
   try {
     const { idProjekta } = req.params;
-    const results = await Zadatak.getProjektiInfo(idProjekta);
+    const results = await Zadatak.getZadatakInfo(idProjekta);
     return res.json(results);
 
   } catch (err) {
