@@ -117,8 +117,6 @@ function NavigationBar(){
                   </li>
                 );
               })}
-
-              <li>Odjava</li>
             </ul>
           </nav>
         </IconContext.Provider>

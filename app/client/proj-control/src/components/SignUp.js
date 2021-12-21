@@ -55,7 +55,7 @@ const SignUp = ({ setAuth }) => {
         <Fragment>
          <div className='signIN'>
             <div className = 'login-naslov'>
-                <h1>DOBRODOŠLI !</h1>
+                <h1>DOBRODOŠLI!</h1>
                 <p>Unesite podatke potrebne za registraciju:</p>
             </div>
             <div className = 'form-box'>

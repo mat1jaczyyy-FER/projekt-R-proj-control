@@ -70,24 +70,24 @@ const  NoviProjekt = () => {
                             placeholder = 'Upišite naziv projekta'
                             />
                             <br />
-                            <label className="newProject-label">Planirani datum pocetka:</label>
+                            <label className="newProject-label">Planirani datum početka:</label>
                             <input
                             type="date"
                             name="planDatPoc"
                             value={planDatPoc}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
-                            placeholder = 'Odaberite planirani datum pocetka'
+                            placeholder = 'Odaberite planirani datum početka'
                             />
                             <br />
-                            <label className="newProject-label">Planirani datum zavrsetka:</label>
+                            <label className="newProject-label">Planirani datum završetka:</label>
                             <input
                             type="date"
                             name="planDatKraj"
                             value={planDatKraj}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
-                            placeholder = 'Odaberite planirani datum kraja'
+                            placeholder = 'Odaberite planirani datum završetka'
                             />
                             <br />
                             <textarea
@@ -96,7 +96,7 @@ const  NoviProjekt = () => {
                             value={opisProjekta}
                             onChange={e => onChange(e)}
                             className="form-control-newProject form-control-newProject-opis"
-                            placeholder = 'Napisite kratki opis projekta...'
+                            placeholder = 'Unesite kratki opis projekta...'
                             />
                             <button className='anew btn btn-2 navlinkother btn-noborder' type='submit' >Dodaj projekt</button>
                         
