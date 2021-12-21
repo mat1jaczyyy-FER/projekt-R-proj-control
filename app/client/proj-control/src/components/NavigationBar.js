@@ -73,9 +73,9 @@ function NavigationBar(){
       const authLinks = () => (
         <Fragment>
             <div className="btn-con">
-                <a href='/projekti' className="anew navlinkother btn btn-2 ">
-                    Moji projekti
-                </a>
+                <Link to='/projekti' className="anew navlinkother btn btn-2 ">
+                Moji projekti
+                </Link>
             </div>
 
             <div onClick={logout}>
