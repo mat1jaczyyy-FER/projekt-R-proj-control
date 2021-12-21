@@ -2,6 +2,7 @@
 import { PieChart } from 'react-minimal-pie-chart';
    
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 
 const Projekti = () => {        
@@ -38,6 +39,7 @@ const Projekti = () => {
     }
 
     
+    
 
     useEffect(() => {
         getProjekti(idVlasnika);
@@ -66,11 +68,15 @@ const Projekti = () => {
                 </div>
 
                 <div className="circle">
+                    <Link to='/svizadaci' onClick={localStorage.setItem("projectID", JSON.stringify(projekt.idprojekta))}>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <circle className="stroke" cx="60" cy="60" r="40"/>
+                        <text x="20%" y="45%" text-anchor="middle" fill="black" font-size="20px" font-family="Montserrat" >KRENI</text>
+                        </svg></Link>
+                        
+                 
+                 
                    
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <circle className="stroke" cx="60" cy="60" r="40"/>
-                    <text x="20%" y="45%" text-anchor="middle" fill="black" font-size="20px" font-family="Montserrat" >KRENI</text>
-                    </svg>
                 </div>
             </div>
             )
