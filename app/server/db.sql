@@ -35,9 +35,11 @@ CREATE TABLE Projekt
   datPoc DATE NOT NULL,
   datKraj DATE NOT NULL,
   idStatusa INT NOT NULL,
+  idVlasnika INT NOT NULL,
   opis VARCHAR(100),
   PRIMARY KEY (idProjekta),
-  FOREIGN KEY (idStatusa) REFERENCES Status(idStatusa)
+  FOREIGN KEY (idStatusa) REFERENCES Status(idStatusa),
+  FOREIGN KEY (idVlasnika) REFERENCES Zaposlenik(idZaposlenika)
 );
 
 CREATE TABLE Zaposlenik

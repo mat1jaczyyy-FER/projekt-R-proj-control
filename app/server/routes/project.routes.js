@@ -34,4 +34,42 @@ router.get("/alluserprojects/:idVlasnika", async (req, res) => {
   }
 });
 
+router.post("/update/:idProjekta", async (req, res) => {
+  const { nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa , opis} = req.body;
+  
+  try {
+    const { idProjekta } = req.params;
+    const results = await Projekt.update(idProjekta, nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opis);
+    return res.json(results);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+router.get("/delete/:idProjekta", async (req, res) => {
+   try {
+     const { idProjekta } = req.params;
+     const results = await Projekt.delete(idProjekta);
+     return res.json(results);
+ 
+   } catch (err) {
+     console.error(err.message);
+     res.status(500).send("Server error");
+   }
+});
+
+router.get("/:idProjekta", async (req, res) => {
+  try {
+    const { idProjekta } = req.params;
+    const results = await Projekt.getProjekt(idProjekta);
+    return res.json(results);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = router;

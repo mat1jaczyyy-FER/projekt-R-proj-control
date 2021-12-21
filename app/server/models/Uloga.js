@@ -21,8 +21,8 @@ module.exports = class Uloga {
         }
     }
 
-    async getUlogaInfo(nazivUloge) {
-        const sql = `SELECT * FROM Uloga WHERE nazivUloge = '${nazivUloge}'`
+    static async getUlogaName(idUloge) {
+        const sql = `SELECT nazivUloge FROM Uloga WHERE idUloge = '${idUloge}'`
         try {
             const results = (await db.query(sql, [])).rows;
             return results
@@ -32,4 +32,5 @@ module.exports = class Uloga {
             throw err;
         }
     }
+
 }

@@ -21,8 +21,8 @@ module.exports = class Status {
         }
     }
 
-    async getStatusInfo(nazivStatusa) {
-        const sql = `SELECT * FROM Status WHERE nazivStatusa = '${nazivStatusa}'`
+    static async getStatusName(idStatusa) {
+        const sql = `SELECT nazivStatusa FROM Status WHERE idStatusa = '${idStatusa}'`
         try {
             const results = (await db.query(sql, [])).rows;
             return results

@@ -28,8 +28,50 @@ module.exports = class Projekt {
         }
     }
 
+    static async update(idProjekta, nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta) {
+        // todo fix sql injection vuln
+        const sql = `UPDATE projekt SET nazivProjekta = '${nazivProjekta}', planDatPoc = '${planDatPoc}', planDatKraj = '${planDatKraj}',` +
+            `datPoc = '${datPoc}', datKraj = '${datKraj}', idStatusa = '${idStatusa}', opis = '${opisProjekta}'` +
+            `WHERE idProjekta = '${idProjekta}'` +
+            `RETURNING *`;
+
+        try {
+            let projekt = await db.query(sql, []);
+            return projekt
+
+        } catch (err) {
+            console.log(err);
+            throw err
+        }
+    }
+
+    static async delete(idProjekta) {
+        const sql = `DELETE FROM projekt WHERE idProjekta = '${idProjekta}' RETURNING *`;
+
+        try {
+            let projekt = await db.query(sql, []);
+            return projekt
+
+        } catch (err) {
+            console.log(err);
+            throw err
+        }
+    }
+
     static async getProjektiInfo(idVlasnika) {
         const sql = `SELECT * FROM projekt WHERE idvlasnika = '${idVlasnika}'`
+        try {
+            const results = (await db.query(sql, [])).rows;
+            return results
+
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+    static async getProjekt(idProjekta) {
+        const sql = `SELECT * FROM projekt WHERE idProjekta = '${idProjekta}'`
         try {
             const results = (await db.query(sql, [])).rows;
             return results
