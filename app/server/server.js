@@ -5,7 +5,8 @@ const cors = require('cors');
 
 const routers = {
     '/auth': require('./routes/auth.routes'),
-    '/project': require('./routes/project.routes')
+    '/project': require('./routes/project.routes'),
+    '/task': require('./routes/task.routes')
 };
 
 app.use(cors({
