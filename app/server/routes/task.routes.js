@@ -8,7 +8,11 @@ router.post("/add", validNewTask, async (req, res) => {
   const { opis, planDatPoc, planDatKraj, planBrSati, idProjekta} = req.body;
 
   try {
-    let newZadatak = new Zadatak(opis, planDatPoc, planDatKraj, planBrSati, 1, 1, 1, idProjekta);
+    //testni hardcode
+    const idVrste = 1;
+    const idStatusa = 1;
+    const idPrioriteta = 1;
+    let newZadatak = new Zadatak(opis, planDatPoc, planDatKraj, planBrSati, idVrste, idStatusa, idPrioriteta, idProjekta);
     let zadatak = await newZadatak.apply();
 
     res.status(200);

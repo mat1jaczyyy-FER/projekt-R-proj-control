@@ -22,10 +22,11 @@ const NoviZadatak = () => {
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
-            //const idproj = JSON.parse(localStorage.getItem("project")).idProjekta;
-          //const idProjekta = idproj
+            const idproj = localStorage.getItem("projectID")
+            console.log(idproj);
+          const idProjekta = idproj
           //dodati idProjekta u body
-          const body = { opis, planDatPoc, planDatKraj, planBrSati};
+          const body = { opis, planDatPoc, planDatKraj, planBrSati, idProjekta};
           const response = await fetch(
             "http://localhost:5000/task/add",
             {
@@ -48,6 +49,7 @@ const NoviZadatak = () => {
           }
         } catch (err) {
           console.error(err.message);
+          toast.error(`Greška pri dodavanju zadatka!`);
         }
       };
       return (

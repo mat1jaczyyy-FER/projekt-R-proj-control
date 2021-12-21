@@ -19,10 +19,11 @@ module.exports = class Zadatak {
     }
 
     async apply() {
+        console.log(this.idVrste)
         return await db.query(
-            `INSERT INTO Zadatak (opis, planDatPoc, planDatKraj, planBudzet, planBrSati, idVrste, idStatusa, idPrioriteta, idProjekta)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-            [this.opis, this.planDatPoc, this.planDatKraj, this.planBudzet, this.planBrSati, this.idVrste, this.idStatusa, this.idPrioriteta, this.idProjekta]
+            `INSERT INTO Zadatak (opis, planDatPoc, planDatKraj, planBrSati, idVrste, idStatusa, idPrioriteta, idProjekta)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+            [this.opis, this.planDatPoc, this.planDatKraj, this.planBrSati, this.idVrste, this.idStatusa, this.idPrioriteta, this.idProjekta]
         );
     }
 

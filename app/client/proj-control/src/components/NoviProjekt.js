@@ -46,7 +46,7 @@ const  NoviProjekt = () => {
           }
         } catch (err) {
           console.error(err.message);
-          toast.error(`GreŠka pri dodavanju projekta!`);
+          toast.error(`Greška pri dodavanju projekta!`);
         }
       };
 
