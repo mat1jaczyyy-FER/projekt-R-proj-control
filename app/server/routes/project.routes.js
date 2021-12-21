@@ -7,7 +7,7 @@ router.post("/add", validNewProject, async (req, res) => {
   const { nazivProjekta, planDatPoc, planDatKraj, idVlasnika, opisProjekta} = req.body;
 
   try {
-    let newProjekt = new Projekt(nazivProjekta, planDatPoc, planDatKraj, "infinity", "infinity", 1, idVlasnika, opisProjekta);
+    let newProjekt = new Projekt(nazivProjekta, planDatPoc, planDatKraj, null, null, 1, idVlasnika, opisProjekta);
     let projekt = await newProjekt.apply();
 
     res.status(200);
