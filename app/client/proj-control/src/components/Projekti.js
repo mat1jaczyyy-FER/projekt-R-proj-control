@@ -37,6 +37,8 @@ const Projekti = () => {
         }
     }
 
+    
+
     useEffect(() => {
         getProjekti(idVlasnika);
       }, []);
@@ -48,7 +50,41 @@ const Projekti = () => {
 
     return (
         <Fragment>
-            {" "}
+        <div className="container">
+        {Object.values(listaProjekata).map((projekt) => {
+            return (
+
+            <div className="card">
+                <h3 className="title">{projekt.nazivprojekta}</h3>                             
+                <h4 className="title">Status: {projekt.idstatusa == '1' ? "Nije započet" : "U tijeku" }</h4>
+                
+               
+                <div className="bar">
+                
+                    <div className="emptybar"></div>
+                    <div className="filledbar"></div>
+                </div>
+
+                <div className="circle">
+                   
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle className="stroke" cx="60" cy="60" r="40"/>
+                    <text x="20%" y="45%" text-anchor="middle" fill="black" font-size="20px" font-family="Montserrat" >KRENI</text>
+                    </svg>
+                </div>
+            </div>
+            )
+        })}
+                
+        </div>
+        </Fragment>
+        
+           );
+};
+        /*
+        <Fragment>
+           
+           {" "}
             <table>
                 <thead>
                     <tr>
@@ -81,9 +117,8 @@ const Projekti = () => {
                 })}                                    
                 </tbody>
             </table>
-        </Fragment>
-    );
-};
+        </Fragment>*/
+ 
 
 export default Projekti;
 
