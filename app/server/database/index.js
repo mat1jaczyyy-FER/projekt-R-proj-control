@@ -11,17 +11,22 @@ const pool = new Pool({
     }
 });
 
-
-
 module.exports = {
     query: (text, params) => {
         const start = Date.now();
+        //console.log('executing query');
+        //console.log(text);
+        //console.log(params);
         return pool.query(text, params)
             .then(res => {
-                const duration = Date.now() - start;
+                //const duration = Date.now() - start;
                 //console.log('executed query', {text, params, duration, rows: res.rows});
                 return res;
+            }).catch(err => {
+                console.error(err);
+                throw err;
             });
+
     },
     pool: pool
 }

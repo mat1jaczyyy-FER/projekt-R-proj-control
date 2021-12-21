@@ -6,30 +6,17 @@ module.exports = class Status {
     }
 
     async apply() {
-        // todo fix sql injection vuln
-        const sql = "INSERT INTO Status (nazivStatusa) VALUES (" +
-            `'${this.nazivStatusa}')
-            RETURNING *`;
-
-        try {
-            let status = await db.query(sql, []);
-            return status;
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `INSERT INTO Status (nazivStatusa) VALUES (
+             VALUES ($1) RETURNING *`,
+            [this.nazivStatusa]
+        );
     }
 
     static async getStatusName(idStatusa) {
-        const sql = `SELECT nazivStatusa FROM Status WHERE idStatusa = '${idStatusa}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM nazivStatusa WHERE idStatusa = $1`,
+            [idStatusa]
+        )).rows;
     }
 }

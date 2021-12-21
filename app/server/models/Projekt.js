@@ -13,72 +13,40 @@ module.exports = class Projekt {
     }
 
     async apply() {
-        // todo fix sql injection vuln
-        const sql = "INSERT INTO projekt (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika, opis) VALUES (" +
-            `'${this.nazivProjekta}', '${this.planDatPoc}', '${this.planDatKraj}', '${this.datPoc}', '${this.datKraj}', '${this.idStatusa}', '${this.idVlasnika}', '${this.opisProjekta}')
-            RETURNING *`;
-
-        try {
-            let projekt = await db.query(sql, []);
-            return projekt
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `INSERT INTO projekt (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika, opis)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+            [this.nazivProjekta, this.planDatPoc, this.planDatKraj, this.datPoc, this.datKraj, this.idStatusa, this.idVlasnika, this.opisProjekta]
+        );
     }
 
     static async update(idProjekta, nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta) {
-        // todo fix sql injection vuln
-        const sql = `UPDATE projekt SET nazivProjekta = '${nazivProjekta}', planDatPoc = '${planDatPoc}', planDatKraj = '${planDatKraj}',` +
-            `datPoc = '${datPoc}', datKraj = '${datKraj}', idStatusa = '${idStatusa}', opis = '${opisProjekta}'` +
-            `WHERE idProjekta = '${idProjekta}'` +
-            `RETURNING *`;
-
-        try {
-            let projekt = await db.query(sql, []);
-            return projekt
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `UPDATE projekt SET nazivProjekta = $1, planDatPoc = $2, planDatKraj = $3,
+             datPoc = $4, datKraj = $5, idStatusa = $6, opis = $7
+             WHERE idProjekta = $8 RETURNING *`,
+            [nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta, idProjekta]
+        );
     }
 
     static async delete(idProjekta) {
-        const sql = `DELETE FROM projekt WHERE idProjekta = '${idProjekta}' RETURNING *`;
-
-        try {
-            let projekt = await db.query(sql, []);
-            return projekt
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `DELETE FROM projekt WHERE idProjekta = $1 RETURNING *`,
+            [idProjekta]
+        );
     }
 
     static async getProjektiInfo(idVlasnika) {
-        const sql = `SELECT * FROM projekt WHERE idvlasnika = '${idVlasnika}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM projekt WHERE idVlasnika = $1`,
+            [idVlasnika]
+        )).rows;
     }
 
     static async getProjekt(idProjekta) {
-        const sql = `SELECT * FROM projekt WHERE idProjekta = '${idProjekta}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM projekt WHERE idProjekta = $1`,
+            [idProjekta]
+        )).rows;
     }
 }

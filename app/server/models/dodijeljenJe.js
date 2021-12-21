@@ -7,30 +7,18 @@ module.exports = class dodijeljenJe {
     }
 
     async apply() {
-        // todo fix sql injection vuln
-        const sql = "INSERT INTO dodijeljenJe (idZaposlenika, idZadatka) VALUES (" +
-            `'${this.idZaposlenika}', '${this.idZadatka}')
-            RETURNING *`;
-
-        try {
-            let dodijeljenje = await db.query(sql, []);
-            return dodijeljenje;
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `INSERT INTO dodijeljenJe (idZaposlenika, idZadatka)
+             VALUES ($1, $2) RETURNING *`,
+            [this.idZaposlenika, this.idZadatka]
+        );
     }
 
     async getdodijeljenJeInfo(idZaposlenika, idZadatka) {
-        const sql = `SELECT * FROM Zadatak NATURAL JOIN Zaposlenik WHERE Zadatak.idZadatka = '${idZadatka}' AND Zaposlenik.idZaposlenika = '${idZaposlenika}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM Zadatak NATURAL JOIN Zaposlenik
+             WHERE Zadatak.idZadatka = $1 AND Zaposlenik.idZaposlenika = $2`,
+            [idZadatka, idZaposlenika]
+        )).rows;
     }
 }

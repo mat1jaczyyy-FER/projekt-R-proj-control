@@ -11,67 +11,44 @@ module.exports = class Zaposlenik {
     }
 
     static async fetchByEmail(email) {
-        // todo fix sql injection vuln
-        const sql = `SELECT * FROM Zaposlenik WHERE email = '${email}'`;
-        try {
-            const results = (await db.query(sql, [])).rows;
-            let newUser = null;
-            if (results.length > 0) {
-                newUser = new Zaposlenik(
-                    results[0].korisnicko_ime, results[0].lozinka, results[0].email,
-                    results[0].imeZaposlenika, results[0].prezimeZaposlenika, results[0].idUloge
-                );
-            }
-            return newUser;
+        const results = (await db.query(
+            `SELECT * FROM Zaposlenik WHERE email = $1`,
+            [email]
+        )).rows;
 
-        } catch (err) {
-            return null;
-        }
+        return results.length == 0
+            ? new Zaposlenik()
+            : new Zaposlenik(
+                results[0].korisnicko_ime, results[0].lozinka, results[0].email,
+                results[0].imeZaposlenika, results[0].prezimeZaposlenika, results[0].idUloge
+            );
     }
     static async fetchByUsername(username) {
-        // todo fix sql injection vuln
-        const sql = `SELECT * FROM Zaposlenik WHERE korisnickoIme = '${username}'`;
-        try {
-            const results = (await db.query(sql, [])).rows;
-            let newUser = null;
-            if (results.length > 0) {
-                newUser = new Zaposlenik(
-                    results[0].korisnicko_ime, results[0].lozinka, results[0].email,
-                    results[0].imeZaposlenika, results[0].prezimeZaposlenika, results[0].idUloge
-                );
-            }
-            return newUser;
+        const results = (await db.query(
+            `SELECT * FROM Zaposlenik WHERE korisnickoIme = $1`,
+            [username]
+        )).rows;
 
-        } catch (err) {
-            return null;
-        }
+        return results.length == 0
+            ? new Zaposlenik()
+            : new Zaposlenik(
+                results[0].korisnicko_ime, results[0].lozinka, results[0].email,
+                results[0].imeZaposlenika, results[0].prezimeZaposlenika, results[0].idUloge
+            );
     }
 
     async apply() {
-        // todo fix sql injection vuln
-        const sql = "INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika, idUloge) VALUES (" +
-            `'${this.korisnickoIme}', '${this.lozinka}', '${this.email}', '${this.imeZaposlenika}', '${this.prezimeZaposlenika}', '${this.idUloge}')
-            RETURNING *`;
-
-        try {
-            let korisnik = await db.query(sql, []);
-            return korisnik
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika, idUloge)
+             VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+            [this.korisnickoIme, this.lozinka, this.email, this.imeZaposlenika, this.prezimeZaposlenika, this.idUloge]
+        );
     }
 
     async getKorisnikInfo(email) {
-        const sql = `SELECT * FROM Zaposlenik WHERE email = '${email}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM Zaposlenik WHERE email = $1`,
+            [email]
+        )).rows;
     }
 }

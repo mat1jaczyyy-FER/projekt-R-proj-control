@@ -19,32 +19,17 @@ module.exports = class Zadatak {
     }
 
     async apply() {
-        // todo fix sql injection vuln
-        const sql = "INSERT INTO Zadatak (opis, planDatPoc, planDatKraj, planBudzet," +
-                                            " planBrSati, idVrste, idStatusa, idPrioriteta, idProjekta) VALUES (" +
-            `'${this.opis}', '${this.planDatPoc}', '${this.planDatKraj}', '${this.planBrSati}', '${this.idVrste}', '${this.idStatusa}', 
-             '${this.idPrioriteta}', '${this.idProjekta}')
-            RETURNING *`;
-
-        try {
-            let zadatak = await db.query(sql, []);
-            return zadatak
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `INSERT INTO Zadatak (opis, planDatPoc, planDatKraj, planBudzet, planBrSati, idVrste, idStatusa, idPrioriteta, idProjekta)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+            [this.opis, this.planDatPoc, this.planDatKraj, this.planBudzet, this.planBrSati, this.idVrste, this.idStatusa, this.idPrioriteta, this.idProjekta]
+        );
     }
 
     static async getZadatakInfo(idProjekta) {
-        const sql = `SELECT * FROM Zadatak WHERE idProjekta = '${idProjekta}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM Zadatak WHERE idProjekta = $1`,
+            [idProjekta]
+        )).rows;
     }
 }

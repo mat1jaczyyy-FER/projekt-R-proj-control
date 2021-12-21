@@ -11,30 +11,17 @@ module.exports = class GrupaZadataka {
     }
 
     async apply() {
-        // todo fix sql injection vuln
-        const sql = "INSERT INTO GrupaZadataka (nazivGrupe, opis, prioritet, planBudzet, budzet, idProjekta) VALUES (" +
-            `'${this.nazivGrupe}', '${this.opis}', '${this.prioritet}', '${this.planBudzet}', '${this.budzet}', '${this.idProjekta}')
-            RETURNING *`;
-
-        try {
-            let grupa = await db.query(sql, []);
-            return grupa
-
-        } catch (err) {
-            console.log(err);
-            throw err
-        }
+        return await db.query(
+            `INSERT INTO GrupaZadataka (nazivGrupe, opis, prioritet, planBudzet, budzet, idProjekta)
+             VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+            [this.nazivGrupe, this.opis, this.prioritet, this.planBudzet, this.budzet, this.idProjekta]
+        );
     }
 
     static async getGrupaZadatakaInfo(idProjekta) {
-        const sql = `SELECT * FROM GrupaZadataka WHERE idProjekta = '${idProjekta}'`
-        try {
-            const results = (await db.query(sql, [])).rows;
-            return results
-
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
+        return (await db.query(
+            `SELECT * FROM GrupaZadataka WHERE idProjekta = $1`,
+            [idProjekta]
+        )).rows;
     }
 }
