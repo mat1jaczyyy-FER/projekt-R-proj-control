@@ -1,4 +1,10 @@
-const {Pool} = require('pg');
+const pg = require('pg');
+const {Pool} = pg;
+
+// hack koji vraca date kako je u bazi, bez pretvaranja zona s tocnim vremenom.
+// mozda promijeniti kasnije, ovisno jel radi...
+// https://github.com/brianc/node-pg-types/issues/50#issuecomment-492144917
+pg.types.setTypeParser(1082, s => s);
 
 const pool = new Pool({
     user: 'xxlvjmifzfzzxf',
