@@ -5,16 +5,16 @@ import {withRouter} from 'react-router-dom';
 const NoviZadatak = () => {
     const [inputs, setInputs] = useState({
         opis: "",
-        plandatpoc: Date,
-        plandatkraj: Date,
-        datpoc: Date,
-        datkraj: Date,
-        planbrsati: 1,
-        idstatusa: 1,
-        idvrste: 1,
+        planDatPoc: Date,
+        planDatKraj: Date,
+        datPoc: Date,
+        datKraj: Date,
+        planBrSati: 1,
+        idStatusa: 1,
+        idVrste: 1,
     });
 
-    const {opis, plandatpoc, plandatkraj, planbrsati, idstatusa, idvrste} = inputs;
+    const {opis, planDatPoc, planDatKraj, planBrSati} = inputs;
 
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -22,9 +22,12 @@ const NoviZadatak = () => {
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
-          const body = { opis, plandatpoc, plandatkraj, planbrsati, idstatusa, idvrste };
+            //const idproj = JSON.parse(localStorage.getItem("project")).idProjekta;
+          //const idProjekta = idproj
+          //dodati idProjekta u body
+          const body = { opis, planDatPoc, planDatKraj, planBrSati};
           const response = await fetch(
-            "http://localhost:5000/zadatak/add",
+            "http://localhost:5000/task/add",
             {
               method: "POST",
               mode: "cors",
@@ -41,7 +44,7 @@ const NoviZadatak = () => {
             toast.success(`Dodan novi zadatak`);
             window.location.href = '/projekti';
           } else {
-            toast.error(`Greska pri dodavanju projekta!`);
+            toast.error(parseRes);
           }
         } catch (err) {
           console.error(err.message);
@@ -68,8 +71,8 @@ const NoviZadatak = () => {
                             <label className="newProject-label">Planirani datum početka:</label>
                             <input
                             type="date"
-                            name="plandatpoc"
-                            value={plandatpoc}
+                            name="planDatPoc"
+                            value={planDatPoc}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
                             placeholder = 'Odaberite planirani datum pocetka'
@@ -78,8 +81,8 @@ const NoviZadatak = () => {
                             <label className="newProject-label">Planirani datum završetka:</label>
                             <input
                             type="date"
-                            name="plandatkraj"
-                            value={plandatkraj}
+                            name="planDatKraj"
+                            value={planDatKraj}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
                             placeholder = 'Odaberite planirani datum kraja'
@@ -88,8 +91,8 @@ const NoviZadatak = () => {
                             <label className="form-control-newProject">Težina zadatka (u radnim satima):</label>
                             <input
                             type="number"
-                            name="planbrsati"
-                            value={planbrsati}
+                            name="planBrSati"
+                            value={planBrSati}
                             onChange={e => onChange(e)}
                             className="form-control-newProject"
                             placeholder = 'Odredite planirano trajanje zadatka'
