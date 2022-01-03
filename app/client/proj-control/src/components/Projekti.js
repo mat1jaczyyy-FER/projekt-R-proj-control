@@ -12,6 +12,7 @@ const Projekti = () => {
     const idzaposlenika = JSON.parse(localStorage.getItem("user")).idzaposlenika;
     const idVlasnika = idzaposlenika;
     console.log(idVlasnika);
+    localStorage.removeItem("projectID");
 
     /*dohvat svih projekata*/
     
