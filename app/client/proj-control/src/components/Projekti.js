@@ -51,7 +51,7 @@ const Projekti = () => {
 
 
     return (
-        <Fragment>
+       /* <Fragment>
         <div className="container">
         {Object.values(listaProjekata).map((projekt) => {
             return (
@@ -59,6 +59,7 @@ const Projekti = () => {
             <div className="card">
                 <h3 className="title">{projekt.nazivprojekta}</h3>                             
                 <h4 className="title">Status: {projekt.idstatusa == '1' ? "Nije započet" : "U tijeku" }</h4>
+                <h4 className="title">ID: {projekt.idprojekta}</h4>
                 
                
                 <div className="bar">
@@ -67,27 +68,17 @@ const Projekti = () => {
                     <div className="filledbar"></div>
                 </div>
 
-                <div className="circle">
-                    <Link to='/svizadaci' onClick={localStorage.setItem("projectID", JSON.stringify(projekt.idprojekta))}>
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <circle className="stroke" cx="60" cy="60" r="40"/>
-                        <text x="20%" y="45%" text-anchor="middle" fill="black" font-size="20px" font-family="Montserrat" >KRENI</text>
-                        </svg></Link>
-                        
-                 
-                 
-                   
-                </div>
+                <a href="/svizadaci" className= 'a4 btn-4' onClick={localStorage.setItem("projectID", JSON.stringify(projekt.idprojekta))}>KRENI</a>
+
+               
             </div>
             )
         })}
                 
         </div>
-        </Fragment>
+        </Fragment>*/      
+
         
-           );
-};
-        /*
         <Fragment>
            
            {" "}
@@ -109,7 +100,7 @@ const Projekti = () => {
                 {Object.values(listaProjekata).map((projekt) => {
                     return (
                         <tr key={projekt.idprojekta}>
-                            <td>{projekt.idprojekta}</td>
+                            <td>{projekt.idprojekta}  <Link to={`/svizadaci/` + projekt.idprojekta} className= 'a4 btn-4' onClick={localStorage.setItem("projectID", JSON.stringify(projekt.idprojekta))}></Link></td>
                             <td>{projekt.nazivprojekta}</td>
                             <td>{projekt.plandatpoc}</td>  
                             <td>{projekt.plandatkraj}</td>  
@@ -123,7 +114,10 @@ const Projekti = () => {
                 })}                                    
                 </tbody>
             </table>
-        </Fragment>*/
+        </Fragment>
+
+    );
+            };
  
 
 export default Projekti;

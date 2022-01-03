@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 const SviZadaci = () => {
 
     const[listaZadataka, setListaZadataka] = useState([]);
-    const projectid = JSON.parse(localStorage.getItem("projectID"));
+    const projectid = (window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     console.log(projectid);
 
 
@@ -12,7 +12,7 @@ const SviZadaci = () => {
 const getZadaci = async projectid => {
     try {       
             const response = await fetch(
-                `http://localhost:5000/project/allprojecttasks/${projectid}`,
+                `http://localhost:5000/allprojecttasks/${projectid}`,
             {
               method: "GET",
               mode: "cors",
@@ -36,6 +36,10 @@ useEffect(() => {
   }, []);
 
   console.log(listaZadataka);
+
+  
+
+  
 
     return (
         <div>
