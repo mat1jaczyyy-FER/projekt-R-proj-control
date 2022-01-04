@@ -36,7 +36,7 @@ CREATE TABLE Projekt
   datKraj DATE NOT NULL,
   idStatusa INT NOT NULL,
   idVlasnika INT NOT NULL,
-  opis VARCHAR(100),
+  opisProjekta VARCHAR(100),
   PRIMARY KEY (idProjekta),
   FOREIGN KEY (idStatusa) REFERENCES Status(idStatusa),
   FOREIGN KEY (idVlasnika) REFERENCES Zaposlenik(idZaposlenika)
@@ -90,7 +90,7 @@ CREATE TABLE radiNa
 CREATE TABLE Zadatak
 (
   idZadatka INT NOT NULL,
-  opis VARCHAR(100) NOT NULL,
+  opisZadatka VARCHAR(100) NOT NULL,
   planDatPoc DATE,
   planDatKraj DATE,
   planBudzet FLOAT,

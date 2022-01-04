@@ -64,7 +64,7 @@ useEffect(() => {
                 {Object.values(listaZadataka).map((zadatak) => {
                     return (
                         <tr key={zadatak.idzadataka}>
-                            <td>{zadatak.opis}</td>   
+                            <td>{zadatak.opiszadatka}</td>   
                             <td>{zadatak.plandatpoc}</td>
                             <td>{zadatak.plandatkraj}</td>
                             <td>{zadatak.planbrsati}</td>

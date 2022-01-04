@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 
 const NoviZadatak = () => {
     const [inputs, setInputs] = useState({
-        opis: "",
+        opisZadatka: "",
         planDatPoc: Date,
         planDatKraj: Date,
         datPoc: Date,
@@ -14,7 +14,7 @@ const NoviZadatak = () => {
         idVrste: 1,
     });
 
-    const {opis, planDatPoc, planDatKraj, planBrSati} = inputs;
+    const {opisZadatka, planDatPoc, planDatKraj, planBrSati} = inputs;
 
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -26,7 +26,7 @@ const NoviZadatak = () => {
             console.log(idproj);
           const idProjekta = idproj
           //dodati idProjekta u body
-          const body = { opis, planDatPoc, planDatKraj, planBrSati, idProjekta};
+          const body = { opisZadatka, planDatPoc, planDatKraj, planBrSati, idProjekta};
           const response = await fetch(
             "http://localhost:5000/task/add",
             {
@@ -63,8 +63,8 @@ const NoviZadatak = () => {
                     <form onSubmit={onSubmitForm} className='formtest'>
                             <textarea
                             type="text"
-                            name="opis"
-                            value={opis}
+                            name="opisZadatka"
+                            value={opisZadatka}
                             onChange={e => onChange(e)}
                             className="form-control-newProject form-control-newTask-opis"
                             placeholder = 'Napišite opis zadatka'

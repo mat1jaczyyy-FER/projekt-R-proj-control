@@ -14,7 +14,7 @@ module.exports = class Projekt {
 
     async apply() {
         return await db.query(
-            `INSERT INTO projekt (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika, opis)
+            `INSERT INTO projekt (nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, idVlasnika, opisProjekta)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
             [this.nazivProjekta, this.planDatPoc, this.planDatKraj, this.datPoc, this.datKraj, this.idStatusa, this.idVlasnika, this.opisProjekta]
         );
@@ -23,7 +23,7 @@ module.exports = class Projekt {
     static async update(idProjekta, nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta) {
         return await db.query(
             `UPDATE projekt SET nazivProjekta = $1, planDatPoc = $2, planDatKraj = $3,
-             datPoc = $4, datKraj = $5, idStatusa = $6, opis = $7
+             datPoc = $4, datKraj = $5, idStatusa = $6, opisProjekta = $7
              WHERE idProjekta = $8 RETURNING *`,
             [nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta, idProjekta]
         );

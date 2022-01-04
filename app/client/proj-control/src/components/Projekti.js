@@ -94,7 +94,7 @@ const Projekti = () => {
                     <th>Stvarni završetak</th>
                     <th>ID statusa</th>
                     <th>ID vlasnika</th>
-                    <th>opis</th>
+                    <th>Opis</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,7 +109,7 @@ const Projekti = () => {
                             <td>{projekt.datkraj}</td>
                             <td>{projekt.idstatusa}</td>
                             <td>{projekt.idvlasnika}</td>
-                            <td>{projekt.opis}</td>                  
+                            <td>{projekt.opisprojekta}</td>                  
                          </tr>
                     )
                 })}                                    

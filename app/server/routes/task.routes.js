@@ -5,14 +5,14 @@ const Zadatak = require("../models/Zadatak");
 
 router.post("/add", validNewTask, async (req, res) => {
   // todo ovdje se ne dobije id projekta?
-  const { opis, planDatPoc, planDatKraj, planBrSati, idProjekta} = req.body;
+  const { opisZadatka, planDatPoc, planDatKraj, planBrSati, idProjekta} = req.body;
 
   try {
     //testni hardcode
     const idVrste = 1;
     const idStatusa = 1;
     const idPrioriteta = 1;
-    let newZadatak = new Zadatak(opis, planDatPoc, planDatKraj,  null, null, null, null, planBrSati, null, idVrste, idStatusa, idPrioriteta, null, idProjekta);
+    let newZadatak = new Zadatak(opisZadatka, planDatPoc, planDatKraj,  null, null, null, null, planBrSati, null, idVrste, idStatusa, idPrioriteta, null, idProjekta);
     let zadatak = await newZadatak.apply();
 
     res.status(200);

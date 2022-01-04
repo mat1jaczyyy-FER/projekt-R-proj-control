@@ -35,11 +35,11 @@ router.get("/alluserprojects/:idVlasnika", async (req, res) => {
 });
 
 router.post("/update/:idProjekta", async (req, res) => {
-  const { nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa , opis} = req.body;
+  const { nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta } = req.body;
   
   try {
     const { idProjekta } = req.params;
-    const results = await Projekt.update(idProjekta, nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opis);
+    const results = await Projekt.update(idProjekta, nazivProjekta, planDatPoc, planDatKraj, datPoc, datKraj, idStatusa, opisProjekta);
     return res.json(results);
 
   } catch (err) {
