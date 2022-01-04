@@ -56,28 +56,6 @@ CREATE TABLE Zaposlenik
   UNIQUE (korisnickoIme)
 );
 
-CREATE TABLE GrupaZadataka
-(
-  idGrupe INT NOT NULL,
-  nazivGrupe VARCHAR(20) NOT NULL,
-  opis VARCHAR(100),
-  prioritet INT NOT NULL,
-  planBudzet FLOAT,
-  budzet FLOAT NOT NULL,
-  idProjekta INT NOT NULL,
-  PRIMARY KEY (idGrupe),
-  FOREIGN KEY (idProjekta) REFERENCES Projekt(idProjekta)
-);
-
-CREATE TABLE RadniList
-(
-  idRadnogLista INT NOT NULL,
-  vrijemeRada INT NOT NULL,
-  idZaposlenika INT NOT NULL,
-  PRIMARY KEY (idRadnogLista),
-  FOREIGN KEY (idZaposlenika) REFERENCES Zaposlenik(idZaposlenika)
-);
-
 CREATE TABLE radiNa
 (
   idProjekta INT NOT NULL,
@@ -98,17 +76,16 @@ CREATE TABLE Zadatak
   datPoc DATE NOT NULL,
   datKraj DATE NOT NULL,
   planBrSati INT,
-  idGrupe INT NOT NULL,
+  brSati INT,
   idVrste INT NOT NULL,
   idStatusa INT NOT NULL,
   idPrioriteta INT NOT NULL,
-  idRadnogLista INT NOT NULL,
+  idProjekta INT NOT NULL,
   PRIMARY KEY (idZadatka),
-  FOREIGN KEY (idGrupe) REFERENCES GrupaZadataka(idGrupe),
   FOREIGN KEY (idVrste) REFERENCES VrstaZadatka(idVrste),
   FOREIGN KEY (idStatusa) REFERENCES Status(idStatusa),
   FOREIGN KEY (idPrioriteta) REFERENCES PrioritetZadatka(idPrioriteta),
-  FOREIGN KEY (idRadnogLista) REFERENCES RadniList(idRadnogLista)
+  FOREIGN KEY (idProjekta) REFERENCES Projekt(idProjekta)
 );
 
 CREATE TABLE dodijeljenJe
