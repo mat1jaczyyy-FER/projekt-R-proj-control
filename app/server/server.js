@@ -8,7 +8,9 @@ const routers = {
     '/project': require('./routes/project.routes'),
     '/task': require('./routes/task.routes'),
     '/role': require('./routes/roles.routes'),
-    '/status': require('./routes/status.routes')
+    '/status': require('./routes/status.routes'),
+    '/taskpriority': require('./routes/taskpriority.routes'),
+    '/tasktype': require('./routes/tasktype.routes')
 };
 
 app.use(cors({

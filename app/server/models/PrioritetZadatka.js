@@ -13,10 +13,16 @@ module.exports = class PrioritetZadatka {
         );
     }
 
-    async getPrioritetZadatkaInfo(nazivPrioriteta) {
+    static async getPrioritetZadatkaName(idprioriteta) {
         return (await db.query(
-            `SELECT * FROM PrioritetZadatka WHERE nazivPrioriteta = $1`,
-            [nazivPrioriteta]
+            `SELECT * FROM PrioritetZadatka WHERE idPrioriteta = $1`,
+            [idprioriteta]
+        )).rows;
+    }
+
+    static async getAllPrioritetiZadataka() {
+        return (await db.query(
+            `SELECT * FROM PrioritetZadatka`
         )).rows;
     }
 }

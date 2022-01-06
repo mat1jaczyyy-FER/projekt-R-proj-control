@@ -15,8 +15,14 @@ module.exports = class Status {
 
     static async getStatusName(idStatusa) {
         return (await db.query(
-            `SELECT * FROM nazivStatusa WHERE idStatusa = $1`,
+            `SELECT * FROM Status WHERE idStatusa = $1`,
             [idStatusa]
+        )).rows;
+    }
+
+    static async getAllStatuses() {
+        return (await db.query(
+            `SELECT * FROM Status`
         )).rows;
     }
 }

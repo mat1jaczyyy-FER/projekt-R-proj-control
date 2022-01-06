@@ -13,10 +13,16 @@ module.exports = class VrstaZadatka {
         );
     }
 
-    async getVrstaInfo(nazivVrste) {
+    static async getVrstaName(idVrste) {
         return (await db.query(
-            `SELECT * FROM VrstaZadatka WHERE nazivVrste = $1`,
-            [nazivVrste]
+            `SELECT * FROM VrstaZadatka WHERE idvrste = $1`,
+            [idVrste]
+        )).rows;
+    }
+
+    static async getAllVrste() {
+        return (await db.query(
+            `SELECT * FROM VrstaZadatka`
         )).rows;
     }
 }
