@@ -16,7 +16,6 @@ router.post("/signup", validInfo, async (req, res) => {
     
 
     if (!user) {
-      console.log("zašto sam tu")
       return res.status(401).json("Email vec zauzet!");
     }
 
