@@ -107,10 +107,10 @@ body {
 
 .popup-content {
   margin: auto;
-  background: var(--primary);
+  background: #ff5370d4;
   width: 50%;
   padding: 1.68em;
-  border: 0.336em solid var(--secondary);
+  border: 0.336em solid rgb(43, 43, 43);
   text-align: center;
   font-family: 'Epilogue', sans-serif;
   color: var(--secondary-text);
@@ -124,7 +124,8 @@ body {
 }
 
 .popup-text {
-  font-size: 1.667em;
+  font-size: 1em;
+  color: #fff;
 }
 
 .popup-list {
@@ -132,6 +133,11 @@ body {
   justify-content: space-between;
 }
 
+.popup-button {
+  background-color: transparent;
+  cursor: pointer;
+  color: #fff;
+}
 .button * {
   display: inline-block;
   box-sizing: border-box;
@@ -205,10 +211,7 @@ body {
   color: var(--primary-text);
 }
 
-.popup-button {
-  background-color: transparent;
-  cursor: pointer;
-}
+
 
 .signIN {
   font-family: 'Montserrat', sans-serif;
@@ -567,17 +570,6 @@ a:active {
 
 }
 
-h2 {
-  position: absolute;
-  top: 3%;
-  left: 8%;
-  width: 25%;
-  background-color: rgba(0, 0, 0, 0.4);
-  font-size: 300%;
-  color: white;
-  margin: 2% auto;
-  padding: 2%;
-}
 
 .slide-description {
   position: absolute;
@@ -875,7 +867,7 @@ td {
   padding: 0.1em 1em;
   text-align: left;
   vertical-align: middle;
-  font-size: 1em;
+  font-size: 0.9em;
   color: var(--secondary-text);
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -1022,98 +1014,141 @@ td {
   display: flex;
 }
 
-.card {
-  display: block;
-  height: 280px;
-  width: 250px;
-  background-color: #e1aa33;
-  border-radius: 10px;
-  box-shadow: -1rem 0 3rem #000;
-/*   margin-left: -50px; */
-  transition: 0.4s ease-out;
-  position: relative;
-  left: 0px;
+hr.dashed {
+  border-top: 2px dashed #bbb;
 }
 
-.card:not(:first-child) {
-    margin-left: 25px;
-}
 
-.card:hover {
-  transform: translateY(-20px);
-  transition: 0.4s ease-out;
-}
-
-.card:hover ~ .card {
-  position: relative;
-  left: 50px;
-  transition: 0.4s ease-out;
-}
-
-.title {
-  font-family: 'Montserrat', sans-serif;  
-  color: white;
-  font-weight: 300;
-margin-left: 15px;
-  left: 20px;
-  top: 15px;
-  display: block;
- 
-}
-
-.bar {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  height: 5px;
-  width: 150px;
-}
-
-.emptybar {
-  background-color: #2e3033;
-  width: 100%;
-  height: 100%;
-}
-
-.filledbar {
-  position: absolute;
-  top: 0px;
-  z-index: 3;
-  width: 0px;
-  height: 100%;
-  background: rgb(0,154,217);
-  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
-  transition: 0.6s ease-out;
-}
-
-.card:hover .filledbar {
-  width: 120px;
-  transition: 0.4s ease-out;
-}
-
-.circle {
-  position: absolute;
-  top: 150px;
-  left: calc(50% - 60px);
-}
-
-.stroke {
-  stroke: rgb(4, 4, 4);
-  stroke-dasharray: 360;
-  stroke-dashoffset: 360;
-  transition: 0.6s ease-out;
-}
-
-svg {
-  fill: #ffffff;
-  stroke-width: 4px;
-}
-
-.card:hover .stroke {
-  stroke-dashoffset: 100;
-  transition: 0.6s ease-out;
-}
 
 .dataproj{
   display: inline;
+}
+
+.container-zadaci {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "gotovi-zadaci radni najavljeni"
+    "gotovi-zadaci radni najavljeni"
+    ". . .";
+}
+
+.gotovi-zadaci { 
+
+  grid-area: gotovi-zadaci; 
+  text-align: center;
+  width: 100%;
+}
+
+.gotovi-zadaci h1{
+  font-family: 'Montserrat', sans-serif;
+  color: #2ed8b6;
+  text-align: center;
+}
+
+.radni { grid-area: radni;
+  text-align: center;
+  width: 100%; }
+
+.radni h1{
+  font-family: 'Montserrat', sans-serif;
+  color: #4099ff;
+}
+
+.najavljeni { grid-area: najavljeni; 
+  text-align: center;}
+.najavljeni h1{
+  font-family: 'Montserrat', sans-serif;
+  color: #FFB64D;
+}
+
+.order-card {
+  color: #fff;
+}
+
+.bg-c-blue {
+  background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.bg-c-green {
+  background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.bg-c-yellow {
+  background: linear-gradient(45deg,#FFB64D,#ffcb80);
+}
+
+.bg-c-pink {
+  background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+
+
+.card {
+  width: 80%;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+  box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+  border: none;
+  margin-bottom: 30px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  margin: 5px auto;
+  box-shadow: rgba(89, 85, 85, 0.25) 0px 14px 28px, rgba(73, 71, 71, 0.22) 0px 10px 10px;
+}
+
+.card .card-block {
+  padding: 20px;
+  
+  
+}
+
+.order-card i {
+  font-size: 26px;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.task-title{
+  font-size: 1.2em;   
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.task-info{
+  font-size: 1em;     
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  display:inline-block;
+  text-align: left;
+  
+}
+
+.task-info-box{
+  text-align:left;
+}
+
+.edit-box{
+  text-align:right;
+  
+}
+
+.edit-box button{  
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+
 }
