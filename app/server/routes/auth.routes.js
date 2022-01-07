@@ -12,14 +12,17 @@ router.post("/signup", validInfo, async (req, res) => {
 
   try {
     const user = await Zaposlenik.fetchByEmail(email);
+    console.log(user.email)
+    
 
-    if (user !== null) {
+    if (!user) {
+      console.log("zašto sam tu")
       return res.status(401).json("Email vec zauzet!");
     }
 
     const user2 = await Zaposlenik.fetchByUsername(username);
 
-    if (user2 !== null) {
+    if (!user2) {
       return res.status(401).json("Korisnicko ime vec zauzeto!");
     }
 
@@ -49,6 +52,7 @@ router.post("/login", validInfo, async (req, res) => {
 
   try {
     const user = await Zaposlenik.fetchByEmail(email);
+    console.log(user)
 
     if (user === null) {
       return res.status(401).json("Neispravan email ili lozinka!");
