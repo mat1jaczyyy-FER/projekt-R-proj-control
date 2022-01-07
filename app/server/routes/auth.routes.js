@@ -13,13 +13,13 @@ router.post("/signup", validInfo, async (req, res) => {
   try {
     const user = await Zaposlenik.fetchByEmail(email);
 
-    if (user !== null) {
+    if (!user) {
       return res.status(401).json("Email vec zauzet!");
     }
 
     const user2 = await Zaposlenik.fetchByUsername(username);
 
-    if (user2 !== null) {
+    if (!user2) {
       return res.status(401).json("Korisnicko ime vec zauzeto!");
     }
 

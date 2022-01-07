@@ -3,9 +3,16 @@ import { PieChart } from 'react-minimal-pie-chart';
    
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, 
+    Route,
+    Redirect, Switch, useHistory
+    } 
+    from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
-const Projekti = () => {        
+const Projekti = () => {    
+    let history = useHistory();    
 
     const[listaProjekata, setListaProjekata] = useState([]);
 
@@ -50,6 +57,36 @@ const Projekti = () => {
 
       console.log(Object.values(listaProjekata))
 
+    
+    //pomocna funkcija za izbrisat kasnije
+    const brisanjeProjekta = async (idProjekta) => {
+        try {       
+            const response = await fetch(
+                `http://localhost:5000/project/delete/${idProjekta}`,
+            {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                "Content-type": "application/json"
+                },
+                
+            }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+
+        if (response.status === 200) {
+            toast.success("Projekt obrisan!")
+            history.push('/projekti')
+            getProjekti(idVlasnika);
+        }
+        
+        } catch (err) {
+            console.error(err.message);
+            
+        }
+
+    }
 
     return (
        /* <Fragment>
@@ -95,6 +132,8 @@ const Projekti = () => {
                     <th>ID statusa</th>
                     <th>ID vlasnika</th>
                     <th>Opis</th>
+                    <th>Edit</th>
+                    <th>Brisanje</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,7 +148,12 @@ const Projekti = () => {
                             <td>{projekt.datkraj}</td>
                             <td>{projekt.idstatusa}</td>
                             <td>{projekt.idvlasnika}</td>
-                            <td>{projekt.opisprojekta}</td>                  
+                            <td>{projekt.opisprojekta}</td>
+                            {projekt.idstatusa === 3 ? <td>Završen</td> : (<>
+                                <td>Promjena stanja<Link to={`/projekti/izmjena/${projekt.idprojekta}`} className= 'a4 btn-4'></Link>  </td>
+                            </>)}
+                            <td><button type="submit" className= 'a4 btn-4' onClick={() => { if (window.confirm('Jeste li sigurni da želite obrisati projekt?')) brisanjeProjekta(projekt.idprojekta)}}>Obriši</button></td>
+                                            
                          </tr>
                     )
                 })}                                    
