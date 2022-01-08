@@ -51,4 +51,11 @@ module.exports = class Zaposlenik {
             [email]
         )).rows;
     }
+
+    static async activateKorisnik(idKorisnika) {
+        return (await db.query(
+            `UPDATE Zaposlenik SET aktiviran = TRUE WHERE idZaposlenika = $1`,
+            [idKorisnika]
+        )).rows;
+    }
 }
