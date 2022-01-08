@@ -26,6 +26,9 @@ module.exports = class Zadatak {
         );
     }
 
+
+    /*kaj radi ovo getZadatakInfo?*/ 
+
     static async getZadatakInfo(idProjekta) {
         return (await db.query(
             `SELECT * FROM Zadatak WHERE idProjekta = $1`,
@@ -36,10 +39,24 @@ module.exports = class Zadatak {
     static async delete(idzadatka) {
         return await db.query(
             `DELETE FROM Zadatak WHERE idzadatka = $1 RETURNING *`,
-            [idzadatka],
-            `DELETE FROM DodijeljenJe WHERE idzadatka = $1 RETURNING *`,
-            [idzadatka]
+            [idzadatka]           
 
         );
+    }
+
+    static async update(opisZadatka, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, brSati, idVrste, idStatusa, idPrioriteta, idProjekta, idzadatka) {
+        return await db.query(
+            `UPDATE zadatak SET opisZadatka = $1, planDatPoc = $2, planDatKraj = $3,
+             planBudzet = $4, budzet = $5, datPoc = $6, datKraj = $7, planBrSati = $8, brSati = $9, idVrste = $10, idStatusa = $11, idPrioriteta = $12, idProjekta = $13
+             WHERE idzadatka = $14 RETURNING *`,
+            [opisZadatka, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, brSati, idVrste, idStatusa, idPrioriteta, idProjekta, idzadatka]
+        );
+    }
+
+    static async getZadatak(idzadatka) {
+        return (await db.query(
+            `SELECT * FROM Zadatak WHERE idzadatka = $1`,
+            [idzadatka]
+        )).rows;
     }
 }

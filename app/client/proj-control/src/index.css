@@ -233,6 +233,7 @@ body {
   margin: 2% auto;
   padding: 2%;
   background: var(--secondary);
+  text-align: center;
 }
 
 
@@ -308,7 +309,7 @@ body {
   top: 0.3125em;
 
 }
-
+/*
 form {
   display: inline-block;
   min-height: 9.375em;
@@ -320,7 +321,7 @@ form {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-}
+}*/
 
 .form-box {
   display: block;
@@ -1084,6 +1085,10 @@ hr.dashed {
   background: linear-gradient(45deg,#FF5370,#ff869a);
 }
 
+.bg-c-custom1{
+  background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+}
+
 
 .card {
   width: 80%;
@@ -1152,3 +1157,4 @@ hr.dashed {
   outline: none;
 
 }
+

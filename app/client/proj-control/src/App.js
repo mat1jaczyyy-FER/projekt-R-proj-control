@@ -19,6 +19,7 @@ import NoviProjekt from "./components/NoviProjekt";
 import NoviZadatak from "./components/NoviZadatak";
 import SviZadaci from "./components/SviZadaci";
 import EditProjekt from "./components/EditProjekt";
+import EditTask from "./components/EditTask";
 
 toast.configure();
 
@@ -121,6 +122,7 @@ function App() {
             <Route exact path="/novizadatak" render={props => isAuthenticated ? (<NoviZadatak {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/svizadaci/:id" render={props => isAuthenticated ? (<SviZadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/projekti/izmjena/:id" render={props => isAuthenticated ? (<EditProjekt {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/zadaci/izmjena/:pid/:id" render={props => isAuthenticated ? (<EditTask {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
             </Switch>
             </Layout>
