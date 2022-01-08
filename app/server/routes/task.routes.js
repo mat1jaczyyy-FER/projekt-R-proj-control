@@ -52,6 +52,7 @@ router.post("/update/:idzadatka", async (req, res) => {
   const { opisZadatka, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, brSati, idVrste, idStatusa, idPrioriteta, idProjekta} = req.body;
   
   try {
+    console.log(opisZadatka);
     const { idzadatka } = req.params;  
     const results = await Zadatak.update(opisZadatka, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, brSati, idVrste, idStatusa, idPrioriteta, idProjekta, idzadatka);
     return res.json(results);

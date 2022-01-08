@@ -60,19 +60,19 @@ const EditTask = () => {
         try {
          const body = {
 
-            brsati: brojsati,
+            brSati: brojsati,
             budzet: zadatak.budzet,
-            datkraj: zadatak.datkraj,
-            datpoc: zadatak.datpoc,
-            idprioriteta: zadatak.idprioriteta,
-            idprojekta: zadatak.idprojekta,
-            idstatusa: zadatak.idstatusa,
-            idvrste: zadatak.idvrste,            
-            opiszadatka: zadatak.opiszadatka,
-            planbrsati: zadatak.planbrsati,
-            planbudzet: zadatak.planbudzet,
-            plandatkraj: zadatak.plandatkraj,
-            plandatpoc: zadatak.plandatpoc          
+            datKraj: zadatak.datkraj,
+            datPoc: zadatak.datpoc,
+            idPrioriteta: zadatak.idprioriteta,
+            idProjekta: zadatak.idprojekta,
+            idStatusa: zadatak.idstatusa,
+            idVrste: zadatak.idvrste,            
+            opisZadatka: zadatak.opiszadatka,
+            planBrSati: zadatak.planbrsati,
+            planBudzet: zadatak.planbudzet,
+            planDatKraj: zadatak.plandatkraj,
+            planDatPoc: zadatak.plandatpoc          
         }
 
         console.log(body)
