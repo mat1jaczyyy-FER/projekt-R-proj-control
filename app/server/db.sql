@@ -51,6 +51,7 @@ CREATE TABLE Zaposlenik
   imeZaposlenika VARCHAR(30) NOT NULL,
   prezimeZaposlenika VARCHAR(30) NOT NULL,
   idUloge INT NOT NULL,
+  aktiviran BOOLEAN NOT NULL DEFAULT false,
   PRIMARY KEY (idZaposlenika),
   FOREIGN KEY (idUloge) REFERENCES Uloga(idUloge),
   UNIQUE (korisnickoIme)
@@ -95,6 +96,14 @@ CREATE TABLE dodijeljenJe
   PRIMARY KEY (idZaposlenika, idZadatka),
   FOREIGN KEY (idZaposlenika) REFERENCES Zaposlenik(idZaposlenika),
   FOREIGN KEY (idZadatka) REFERENCES Zadatak(idZadatka)
+);
+
+CREATE TABLE aktivacijskiKodovi
+(
+  idKorisnika INT NOT NULL,
+  aktivacijskiKod VARCHAR(50) NOT NULL,
+  UNIQUE (idKorisnika),
+  UNIQUE (aktivacijskiKod)
 );
 
 -- connect-pg-simple A simple, minimal PostgreSQL session store for Express/Connect
