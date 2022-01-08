@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import { MdWorkOutline  } from "react-icons/md";
 import Popup from 'reactjs-popup';
+
+import { BrowserRouter as Router, 
+    Route,
+    Redirect, Switch, useHistory
+    } 
+    from 'react-router-dom';
+import { toast } from 'react-toastify';
 const SviZadaci = () => {
 
     const[listaZadataka, setListaZadataka] = useState('');
     const projectid = (window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     console.log(projectid);
+
+    let history = useHistory(); 
 
 
 /*dohvat svih zadataka za zadani zadatak*/
@@ -63,6 +72,36 @@ useEffect(() => {
     .filter(zadatak => zadatak.idstatusa === 2)
     .map((zadatak) => {console.log(zadatak)})
   }
+
+
+  const brisanjeZadatka = async (idZadatka) => {
+    try {       
+        const response = await fetch(
+            `http://localhost:5000/task/deletetask/${idZadatka}`,
+        {
+            method: "GET",
+            mode: "cors",
+            headers: {
+            "Content-type": "application/json"
+            },
+            
+        }
+    );
+    const jsonData = await response.json();
+    console.log(jsonData);
+
+    if (response.status === 200) {
+        toast.success("Zadatak obrisan!")
+        history.push('/svizadaci/' + projectid)
+        getZadaci(projectid);
+    }
+    
+    } catch (err) {
+        console.error(err.message);
+        
+    }
+
+}
  
 
   
@@ -210,8 +249,9 @@ useEffect(() => {
                                             <br/>
                                             {/*<input type="password" className="form-control" id="password"/>*/}
                                             <div className="button-flex-container">
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {                                   
-                                                    
+                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
+                                                    console.log(zadatak.idzadatka)                          
+                                                    brisanjeZadatka(zadatak.idzadatka)
                                                     close();
                                                 }}>
                                                     <div className="popup-button">Potvrdi</div>

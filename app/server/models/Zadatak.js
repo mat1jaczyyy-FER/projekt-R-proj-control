@@ -32,4 +32,14 @@ module.exports = class Zadatak {
             [idProjekta]
         )).rows;
     }
+
+    static async delete(idzadatka) {
+        return await db.query(
+            `DELETE FROM Zadatak WHERE idzadatka = $1 RETURNING *`,
+            [idzadatka],
+            `DELETE FROM DodijeljenJe WHERE idzadatka = $1 RETURNING *`,
+            [idzadatka]
+
+        );
+    }
 }

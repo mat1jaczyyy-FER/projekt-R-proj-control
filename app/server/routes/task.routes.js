@@ -33,4 +33,16 @@ router.get("/allprojecttasks/:idProjekta", async (req, res) => {
   }
 });
 
+router.get("/deletetask/:idZadatka", async (req, res) => {
+  try {
+    const { idZadatka } = req.params;
+    const results = await Zadatak.delete(idZadatka);
+    return res.json(results);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = router;
