@@ -3,11 +3,25 @@ import { Link } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import { MdWorkOutline  } from "react-icons/md";
 import Popup from 'reactjs-popup';
+import { BrowserRouter as Router, Route,Redirect, Switch, useHistory} from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+
+
 const SviZadaci = () => {
 
     const[listaZadataka, setListaZadataka] = useState('');
     const projectid = (window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     console.log(projectid);
+
+    let history = useHistory(); 
+    const [satiInput, setSatiInput] = useState({
+        brsati : ""
+      });
+
+    const {brsati} = satiInput;
+    const onChange = e =>
+    setSatiInput({ ...satiInput, [e.target.name]: e.target.value });
 
 
 /*dohvat svih zadataka za zadani zadatak*/
@@ -63,11 +77,38 @@ useEffect(() => {
     .filter(zadatak => zadatak.idstatusa === 2)
     .map((zadatak) => {console.log(zadatak)})
   }
- 
 
-  
 
-  
+  const brisanjeZadatka = async (idZadatka) => {
+    try {       
+        const response = await fetch(
+            `http://localhost:5000/task/deletetask/${idZadatka}`,
+        {
+            method: "GET",
+            mode: "cors",
+            headers: {
+            "Content-type": "application/json"
+            },
+            
+        }
+    );
+    const jsonData = await response.json();
+    console.log(jsonData);
+
+    if (response.status === 200) {
+        toast.success("Zadatak obrisan!")
+        history.push('/svizadaci/' + projectid)
+        getZadaci(projectid);
+    }
+    
+    } catch (err) {
+        console.error(err.message);
+        
+    }
+
+    
+    
+}  
 
     return (       
               
@@ -138,7 +179,8 @@ useEffect(() => {
                                  <div className="task-info" style={zadatak.idprioriteta === 1 ? {color:"green"} : zadatak.idprioriteta === 2 ? {color:"yellow"} : {color:"red"}}>
                                 {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
                                 </div>
-                            </div>
+                            </div>                         
+                            
 
                             <div className="task-info-box">
                                 <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -146,9 +188,12 @@ useEffect(() => {
                             </div>
 
                             <div className="task-info-box">
-                                <div className="task-info">RADNI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                <div className="task-info">BROJ RADNIH SATI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                 <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
                             </div>   
+
+
+
 
                             
 
@@ -156,48 +201,12 @@ useEffect(() => {
 
                             <AiIcons.AiOutlineCheck size={28} color="black"/>
 
-                            <Popup trigger = {<button> <AiIcons.AiOutlineEdit size={28}/></button>} modal className="popup">
+                            <Link to={`/zadaci/izmjena/${projectid}/${zadatak.idzadatka}`}>
+                            <AiIcons.AiOutlineEdit size={28} color="black"/>
+                            </Link>
 
-                            {close => (
-                                        <div>
-                                            <div className="popup-text">
-                                                Unesite broj radnih sati
-                                                <hr className="dashed"></hr>
-                                                -- {zadatak.opiszadatka} --
-                                            </div>
-                                            <br/>
-
-                                            <div className='email-form'>
-                                          <span>Broj kartice: </span>
-                                          <input
-                                                className = 'form-control'
-                                                type = 'text'
-                                                name = 'brkartice'
-                                             
-                                                pattern="[0-9]*"
-                                               
-                                                minLength = '16'
-                                                maxLength = '16'
-                                                size = '16'     
-                                                required
-                                            />
-                                        </div>
-                                            
-                                            <div className="button-flex-container">
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {                                   
-                                                    
-                                                    close();
-                                                }}>
-                                                    <div className="popup-button">Potvrdi</div>
-                                                </div>
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {close();}}>
-                                                    <div className="popup-button">Odustani</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
                             
-                            </Popup>
+
 
                             <Popup trigger = {<button> <AiIcons.AiOutlineDelete size={28}/></button>} modal className="popup">
                             {close => (
@@ -208,10 +217,11 @@ useEffect(() => {
                                                 -- {zadatak.opiszadatka} --
                                             </div>
                                             <br/>
-                                            {/*<input type="password" className="form-control" id="password"/>*/}
+                                            
                                             <div className="button-flex-container">
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {                                   
-                                                    
+                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
+                                                    console.log(zadatak.idzadatka)                          
+                                                    brisanjeZadatka(zadatak.idzadatka)
                                                     close();
                                                 }}>
                                                     <div className="popup-button">Potvrdi</div>
@@ -243,7 +253,7 @@ useEffect(() => {
         </div>
 
         <div class="najavljeni">
-            <h1>Najavljeni</h1>
+            <h1>Planirani</h1>
         <Fragment>
         
         {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 3).map((zadatak) => {
