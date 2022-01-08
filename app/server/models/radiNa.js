@@ -8,8 +8,7 @@ module.exports = class radiNa {
 
     async apply() {
         return await db.query(
-            `INSERT INTO radiNa (idProjekta, idZaposlenika) VALUES (
-             VALUES ($1, $2) RETURNING *`,
+            `INSERT INTO radiNa (idProjekta, idZaposlenika) VALUES ($1, $2) RETURNING *`,
             [this.idProjekta, this.idZaposlenika]
         );
     }

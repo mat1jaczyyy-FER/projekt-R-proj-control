@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validNewProject = require("../middleware/validNewProject");
 const Projekt = require("../models/Projekt");
+const radiNa = require("../models/radiNa");
 
 router.post("/add", validNewProject, async (req, res) => {
   const { nazivProjekta, planDatPoc, planDatKraj, idVlasnika, opisProjekta} = req.body;
@@ -9,6 +10,9 @@ router.post("/add", validNewProject, async (req, res) => {
   try {
     let newProjekt = new Projekt(nazivProjekta, planDatPoc, planDatKraj, null, null, 1, idVlasnika, opisProjekta);
     let projekt = await newProjekt.apply();
+    
+    let newRadiNa = new radiNa(projekt.rows[0].idprojekta, idVlasnika);
+    await newRadiNa.apply();
 
     res.status(200);
     return res.json({ projekt });
@@ -25,7 +29,7 @@ router.get("/alluserprojects/:idVlasnika", async (req, res) => {
 
   try {
     const { idVlasnika } = req.params;
-    const results = await Projekt.getProjektiInfo(idVlasnika);
+    const results = await Projekt.getAllUserProjects(idVlasnika);
     return res.json(results);
 
   } catch (err) {

@@ -36,9 +36,16 @@ module.exports = class Projekt {
         );
     }
 
-    static async getProjektiInfo(idVlasnika) {
+    static async getProjektiWhereUserIsOwner(idVlasnika) {
         return (await db.query(
             `SELECT * FROM projekt WHERE idVlasnika = $1`,
+            [idVlasnika]
+        )).rows;
+    }
+
+    static async getAllUserProjects(idVlasnika) {
+        return (await db.query(
+            `SELECT projekt.* FROM projekt NATURAL JOIN radiNa WHERE idZaposlenika = $1`,
             [idVlasnika]
         )).rows;
     }
