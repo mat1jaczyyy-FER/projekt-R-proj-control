@@ -37,7 +37,7 @@ module.exports = class Zaposlenik {
             );
     }
 
-    async apply() {
+    static async apply() {
         return await db.query(
             `INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika, idUloge)
              VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
@@ -45,10 +45,17 @@ module.exports = class Zaposlenik {
         );
     }
 
-    async getKorisnikInfo(email) {
+    static async getKorisnikInfo(email) {
         return (await db.query(
             `SELECT * FROM Zaposlenik WHERE email = $1`,
             [email]
+        )).rows;
+    }
+
+    static async getKorisnikFromID(id) {
+        return (await db.query(
+            `SELECT * FROM Zaposlenik WHERE idZaposlenika = $1`,
+            [id]
         )).rows;
     }
 

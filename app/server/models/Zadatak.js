@@ -27,7 +27,8 @@ module.exports = class Zadatak {
     }
 
 
-    /*kaj radi ovo getZadatakInfo?*/ 
+    /*kaj radi ovo getZadatakInfo?*/
+    /*radi ovo /allprojecttasks/:idProjekta */
 
     static async getZadatakInfo(idProjekta) {
         return (await db.query(
@@ -39,8 +40,7 @@ module.exports = class Zadatak {
     static async delete(idzadatka) {
         return await db.query(
             `DELETE FROM Zadatak WHERE idzadatka = $1 RETURNING *`,
-            [idzadatka]           
-
+            [idzadatka]
         );
     }
 

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const validNewTask = require("../middleware/validNewTask");
 const Zadatak = require("../models/Zadatak");
+const Zaposlenik = require("../models/Zaposlenik");
+const dodijeljenJe = require("../models/dodijeljenJe");
 
 router.post("/add", validNewTask, async (req, res) => {
   // todo ovdje se ne dobije id projekta?
@@ -25,6 +27,15 @@ router.get("/allprojecttasks/:idProjekta", async (req, res) => {
   try {
     const { idProjekta } = req.params;
     const results = await Zadatak.getZadatakInfo(idProjekta);
+
+    for (const i of results) {
+      i.dodijeljenJe = [];
+      for (const j of await dodijeljenJe.getdodijeljenJe(i.idzadatka)) {
+        i.dodijeljenJe.push((await Zaposlenik.getKorisnikFromID(j.idzaposlenika))[0])
+        // TODO vuln lozinka korisnika se ovdje dohvaca...
+      }
+    }
+
     return res.json(results);
 
   } catch (err) {
