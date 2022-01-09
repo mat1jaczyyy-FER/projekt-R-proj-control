@@ -22,10 +22,17 @@ module.exports = class dodijeljenJe {
         )).rows;
     }
 
-    static async getdodijeljenJe(idZadatka) {
+    static async getdodijeljenJeZadatak(idZadatka) {
         return (await db.query(
             `SELECT idZaposlenika FROM dodijeljenJe WHERE idZadatka = $1`,
             [idZadatka]
+        )).rows;
+    }
+
+    static async getdodijeljenJeKorisnik(idZaposlenika) {
+        return (await db.query(
+            `SELECT idZadatka FROM dodijeljenJe WHERE idZaposlenika = $1`,
+            [idZaposlenika]
         )).rows;
     }
 
