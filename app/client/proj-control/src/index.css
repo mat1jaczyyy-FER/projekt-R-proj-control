@@ -1247,4 +1247,5 @@ hr.dashed {
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-fill: balance;
 }

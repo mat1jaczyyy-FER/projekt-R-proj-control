@@ -123,18 +123,21 @@ const Projekti = () => {
                     return (
 
                         <div className='svi-projekti'>
-                            <div class="card bg-c-green order-card">
+                            <div class="card bg-c-custom2 order-card">
                                 <div class="card-block">
-                                     <div className="project-title">
-                                         {projekt.nazivprojekta}
+                                     <div className="task-title">
+                                        
+                                         <Link to={`/svizadaci/` + projekt.idprojekta} className= 'a4 btn-4'> {projekt.nazivprojekta} zadaci</Link>
                                     </div>                     
                                     <hr className="dashed"></hr>     
 
-                                    <div className="project-desc">                     
-                                        {'OPIS: ' + projekt.opisprojekta}
+                                    <div className="task-title">                     
+                                    <Link to={`/projektinfo/` + projekt.idprojekta} className= 'a4 btn-4'>INFO</Link>
                                     </div>   
                                 </div>
                             </div>
+
+                            
 
 
 
