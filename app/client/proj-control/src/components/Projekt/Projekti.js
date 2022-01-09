@@ -117,48 +117,31 @@ const Projekti = () => {
         </Fragment>*/      
 
         
-        <Fragment>
+        <Fragment>           
            
-           {" "}
-            <table>
-                <thead>
-                    <tr>
-                    <th>ID projekta</th>
-                    <th>Naziv</th>
-                    <th>Planirani početak</th>
-                    <th>Planirani završetak</th>
-                    <th>Stvarni početak</th>
-                    <th>Stvarni završetak</th>
-                    <th>ID statusa</th>
-                    <th>ID vlasnika</th>
-                    <th>Opis</th>
-                    <th>Edit</th>
-                    <th>Brisanje</th>
-                    </tr>
-                </thead>
-                <tbody>
                 {Object.values(listaProjekata).map((projekt) => {
                     return (
-                        <tr key={projekt.idprojekta}>
-                            <td>{projekt.idprojekta}  <Link to={`/svizadaci/` + projekt.idprojekta} className= 'a4 btn-4'></Link></td>
-                            <td>{projekt.nazivprojekta}<Link to={`/projektinfo/` + projekt.idprojekta} className= 'a4 btn-4'></Link></td>
-                            <td>{projekt.plandatpoc}</td>  
-                            <td>{projekt.plandatkraj}</td>  
-                            <td>{projekt.datpoc}</td>        
-                            <td>{projekt.datkraj}</td>
-                            <td>{projekt.idstatusa}</td>
-                            <td>{projekt.idvlasnika}</td>
-                            <td>{projekt.opisprojekta}</td>
-                            {projekt.idstatusa === 3 ? <td>Završen</td> : (<>
-                                <td>Promjena stanja<Link to={`/projekti/izmjena/${projekt.idprojekta}`} className= 'a4 btn-4'></Link>  </td>
-                            </>)}
-                            <td><button type="submit" className= 'a4 btn-4' onClick={() => { if (window.confirm('Jeste li sigurni da želite obrisati projekt?')) brisanjeProjekta(projekt.idprojekta)}}>Obriši</button></td>
-                                            
-                         </tr>
+
+                        <div className='svi-projekti'>
+                            <div class="card bg-c-green order-card">
+                                <div class="card-block">
+                                     <div className="project-title">
+                                         {projekt.nazivprojekta}
+                                    </div>                     
+                                    <hr className="dashed"></hr>     
+
+                                    <div className="project-desc">                     
+                                        {'OPIS: ' + projekt.opisprojekta}
+                                    </div>   
+                                </div>
+                            </div>
+
+
+
+                        </div>                        
                     )
                 })}                                    
-                </tbody>
-            </table>
+               
         </Fragment>
 
     );
