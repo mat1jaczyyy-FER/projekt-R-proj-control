@@ -6,6 +6,7 @@ import { GoTasklist } from "react-icons/go"
 import { GoGraph } from "react-icons/go"
 import { BsPeopleFill} from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
+import { GrStatusInfo } from "react-icons/gr";
 
 
 const ProjektINFO = () => {
@@ -13,6 +14,11 @@ const ProjektINFO = () => {
     const projectid = (window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     localStorage.setItem("projectID", projectid)
     const[projekt, setProjekt] = useState('');
+
+    let history = useHistory();  
+    const idzaposlenika = JSON.parse(localStorage.getItem("user")).idzaposlenika;
+    const idVlasnika = idzaposlenika;
+    console.log(idVlasnika);
 
 
     let izlaz = '';
@@ -55,6 +61,35 @@ const ProjektINFO = () => {
       if(projekt !== ''){
             console.log(Object.values(projekt)[0].nazivprojekta)
       }
+
+      const brisanjeProjekta = async (idProjekta) => {
+        try {       
+            const response = await fetch(
+                `http://localhost:5000/project/delete/${idProjekta}`,
+            {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                "Content-type": "application/json"
+                },
+                
+            }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+
+        if (response.status === 200) {
+            toast.success("Projekt obrisan!")
+            history.push('/projekti')
+            
+        }
+        
+        } catch (err) {
+            console.error(err.message);
+            
+        }
+
+    }
     
 
 
@@ -62,6 +97,7 @@ const ProjektINFO = () => {
         
 
         <Fragment>
+            {}
 
             {Object.values(projekt).map((p) => {
 
@@ -118,7 +154,7 @@ const ProjektINFO = () => {
                             <hr className="dashed"></hr>
 
                             <div className="task-title">                     
-                                {'Datum početka: ' + datumCheck(p.datpoc)}
+                                {p.datpoc ? 'Datum početka: ' + datumCheck(p.datpoc) : 'Projekt nije započet'}
                             </div>  
 
                             <div className="task-title">                     
@@ -194,10 +230,33 @@ const ProjektINFO = () => {
                                 <div className="task-title">                    
                                     <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Pregled financija</Link>
                                 </div>   
-                            </div>                          
+                            </div>              
+                        </div>                    
+                    </div>
 
-                           
+                    <div class="card bg-c-custom3 order-card ">
+                        <div class="card-block">
+                            <div className="task-dates2">
+                                 <div className="task-title">                     
+                                    <GrStatusInfo size={60} color="black" />
+                                </div>                    
+                                <div className="task-title">                    
+                                    <Link to={`/projekti/izmjena/` + projectid} className="navlinkother btn btn-2">Promjena statusa</Link>
+                                </div>   
+                            </div>              
+                        </div>                    
+                    </div>
 
+                    <div class="card bg-c-custom3 order-card ">
+                        <div class="card-block">
+                            <div className="task-dates2">
+                                 <div className="task-title">                     
+                                    <GrStatusInfo size={60} color="black" />
+                                </div>                    
+                                <div className="task-title">                    
+                                <a type="submit" className= 'navlinkother btn btn-2 btn-noborder' onClick={() => { if (window.confirm('Jeste li sigurni da želite obrisati projekt?')) brisanjeProjekta(projectid)}}>Obriši</a>
+                                </div>   
+                            </div>              
                         </div>                    
                     </div>
                 </div>

@@ -739,9 +739,9 @@ polygon {
 }
 
 .btn-4 {
-  color: var(--ligher-dark);
+  color: white;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 400;
   max-width: 22.5em;
   max-height: 3.75em;
@@ -1096,6 +1096,11 @@ hr.dashed {
   background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
 }
 
+.bg-c-custom3{
+  background-color: #b3b0b3;
+ 
+}
+
 
 
 
@@ -1246,6 +1251,8 @@ hr.dashed {
 .svi-projekti{
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-fill: balance;
+  grid-template-columns: 1fr 1fr ;
+  text-align: center;
 }
+
+
