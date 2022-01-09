@@ -4,6 +4,10 @@ import { toast } from 'react-toastify';
 import { GrSchedulePlay } from "react-icons/gr"
 import { GoTasklist } from "react-icons/go"
 import { GoGraph } from "react-icons/go"
+import { BsPeopleFill} from "react-icons/bs";
+import { GiMoneyStack } from "react-icons/gi";
+
+
 const ProjektINFO = () => {
 
     const projectid = (window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
@@ -161,6 +165,41 @@ const ProjektINFO = () => {
 
 
 
+
+                </div>
+
+                <div className="task-dates">
+                <div class="card bg-c-yellow order-card ">
+                        <div class="card-block">
+                            <div className="task-dates2">
+                                 <div className="task-title">                     
+                                    <BsPeopleFill size={60} color="black" />
+                                </div>                    
+                                <div className="task-title">                    
+                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Zaposlenici</Link>
+                                </div>   
+                            </div>                          
+
+                           
+
+                        </div>                    
+                    </div>
+
+                    <div class="card bg-c-yellow order-card ">
+                        <div class="card-block">
+                            <div className="task-dates2">
+                                 <div className="task-title">                     
+                                    <GiMoneyStack size={60} color="black" />
+                                </div>                    
+                                <div className="task-title">                    
+                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Pregled financija</Link>
+                                </div>   
+                            </div>                          
+
+                           
+
+                        </div>                    
+                    </div>
                 </div>
 
 

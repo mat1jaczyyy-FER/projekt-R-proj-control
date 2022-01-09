@@ -13,14 +13,14 @@ import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import Layout from './hocs/Layout';
 import Timovi from "./components/Timovi";
-import Zadaci from "./components/Zadaci";
-import Projekti from "./components/Projekti"
-import NoviProjekt from "./components/NoviProjekt";
-import NoviZadatak from "./components/NoviZadatak";
-import SviZadaci from "./components/SviZadaci";
-import EditProjekt from "./components/EditProjekt";
-import EditTask from "./components/EditTask";
-import ProjektINFO from "./components/ProjektINFO";
+import Zadaci from "./components/Zadatak/Zadaci";
+import Projekti from "./components/Projekt/Projekti"
+import NoviProjekt from "./components/Projekt/NoviProjekt";
+import NoviZadatak from "./components/Zadatak/NoviZadatak";
+import SviZadaci from "./components/Zadatak/SviZadaci";
+import EditProjekt from "./components/Projekt/EditProjekt";
+import EditTask from "./components/Zadatak/EditTask";
+import ProjektINFO from "./components/Projekt/ProjektINFO";
 
 toast.configure();
 

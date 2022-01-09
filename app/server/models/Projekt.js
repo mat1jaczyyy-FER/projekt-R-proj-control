@@ -56,4 +56,11 @@ module.exports = class Projekt {
             [idProjekta]
         )).rows;
     }
+
+    static async getProjektWorkers(idProjekta) {
+        return (await db.query(
+            `SELECT idzaposlenika FROM radiNa WHERE idProjekta = $1`,
+            [idProjekta]
+        )).rows;
+    }
 }

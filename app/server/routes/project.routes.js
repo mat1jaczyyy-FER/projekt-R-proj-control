@@ -3,6 +3,8 @@ const router = express.Router();
 const validNewProject = require("../middleware/validNewProject");
 const Projekt = require("../models/Projekt");
 const radiNa = require("../models/radiNa");
+const Zaposlenik = require("../models/Zaposlenik");
+const dodijeljenJe = require("../models/dodijeljenJe");
 
 router.post("/add", validNewProject, async (req, res) => {
   const { nazivProjekta, planDatPoc, planDatKraj, idVlasnika, opisProjekta} = req.body;
@@ -68,6 +70,34 @@ router.get("/:idProjekta", async (req, res) => {
   try {
     const { idProjekta } = req.params;
     const results = await Projekt.getProjekt(idProjekta);
+    return res.json(results);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+router.get("/getUsersStatistics/:idProjekta", async (req, res) => {
+  try {
+    const { idProjekta } = req.params;
+    let usersOnProject = await Projekt.getProjektWorkers(idProjekta);
+    let results = [];
+
+    for (let user of usersOnProject) {
+      let fullUser = await Zaposlenik.getKorisnikFromID(user.idzaposlenika);
+      let ukupnoZadataka = await dodijeljenJe.getGetProjectTasksCountForUser(fullUser[0].idzaposlenika, idProjekta);
+      let obavljenoZadataka = await dodijeljenJe.getGetFinishedProjectTasksCountForUser(fullUser[0].idzaposlenika, idProjekta);
+
+      let stat = {
+        "ime": fullUser[0].imezaposlenika,
+        "prezime": fullUser[0].prezimezaposlenika,
+        "ukupnoZad": ukupnoZadataka[0].count,
+        "obavljenoZad": obavljenoZadataka[0].count
+      }
+      results.push(stat);
+    }
+
     return res.json(results);
 
   } catch (err) {

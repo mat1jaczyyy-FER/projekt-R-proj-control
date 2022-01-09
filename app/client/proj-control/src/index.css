@@ -647,7 +647,7 @@ polygon {
 
 
 .btn {
-  color: var(--secondary);
+  color: white;
   cursor: pointer;
   font-size: 2em;
   font-weight: 400;
@@ -1091,6 +1091,13 @@ hr.dashed {
 .bg-c-custom1{
   background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
 }
+.bg-c-custom2{
+  background-color: #FA8BFF;
+  background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+}
+
+
+
 
 
 
@@ -1214,4 +1221,30 @@ hr.dashed {
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+}
+
+.btn-yellow {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  font-size: 2em;
+  font-weight: 400;
+  margin-left: 0.625em;
+  margin-right: 0.625em;
+  max-width: 18em;
+  max-height: 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  right: 0.35em;
+} 
+
+
+.svi-projekti{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

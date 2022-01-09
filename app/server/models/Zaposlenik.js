@@ -37,7 +37,7 @@ module.exports = class Zaposlenik {
             );
     }
 
-    static async apply() {
+    async apply() {
         return await db.query(
             `INSERT INTO Zaposlenik (korisnickoIme, lozinka, email, imeZaposlenika, prezimeZaposlenika, idUloge)
              VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
