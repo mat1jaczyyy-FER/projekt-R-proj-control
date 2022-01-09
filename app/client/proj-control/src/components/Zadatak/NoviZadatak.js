@@ -6,6 +6,33 @@ const NoviZadatak = () => {
   const projectid = JSON.parse(localStorage.getItem("projectID"));
     var [odabrano, setOdabrano] = useState(1);
 
+    //pomocni kod za filipa c
+    /*const start = new Date(`${projekt.datPoc}`);
+    const pomocni = new Date();
+    const end = pomocni.toISOString().split('T')[0]
+
+    lista = []
+    let loop = new Date(start);
+    while (loop <= end) {
+      let newDate = loop.setDate(loop.getDate() + 1);
+      loop = new Date(newDate);
+      let ukupnoZadataka = 0;
+      let rijesenihZadataka = 0;
+      for (const zad of zadaci) {
+        if (zad.datPoc && zad.datPoc < newDate) {
+          ukupnoZadataka++;
+        }
+        if (zad.datKraj && zad.datKraj < newDate) {
+          rijesenihZadataka++;
+        }
+      }
+      lista.push({
+        newDate,
+        ukupnoZadataka,
+        rijesenihZadataka
+      })
+    }*/
+
     var [inputs, setInputs] = useState({
         opisZadatka: "",
         planDatPoc: Date,
