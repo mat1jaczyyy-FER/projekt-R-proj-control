@@ -28,4 +28,18 @@ module.exports = class dodijeljenJe {
             [idZadatka]
         )).rows;
     }
+
+    static async getGetProjectTasksCountForUser(idZaposlenika, idProjekta) {
+        return (await db.query(
+            `SELECT COUNT(*) FROM dodijeljenJe NATURAL JOIN zadatak WHERE idProjekta = $1 AND idZaposlenika = $2`,
+            [idProjekta, idZaposlenika]
+        )).rows;
+    }
+
+    static async getGetFinishedProjectTasksCountForUser(idZaposlenika, idProjekta) {
+        return (await db.query(
+            `SELECT COUNT(*) FROM dodijeljenJe NATURAL JOIN zadatak NATURAL JOIN status WHERE idProjekta = $1 AND idZaposlenika = $2 AND nazivStatusa = 'Gotov'`,
+            [idProjekta, idZaposlenika]
+        )).rows;
+    }
 }
