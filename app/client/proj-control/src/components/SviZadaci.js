@@ -12,6 +12,7 @@ const SviZadaci = () => {
 
     const[listaZadataka, setListaZadataka] = useState('');
     const projectid = (window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+    localStorage.setItem("projectID", projectid)
     console.log(projectid);
 
     let history = useHistory(); 
@@ -22,6 +23,9 @@ const SviZadaci = () => {
     const {brsati} = satiInput;
     const onChange = e =>
     setSatiInput({ ...satiInput, [e.target.name]: e.target.value });
+
+    const [sortedField, setSortedField] = useState(null);
+
 
 
 /*dohvat svih zadataka za zadani zadatak*/
@@ -62,6 +66,7 @@ const getZadaci = async projectid => {
         const jsonData = await response.json();
 
         setListaZadataka(jsonData);
+        console.log(listaZadataka)
         
     } catch (err) {
         console.error(err.message);
@@ -116,10 +121,11 @@ useEffect(() => {
        <div class="container-zadaci">
 
         <div class="gotovi-zadaci">
-            <h1>Završeni</h1>
+            <h1>Završeni</h1>      
         <Fragment>
         
-        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 1).map((zadatak) => {
+        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 1).sort().map((zadatak) => {
+
             return (
 
                 <div class="card bg-c-green order-card">
@@ -161,7 +167,10 @@ useEffect(() => {
         </div>
 
         <div class="radni">
-            <h1>U tijeku</h1>
+
+            <h1>U tijeku</h1>   
+            
+           
         <Fragment>
         
                 {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 2).map((zadatak) => {
@@ -208,7 +217,7 @@ useEffect(() => {
                             
 
 
-                            <Popup trigger = {<button> <AiIcons.AiOutlineDelete size={28}/></button>} modal className="popup">
+                            <Popup trigger = {<AiIcons.AiOutlineDelete size={28} color="pink"/>} modal className="popup">
                             {close => (
                                         <div>
                                             <div className="popup-text">
@@ -253,7 +262,24 @@ useEffect(() => {
         </div>
 
         <div class="najavljeni">
-            <h1>Planirani</h1>
+
+            <div className="div-neki">
+                <div className="div-neki-child"><h1 >Planirani</h1></div>
+                <div className="div-neki-child2">  
+                <Link to={'/novizadatak'}>
+                <AiIcons.AiOutlineFileAdd size={28} color="white"/> 
+                </Link>
+
+                </div>
+             
+             
+
+            </div>
+            
+            
+           
+                
+            
         <Fragment>
         
         {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 3).map((zadatak) => {

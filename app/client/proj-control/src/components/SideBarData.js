@@ -16,12 +16,12 @@ export const SideBarData = [
     icon: <AiIcons.AiOutlineFundProjectionScreen />,
     cName: 'nav-text'
   },
-  {
+  /*{
     title: 'Moji timovi',
     path: '/timovi',
     icon: <IoIcons.IoMdPeople />,
     cName: 'nav-text'
-  },
+  },*/
   {
     title: 'Moji zadaci',
     path: '/zadaci',

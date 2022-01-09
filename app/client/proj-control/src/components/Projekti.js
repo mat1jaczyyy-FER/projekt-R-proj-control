@@ -140,8 +140,8 @@ const Projekti = () => {
                 {Object.values(listaProjekata).map((projekt) => {
                     return (
                         <tr key={projekt.idprojekta}>
-                            <td>{projekt.idprojekta}  <Link to={`/svizadaci/` + projekt.idprojekta} className= 'a4 btn-4' onClick={localStorage.setItem("projectID", JSON.stringify(projekt.idprojekta))}></Link></td>
-                            <td>{projekt.nazivprojekta}</td>
+                            <td>{projekt.idprojekta}  <Link to={`/svizadaci/` + projekt.idprojekta} className= 'a4 btn-4'></Link></td>
+                            <td>{projekt.nazivprojekta}<Link to={`/projektinfo/` + projekt.idprojekta} className= 'a4 btn-4'></Link></td>
                             <td>{projekt.plandatpoc}</td>  
                             <td>{projekt.plandatkraj}</td>  
                             <td>{projekt.datpoc}</td>        

@@ -3,6 +3,10 @@ import { toast } from "react-toastify";
 import {withRouter} from 'react-router-dom';
 
 const NoviZadatak = () => {
+  const projectid = JSON.parse(localStorage.getItem("projectID"));
+
+
+
     const [inputs, setInputs] = useState({
         opisZadatka: "",
         planDatPoc: Date,
@@ -24,8 +28,8 @@ const NoviZadatak = () => {
         try {
             const idproj = localStorage.getItem("projectID")
             console.log(idproj);
-          const idProjekta = idproj
-          //dodati idProjekta u body
+          const idProjekta = projectid
+          
           const body = { opisZadatka, planDatPoc, planDatKraj, planBrSati, idProjekta};
           const response = await fetch(
             "http://localhost:5000/task/add",

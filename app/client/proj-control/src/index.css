@@ -222,6 +222,7 @@ body {
   margin: 2% auto;
   padding: 2%;
   background: var(--secondary);
+  
 }
 
 .newProject {
@@ -1034,6 +1035,7 @@ hr.dashed {
     "gotovi-zadaci radni najavljeni"
     "gotovi-zadaci radni najavljeni"
     ". . .";
+    
 }
 
 .gotovi-zadaci { 
@@ -1059,7 +1061,8 @@ hr.dashed {
 }
 
 .najavljeni { grid-area: najavljeni; 
-  text-align: center;}
+  text-align: center;
+  overflow: auto;}
 .najavljeni h1{
   font-family: 'Montserrat', sans-serif;
   color: #FFB64D;
@@ -1088,6 +1091,7 @@ hr.dashed {
 .bg-c-custom1{
   background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
 }
+
 
 
 .card {
@@ -1158,3 +1162,56 @@ hr.dashed {
 
 }
 
+
+
+.btn-add-task{
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+
+.div-neki{  
+  text-align: center;
+}
+
+.div-neki-child{
+  display: inline-block;
+}
+
+.div-neki-child2{
+  display: inline-block;
+  margin-left: 5em;
+}
+
+
+.task-dates{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.project-box{
+  display: grid;
+  grid-template-columns: 1fr ;
+  text-align: center;
+}
+
+.task-dates2{
+  display: grid;
+  grid-template-columns: 0.15fr 1fr;
+  text-align: center;
+}
+
+.project-title{
+  font-size: 4em;   
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.project-desc{
+  font-size: 2em;   
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
