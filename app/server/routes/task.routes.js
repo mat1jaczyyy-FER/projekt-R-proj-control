@@ -44,7 +44,7 @@ router.get("/allprojecttasks/:idProjekta", async (req, res) => {
   }
 });
 
-router.get("/deletetask/:idZadatka", async (req, res) => {
+router.get("/delete/:idZadatka", async (req, res) => {
   try {
     const { idZadatka } = req.params;
     const results = await Zadatak.delete(idZadatka);
@@ -57,6 +57,19 @@ router.get("/deletetask/:idZadatka", async (req, res) => {
 });
 
 
+router.post("/editzadatka/:idzadatka", async (req, res) => {
+  const {brSati, idStatusa} = req.body;
+  
+  try {
+    const { idzadatka } = req.params;  
+    const results = await Zadatak.edit(idzadatka, idStatusa, brSati);
+    return res.json(results);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 
 router.post("/update/:idzadatka", async (req, res) => {
