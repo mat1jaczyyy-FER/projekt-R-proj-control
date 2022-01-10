@@ -27,6 +27,8 @@ import Charts from "./components/Grafovi/Chart";
 //import Zaposlenici from "./components/Projekt/Zaposlenici";
 //ovo iz rutera dolje (bacalo je error)
 //<Route exact path="/projektinfo/zaposlenici/:id" render={props => isAuthenticated ? (<Zaposlenici {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+import Zaposlenici from "./components/Projekt/Zaposlenici";
+import TaskFinish from "./components/Zadatak/TaskFinish";
 
 
 toast.configure();
@@ -144,6 +146,8 @@ function App() {
             <Route exact path="/zadaci/izmjena/:pid/:id" render={props => isAuthenticated ? (<EditTask {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/projektinfo/:id" render={props => isAuthenticated ? (<ProjektINFO {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
+            <Route exact path="/projektinfo/zaposlenici/:id" render={props => isAuthenticated ? (<Zaposlenici {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/zadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinish {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
             </Switch>
             </Layout>

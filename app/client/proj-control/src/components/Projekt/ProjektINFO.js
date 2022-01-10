@@ -7,6 +7,7 @@ import { GoGraph } from "react-icons/go"
 import { BsPeopleFill} from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import { GrStatusInfo } from "react-icons/gr";
+import { AiFillDelete} from "react-icons/ai";
 
 
 const ProjektINFO = () => {
@@ -212,7 +213,7 @@ const ProjektINFO = () => {
                                     <BsPeopleFill size={60} color="black" />
                                 </div>                    
                                 <div className="task-title">                    
-                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Zaposlenici</Link>
+                                    <Link to={`/projektinfo/zaposlenici/` + projectid} className="navlinkother btn btn-2">Zaposlenici</Link>
                                 </div>   
                             </div>                          
 
@@ -251,7 +252,7 @@ const ProjektINFO = () => {
                         <div class="card-block">
                             <div className="task-dates2">
                                  <div className="task-title">                     
-                                    <GrStatusInfo size={60} color="black" />
+                                    <AiFillDelete size={60} color="black" />
                                 </div>                    
                                 <div className="task-title">                    
                                 <a type="submit" className= 'navlinkother btn btn-2 btn-noborder' onClick={() => { if (window.confirm('Jeste li sigurni da želite obrisati projekt?')) brisanjeProjekta(projectid)}}>Obriši</a>

@@ -14,6 +14,11 @@ function NavigationBar(){
 
   const showSidebar = () => setSidebar(!sidebar);
 
+  const projectid = localStorage.getItem("projecID");
+
+
+  
+
     const logout = async (e) => {
         e.preventDefault();
         try {
@@ -107,6 +112,8 @@ function NavigationBar(){
                   <AiIcons.AiOutlineClose />
                 </Link>
               </li>
+
+              
               {SideBarData.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>

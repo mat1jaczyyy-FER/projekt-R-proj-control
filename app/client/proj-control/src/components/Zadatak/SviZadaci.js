@@ -48,6 +48,32 @@ const priorityData = [
     }
     
 ]
+
+const[zadatak, setZadatak] = useState([]);
+
+const getZadatak = async idzadatka => {
+    try {       
+            const response = await fetch(
+                `http://localhost:5000/task/${idzadatka}`,
+            {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                "Content-type": "application/json"
+              },
+              
+            }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData[0]);
+
+        setZadatak(jsonData[0]);
+        
+    } catch (err) {
+        console.error(err.message);
+        
+    }
+}
     
 const getZadaci = async projectid => {
     try {       
@@ -110,6 +136,8 @@ useEffect(() => {
         console.error(err.message);
         
     }
+
+
 
     
     
@@ -207,8 +235,9 @@ useEffect(() => {
                             
 
                             <div className="edit-box">
-
+                            <Link to={`/zadatak/finish/${zadatak.idzadatka}`}>        
                             <AiIcons.AiOutlineCheck size={28} color="black"/>
+                            </Link>
 
                             <Link to={`/zadaci/izmjena/${projectid}/${zadatak.idzadatka}`}>
                             <AiIcons.AiOutlineEdit size={28} color="black"/>
@@ -269,11 +298,7 @@ useEffect(() => {
                 <Link to={'/novizadatak'}>
                 <AiIcons.AiOutlineFileAdd size={28} color="white"/> 
                 </Link>
-
-                </div>
-             
-             
-
+                </div>            
             </div>
             
             
@@ -309,7 +334,58 @@ useEffect(() => {
                         <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
                     </div>    
                     <div className="edit-box">
+
+                    <Popup trigger = {<AiIcons.AiOutlineDelete size={28} color="black"/>} modal className="popup">
+                            {close => (
+                                        <div>
+                                            <div className="popup-text">
+                                                Jeste li sigurni da želite trajno obrisati ovaj zadatak?
+                                                <hr className="dashed"></hr>
+                                                -- {zadatak.opiszadatka} --
+                                            </div>
+                                            <br/>
+                                            
+                                            <div className="button-flex-container">
+                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
+                                                    console.log(zadatak.idzadatka)                          
+                                                    brisanjeZadatka(zadatak.idzadatka)
+                                                    close();
+                                                }}>
+                                                    <div className="popup-button">Potvrdi</div>
+                                                </div>
+                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {close();}}>
+                                                    <div className="popup-button">Odustani</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  )}
+                            
+                        </Popup>
+
                     <Popup trigger = {<button> <MdWorkOutline size={28}/></button>} modal>
+                    {close => (
+                                        <div>
+                                            <div className="popup-text">
+                                                Jeste li sigurni da želite započeti s radom na ovom zadatku?
+                                                <hr className="dashed"></hr>
+                                                -- {zadatak.opiszadatka} --
+                                            </div>
+                                            <br/>
+                                            
+                                            <div className="button-flex-container">
+                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
+                                                    console.log(zadatak.idzadatka)                          
+                                                    brisanjeZadatka(zadatak.idzadatka)
+                                                    close();
+                                                }}>
+                                                    <div className="popup-button">Potvrdi</div>
+                                                </div>
+                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {close();}}>
+                                                    <div className="popup-button">Odustani</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                             
                     </Popup>
 
