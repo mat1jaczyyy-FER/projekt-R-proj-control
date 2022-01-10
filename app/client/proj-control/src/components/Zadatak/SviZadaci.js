@@ -184,260 +184,258 @@ useEffect(() => {
 
        <div class="container-zadaci">
 
-        <div class="gotovi-zadaci">
-            <h1>Završeni</h1>      
-        <Fragment>
-        
-        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 1).sort().map((zadatak) => {
+           {listaZadataka === '' ? <div class="loader"></div> : <><div class="gotovi-zadaci">
+                <h1>Završeni</h1>
+                <Fragment>
 
-            return (
+                    {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 1).sort().map((zadatak) => {
 
-                <div class="card bg-c-green order-card">
-                <div class="card-block">
-                    <div className="task-title">
-                        {zadatak.opiszadatka}
-                    </div>
+                        return (
 
-                    <hr className="dashed"></hr>
-                    <div className="task-info-box">
-                        <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                         <div className="task-info" style={zadatak.idprioriteta === 1 ? {color:"green"} : zadatak.idprioriteta === 2 ? {color:"yellow"} : {color:"red"}}>
-                        {zadatak.idprioriteta === 1 ? 'nizak' : zadatak.idprioriteta === 2 ? 'srednji' : 'visok'}
-                        </div>
-                    </div>
+                            <div class="card bg-c-green order-card">
+                                <div class="card-block">
+                                    <div className="task-title">
+                                        {zadatak.opiszadatka}
+                                    </div>
 
-                    <div className="task-info-box">
-                        <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div className="task-info">{zadatak.planbrsati} h</div>
-                    </div>
+                                    <hr className="dashed"></hr>
+                                    <div className="task-info-box">
+                                        <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                        <div className="task-info" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
+                                            {zadatak.idprioriteta === 1 ? 'nizak' : zadatak.idprioriteta === 2 ? 'srednji' : 'visok'}
+                                        </div>
+                                    </div>
 
-                    <div className="task-info-box">
-                        <div className="task-info">RADNI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
-                    </div>   
-                    
-                </div>
-                
-            </div>
+                                    <div className="task-info-box">
+                                        <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                        <div className="task-info">{zadatak.planbrsati} h</div>
+                                    </div>
 
-            
-                
-            )
-        })}                                    
-        
-</Fragment>
+                                    <div className="task-info-box">
+                                        <div className="task-info">RADNI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                        <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
+                                    </div>
 
-
-        </div>
-
-        <div class="radni">
-
-            <h1>U tijeku</h1>   
-            
-           
-        <Fragment>
-        
-                {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 2).map((zadatak) => {
-                    return (
-
-                        <div class="card bg-c-blue order-card">
-                        <div class="card-block">
-                            <div className="task-title">
-                                {zadatak.opiszadatka}
-                            </div>
-
-                            <hr className="dashed"></hr>
-                            <div className="task-info-box">
-                                <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                 <div className="task-info" style={zadatak.idprioriteta === 1 ? {color:"green"} : zadatak.idprioriteta === 2 ? {color:"yellow"} : {color:"red"}}>
-                                {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
                                 </div>
-                            </div>                         
-                            
 
-                            <div className="task-info-box">
-                                <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                <div className="task-info">{zadatak.planbrsati} h</div>
                             </div>
 
-                            <div className="task-info-box">
-                                <div className="task-info">BROJ RADNIH SATI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
-                            </div>   
+
+
+                        );
+                    })}
+
+                </Fragment>
+
+
+            </div><div class="radni">
+
+                    <h1>U tijeku</h1>
+
+
+                    <Fragment>
+
+                        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 2).map((zadatak) => {
+                            return (
+
+                                <div class="card bg-c-blue order-card">
+                                    <div class="card-block">
+                                        <div className="task-title">
+                                            {zadatak.opiszadatka}
+                                        </div>
+
+                                        <hr className="dashed"></hr>
+                                        <div className="task-info-box">
+                                            <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
+                                                {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
+                                            </div>
+                                        </div>
+
+
+                                        <div className="task-info-box">
+                                            <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">{zadatak.planbrsati} h</div>
+                                        </div>
+
+                                        <div className="task-info-box">
+                                            <div className="task-info">BROJ RADNIH SATI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
+                                        </div>
 
 
 
 
-                            
 
-                            <div className="edit-box">
-                            <Link to={`/zadatak/finish/${zadatak.idzadatka}`}>        
-                            <AiIcons.AiOutlineCheck size={28} color="black"/>
+
+                                        <div className="edit-box">
+                                            <Link to={`/zadatak/finish/${zadatak.idzadatka}`}>
+                                                <AiIcons.AiOutlineCheck size={28} color="black" />
+                                            </Link>
+
+                                            <Link to={`/zadaci/izmjena/${projectid}/${zadatak.idzadatka}`}>
+                                                <AiIcons.AiOutlineEdit size={28} color="black" />
+                                            </Link>
+
+
+
+
+                                            <Popup trigger={<AiIcons.AiOutlineDelete size={28} color="pink" />} modal className="popup">
+                                                {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Jeste li sigurni da želite trajno obrisati ovaj zadatak?
+                                                            <hr className="dashed"></hr>
+                                                            --{zadatak.opiszadatka} --
+                                                        </div>
+                                                        <br />
+
+                                                        <div className="button-flex-container">
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {
+                                                                console.log(zadatak.idzadatka);
+                                                                brisanjeZadatka(zadatak.idzadatka);
+                                                                close();
+                                                            } }>
+                                                                <div className="popup-button">Potvrdi</div>
+                                                            </div>
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                                <div className="popup-button">Odustani</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                            </Popup>
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            );
+                        })}
+
+                    </Fragment>
+
+                </div><div class="najavljeni">
+
+                    <div className="div-neki">
+                        <div className="div-neki-child"><h1>Planirani</h1></div>
+                        <div className="div-neki-child2">
+                            <Link to={'/novizadatak'}>
+                                <AiIcons.AiOutlineFileAdd size={28} color="white" />
                             </Link>
-
-                            <Link to={`/zadaci/izmjena/${projectid}/${zadatak.idzadatka}`}>
-                            <AiIcons.AiOutlineEdit size={28} color="black"/>
-                            </Link>
-
-                            
-
-
-                            <Popup trigger = {<AiIcons.AiOutlineDelete size={28} color="pink"/>} modal className="popup">
-                            {close => (
-                                        <div>
-                                            <div className="popup-text">
-                                                Jeste li sigurni da želite trajno obrisati ovaj zadatak?
-                                                <hr className="dashed"></hr>
-                                                -- {zadatak.opiszadatka} --
-                                            </div>
-                                            <br/>
-                                            
-                                            <div className="button-flex-container">
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
-                                                    console.log(zadatak.idzadatka)                          
-                                                    brisanjeZadatka(zadatak.idzadatka)
-                                                    close();
-                                                }}>
-                                                    <div className="popup-button">Potvrdi</div>
-                                                </div>
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {close();}}>
-                                                    <div className="popup-button">Odustani</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                            
-                            </Popup>
-
-                            
-                                
-                                </div>     
-
-                        </div>
-                        
-                    </div>
-
-                    
-                        
-                    )
-                })}                                    
-                
-        </Fragment>
-
-        </div>
-
-        <div class="najavljeni">
-
-            <div className="div-neki">
-                <div className="div-neki-child"><h1 >Planirani</h1></div>
-                <div className="div-neki-child2">  
-                <Link to={'/novizadatak'}>
-                <AiIcons.AiOutlineFileAdd size={28} color="white"/> 
-                </Link>
-                </div>            
-            </div>
-            
-            
-           
-                
-            
-        <Fragment>
-        
-        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 3).map((zadatak) => {
-            return (
-
-                <div class="card bg-c-yellow order-card">
-                <div class="card-block">
-                    <div className="task-title">
-                        {zadatak.opiszadatka}
-                    </div>
-
-                    <hr className="dashed"></hr>
-                    <div className="task-info-box">
-                        <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                         <div className="task-info" style={zadatak.idprioriteta === 1 ? {color:"green"} : zadatak.idprioriteta === 2 ? {color:"yellow"} : {color:"red"}}>
-                        {zadatak.idprioriteta === 1 ? 'nizak' : zadatak.idprioriteta === 2 ? 'srednji' : 'visok'}
                         </div>
                     </div>
 
-                    <div className="task-info-box">
-                        <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div className="task-info">{zadatak.planbrsati} h</div>
-                    </div>
 
-                    <div className="task-info-box">
-                        <div className="task-info">RADNI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
-                    </div>    
-                    <div className="edit-box">
 
-                    <Popup trigger = {<AiIcons.AiOutlineDelete size={28} color="black"/>} modal className="popup">
-                            {close => (
-                                        <div>
-                                            <div className="popup-text">
-                                                Jeste li sigurni da želite trajno obrisati ovaj zadatak?
-                                                <hr className="dashed"></hr>
-                                                -- {zadatak.opiszadatka} --
-                                            </div>
-                                            <br/>
-                                            
-                                            <div className="button-flex-container">
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
-                                                    console.log(zadatak.idzadatka)                          
-                                                    brisanjeZadatka(zadatak.idzadatka)
-                                                    close();
-                                                }}>
-                                                    <div className="popup-button">Potvrdi</div>
-                                                </div>
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {close();}}>
-                                                    <div className="popup-button">Odustani</div>
-                                                </div>
+
+
+                    <Fragment>
+
+                        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 3).map((zadatak) => {
+                            return (
+
+                                <div class="card bg-c-yellow order-card">
+                                    <div class="card-block">
+                                        <div className="task-title">
+                                            {zadatak.opiszadatka}
+                                        </div>
+
+                                        <hr className="dashed"></hr>
+                                        <div className="task-info-box">
+                                            <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
+                                                {zadatak.idprioriteta === 1 ? 'nizak' : zadatak.idprioriteta === 2 ? 'srednji' : 'visok'}
                                             </div>
                                         </div>
-                                  )}
-                            
-                        </Popup>
 
-                    <Popup trigger = {<button> <MdWorkOutline size={28}/></button>} modal>
-                    {close => (
-                                        <div>
-                                            <div className="popup-text">
-                                                Jeste li sigurni da želite započeti s radom na ovom zadatku?
-                                                <hr className="dashed"></hr>
-                                                -- {zadatak.opiszadatka} --
-                                            </div>
-                                            <br/>
-                                            
-                                            <div className="button-flex-container">
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
-                                                                           
-                                                    dodijeliZad(zadatak.idzadatka, idZaposlenika)
-                                                    close();
-                                                }}>
-                                                    <div className="popup-button">Potvrdi</div>
-                                                </div>
-                                                <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {close();}}>
-                                                    <div className="popup-button">Odustani</div>
-                                                </div>
-                                            </div>
+                                        <div className="task-info-box">
+                                            <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">{zadatak.planbrsati} h</div>
                                         </div>
-                                    )}
-                            
-                    </Popup>
 
-                    </div>
+                                        <div className="task-info-box">
+                                            <div className="task-info">RADNI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
+                                        </div>
+                                        <div className="edit-box">
 
-                </div>
-                
-            </div>
+                                            <Popup trigger={<AiIcons.AiOutlineDelete size={28} color="black" />} modal className="popup">
+                                                {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Jeste li sigurni da želite trajno obrisati ovaj zadatak?
+                                                            <hr className="dashed"></hr>
+                                                            --{zadatak.opiszadatka} --
+                                                        </div>
+                                                        <br />
 
-            
-                
-            )
-        })}                                    
+                                                        <div className="button-flex-container">
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {
+                                                                console.log(zadatak.idzadatka);
+                                                                brisanjeZadatka(zadatak.idzadatka);
+                                                                close();
+                                                            } }>
+                                                                <div className="popup-button">Potvrdi</div>
+                                                            </div>
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                                <div className="popup-button">Odustani</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                            </Popup>
+
+                                            <Popup trigger={<button> <MdWorkOutline size={28} /></button>} modal>
+                                                {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Jeste li sigurni da želite započeti s radom na ovom zadatku?
+                                                            <hr className="dashed"></hr>
+                                                            --{zadatak.opiszadatka} --
+                                                        </div>
+                                                        <br />
+
+                                                        <div className="button-flex-container">
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {
+
+                                                                dodijeliZad(zadatak.idzadatka, idZaposlenika);
+                                                                close();
+                                                            } }>
+                                                                <div className="popup-button">Potvrdi</div>
+                                                            </div>
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                                <div className="popup-button">Odustani</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                            </Popup>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            );
+                        })}
+
+                    </Fragment>
+                </div></>}
+
         
-</Fragment>
-        </div>
         </div>
     )
     
