@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validNewTask = require("../middleware/validNewTask");
 const Zadatak = require("../models/Zadatak");
+const Projekt = require("../models/Projekt");
 const Zaposlenik = require("../models/Zaposlenik");
 const dodijeljenJe = require("../models/dodijeljenJe");
 
@@ -52,7 +53,11 @@ router.get("/allusertasks/:idZaposlenika", async (req, res) => {
         let results = [];
 
         for (const i of ids) {
-            results.push((await Zadatak.getZadatak(i.idzadatka))[0]);
+            let zadatak = (await Zadatak.getZadatak(i.idzadatka))[0];
+            results.push({
+                zadatak: zadatak,
+                projekt: (await Projekt.getProjekt(zadatak.idprojekta))[0]
+            });
         }
 
         return res.json(results);
