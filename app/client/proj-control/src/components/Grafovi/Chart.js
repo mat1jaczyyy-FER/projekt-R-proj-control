@@ -14,7 +14,8 @@ const Charts = () => {
   var uncompleted=0;
   var planned=0;
   const[listaZadataka, setListaZadataka] = useState('');
-  const[listaBurndown, setListaBurndown] = useState('');
+
+  
 // __________________________---DOHVACANJE SVIH ZADATAKA---______________________________________________
   const getZadatci = async projectid => {
     try {       
@@ -39,6 +40,12 @@ const Charts = () => {
     }
 }
 
+const[listaBurndown, setListaBurndown] = useState([]);
+const[listaBrojZad, setListaBrojZad] = useState([]);
+const[listaTime, setListaTime] = useState([]);
+
+
+
 const getBurndown = async projectid => {
   try {       
           const response = await fetch(
@@ -53,10 +60,22 @@ const getBurndown = async projectid => {
           }
       );
       const jsonData = await response.json();
+      //jsonData.filter(n => n.total>0);
+      //console.log(jsonData)
 
-      setListaBurndown(jsonData);
+      for(const k of jsonData.filter(t=> (t.total-t.resolved)>0)){
+        //listaBurndown.addItem(k.resolved)
+        //console.log(k);
+        //if(k.resolved>0 && k.total>0 ){
+          setListaBurndown(t => [...t,k.total-k.resolved]);
+          setListaTime(m => [...m,(new Date(Date.parse(k.ts))).toLocaleDateString() ]);
+          setListaBrojZad(f => [...f, k.total]);
+        //}
+      }
+      //console.log(listaBurndown);
+      //setListaBurndown(jsonData);
       
-      console.log(listaBurndown)
+      //console.log(listaTime)
   } catch (err) {
       console.error(err.message);
       
@@ -82,24 +101,33 @@ Object.values(listaZadataka)
 
 
 //__________________BURNDOWN CHART FUNKCIJE I VARIJABLE___________________________________
-const burndownData=[200, 160, 160, 140, 90, 90, 80, 50, 30, 8];
-const scopeChange=[0, 0, 0, 0, 0, 32, 0, 0, 0, 0]
+//const burndownData=[200, 160, 160, 140, 90, 90, 80, 50, 30, 8];
+//const scopeChange=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+//const [scopeChange,setScope]=useState([]);
+//console.log(listaTime);
+//console.log(listaBurndown);
+//console.log(getMax(listaBrojZad));
+
+
+//for(let b=0;b<listaTime.length;b++){
+  //setScope(f => [...f, 0]);
+  //}
 
 //defaults.global.defaultFontFamily = "Arial";
 //Chart.defaults.global.defaultFontSize = 14;
 
-const brojDovrsenihZadataka = burndownData[0];
-const idealniBrojZadataka = brojDovrsenihZadataka / 9;
-var i = 0;
+//const brojDovrsenihZadataka = listaBurndown[0];
+//const idealniBrojZadataka = brojDovrsenihZadataka / 9;
+//var i = 0;
 
-function sumArrayUpTo(arrData, index) {
-  var total = 0;
-  for (var i = 0; i <= index; i++) {
-    if (arrData.length > i) {
-      total += arrData[i];
-        }
+function getMax(lista) {
+  let max=lista[0];
+  for(let x=1;x<lista.length;x++){
+    if(lista[x]>lista[x-1]){
+      max=lista[x];
+    }
   }
-  return total;
+  return max;
 }
 //______________________________________________________________________________________________
   return (
@@ -161,35 +189,25 @@ function sumArrayUpTo(arrData, index) {
       <div>
       <Line
       data={{
-        labels:[ "Prvi dan",	"Drugi dan",	"Treći dan",	"Četvrti dan",	"Peti dan",	"Šesti dan",	"Sedmi dan",	"Osmi dan",	"Deveti dan", "Deseti dan"],
+        //labels:[ "Prvi dan",	"Drugi dan",	"Treći dan",	"Četvrti dan",	"Peti dan",	"Šesti dan",	"Sedmi dan",	"Osmi dan",	"Deveti dan", "Deseti dan"],
+        labels:listaTime,
         datasets: [
           {
-            label: "Burndown",
-            data: burndownData,
+            label: "Broj nedovršenih zadataka",
+            //data: burndownData,
+            data:listaBurndown,
             fill: false,
             borderColor: "#EE6868",
             backgroundColor: "#EE6868",
             lineTension: 0,
           },
           {
-            label: "Idealno",
+            label: "Ukupan broj zadataka",
+            data:listaBrojZad,
             borderColor: "#6C8893",
             backgroundColor: "#6C8893",
-            lineTension: 0,
-            borderDash: [5, 5],
-            fill: false,
-            data: [
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 0)), // 1
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 1)), // 2
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 2)), // 3
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 3)), // 4
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 4)), // 5
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 5)), // 6
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 6)), // 7
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 7)), // 8
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 8)), // 9
-              Math.round(brojDovrsenihZadataka - (idealniBrojZadataka * i++) + sumArrayUpTo(scopeChange, 9))  // 10
-            ]
+            
+            
           }
         ],
       }}
@@ -201,8 +219,8 @@ function sumArrayUpTo(arrData, index) {
           yAxes: [
             {
               ticks: {
-                min:0,
-                max: Math.round(burndownData[0]+1.1),
+                beginAtZero:true,
+                max: Math.round(getMax(listaBrojZad)+1.1),
               },
             },
           ],
