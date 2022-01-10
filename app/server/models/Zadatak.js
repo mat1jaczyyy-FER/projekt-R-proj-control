@@ -66,4 +66,11 @@ module.exports = class Zadatak {
             [idzadatka]
         )).rows;
     }
+
+    static async startWorking(idzadatka) {
+        return await db.query(
+            `UPDATE zadatak SET idstatusa = 2, datpoc = $2 WHERE idzadatka = $1 RETURNING *`,
+            [idzadatka, new Date()]
+        );
+    }
 }

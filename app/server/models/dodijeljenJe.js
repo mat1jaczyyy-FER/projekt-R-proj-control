@@ -6,11 +6,11 @@ module.exports = class dodijeljenJe {
         this.idZadatka = idZadatka;
     }
 
-    static async apply() {
+    static async insert(idZadatka, idZaposlenika) {
         return await db.query(
             `INSERT INTO dodijeljenJe (idZaposlenika, idZadatka)
              VALUES ($1, $2) RETURNING *`,
-            [this.idZaposlenika, this.idZadatka]
+            [idZaposlenika, idZadatka]
         );
     }
 

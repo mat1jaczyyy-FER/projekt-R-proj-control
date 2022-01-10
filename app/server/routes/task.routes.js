@@ -96,7 +96,6 @@ router.post("/editzadatka/:idzadatka", async (req, res) => {
     }
 });
 
-
 router.post("/update/:idzadatka", async (req, res) => {
     const { opisZadatka, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, brSati, idVrste, idStatusa, idPrioriteta, idProjekta } = req.body;
 
@@ -123,5 +122,21 @@ router.get("/:idzadatka", async (req, res) => {
         res.status(500).send("Server error");
     }
 });
+
+router.post("/dodijeli", async (req, res) => {
+    const { idzadatka, idzaposlenika } = req.body;
+
+    try {
+        await dodijeljenJe.insert(idzadatka, idzaposlenika);
+        await Zadatak.startWorking(idzadatka);
+
+        return res.json("success");
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
+
 
 module.exports = router;
