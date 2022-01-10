@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
-import {withRouter} from 'react-router-dom';
+import {withRouter, useHistory} from 'react-router-dom';
 
 const NoviZadatak = () => {
   const projectid = JSON.parse(localStorage.getItem("projectID"));
     var [odabrano, setOdabrano] = useState(1);
+    
+    let history = useHistory(); 
 
     //pomocni kod za filipa c
     /*const start = new Date(`${projekt.datPoc}`);
@@ -76,7 +78,7 @@ const NoviZadatak = () => {
     
           if (parseRes.zadatak) {
             toast.success(`Dodan novi zadatak`);
-            window.location.href = '/projekti';
+            history.push('/svizadaci/' + projectid);
           } else {
             toast.error(parseRes);
           }

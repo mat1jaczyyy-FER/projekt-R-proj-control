@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
-import {withRouter} from 'react-router-dom';
+import {withRouter, useHistory} from 'react-router-dom';
 
-const  NoviProjekt = () => {
+const  NoviProjekt = () => {  
+    let history = useHistory(); 
+
     const [inputs, setInputs] = useState({
         nazivProjekta: "",
         planDatPoc: Date,
@@ -40,7 +42,7 @@ const  NoviProjekt = () => {
     
           if (parseRes.projekt) {
             toast.success(`Dodan novi projekt: ${nazivProjekta}`);
-            window.location.href = '/projekti';
+            history.push('/projekti');
           } else {
             toast.error(parseRes);
           }

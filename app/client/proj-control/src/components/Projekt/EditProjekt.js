@@ -117,13 +117,13 @@ const EditProjekt = () => {
                     <form onSubmit={onSubmitForm} className='formtest'>
                         <div >
                     {projekt.idstatusa === 1 ? (<>
-                        <label className="newProject-label">Projekt nije još započet...</label>
+                        <h2 className="newProject-label">Projekt nije još započet...</h2>
                         <br />
                         <br />
                     <button id="pokreniprojekt" className='anew btn btn-2 navlinkother btn-noborder' type='submit' value="2">Pokreni projekt</button>
                     </>
                     ) : (<>
-                        <label className="newProject-label">Projekt je u tijeku!</label>
+                        <h2 className="newProject-label">Projekt je u tijeku!</h2>
                         <br />
                         <br />
                     <button id="zavrsiprojekt" className='anew btn btn-2 navlinkother btn-noborder' type='submit' value="3">Završi projekt</button>
