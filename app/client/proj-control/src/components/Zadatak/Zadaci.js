@@ -12,6 +12,7 @@ const Zadaci = () => {
 
     const[listaZadataka, setListaZadataka] = useState('');
     const [aktivniZadaci, setAktivniZadaci] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     let history = useHistory(); 
     const [satiInput, setSatiInput] = useState({
@@ -71,6 +72,7 @@ const Zadaci = () => {
                 return (a.zadatak.idprojekta - b.zadatak.idprojekta);
             });
 
+            setLoading(false);
             setListaZadataka(jsonData);
             console.log(jsonData)
             
@@ -97,7 +99,7 @@ const Zadaci = () => {
  
          <div class="radni">
  
-             
+             {loading ? <div class="loader"></div> : <>
              {aktivniZadaci === false ? <h1>Nemate zadataka za rješavanje!</h1> : <>
                 <h1>Aktivni zadaci: </h1>   
                 <Fragment>
@@ -156,6 +158,8 @@ const Zadaci = () => {
          
  </Fragment>
              </>}
+             </>}
+             
              
             
          

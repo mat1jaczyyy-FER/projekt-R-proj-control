@@ -14,7 +14,9 @@ import { GrStatusInfo } from "react-icons/gr";
 
 
 const Projekti = () => {    
-    let history = useHistory();    
+    let history = useHistory();
+    const [loading, setLoading] = useState(true);
+    const [imaProjekata, setImaProjekata] = useState(false)
 
     const[listaProjekata, setListaProjekata] = useState([]);
 
@@ -39,7 +41,8 @@ const Projekti = () => {
                 }
             );
             const jsonData = await response.json();
-
+            setLoading(false);
+            if (jsonData.lenght !== 0) setImaProjekata(true)
             setListaProjekata(jsonData);
             
         } catch (err) {
@@ -91,9 +94,10 @@ const Projekti = () => {
         </div>
         </Fragment>*/      
 
-        
-        <Fragment>           
-           <div className='svi-projekti'>           
+        <Fragment>             
+           <div className='svi-projekti'> 
+           {loading ? <div class="loader"></div> : <>
+            {!imaProjekata ? <div className="proj-title">Nema projekata u kojima sudjelujete!</div> : <>
                 {Object.values(listaProjekata).map((projekt) => {
                     return (                        
                             <div class="card bg-c-custom2 order-card">
@@ -110,13 +114,14 @@ const Projekti = () => {
                                     <div className="proj-title">                     
                                     <Link to={`/svizadaci/` + projekt.idprojekta} className= 'btn-4'>Pregled zadataka</Link>
                                     </div>   
-                                   
-                                    
                                 </div>
                             </div>                       
                                                 
                     )
-                })}                                    
+                })}
+           </>}         
+                      
+                </>}                              
                </div>
         </Fragment>
 
