@@ -65,4 +65,10 @@ module.exports = class Zaposlenik {
             [idKorisnika]
         )).rows;
     }
+
+    static async getAll() {
+        return (await db.query(
+            `SELECT idzaposlenika, korisnickoime, imezaposlenika, prezimezaposlenika FROM Zaposlenik WHERE idzaposlenika <> 1`
+        )).rows;
+    }
 }

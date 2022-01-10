@@ -10,7 +10,8 @@ const routers = {
     '/role': require('./routes/roles.routes'),
     '/status': require('./routes/status.routes'),
     '/taskpriority': require('./routes/taskpriority.routes'),
-    '/tasktype': require('./routes/tasktype.routes')
+    '/tasktype': require('./routes/tasktype.routes'),
+    '/user': require('./routes/user.routes')
 };
 
 app.use(cors({
