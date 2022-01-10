@@ -9,6 +9,8 @@ import { BrowserRouter as Router,
     } 
     from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { GrStatusInfo } from "react-icons/gr";
+
 
 
 const Projekti = () => {    
@@ -59,34 +61,7 @@ const Projekti = () => {
 
     
     //pomocna funkcija za izbrisat kasnije
-    const brisanjeProjekta = async (idProjekta) => {
-        try {       
-            const response = await fetch(
-                `http://localhost:5000/project/delete/${idProjekta}`,
-            {
-                method: "GET",
-                mode: "cors",
-                headers: {
-                "Content-type": "application/json"
-                },
-                
-            }
-        );
-        const jsonData = await response.json();
-        console.log(jsonData);
-
-        if (response.status === 200) {
-            toast.success("Projekt obrisan!")
-            history.push('/projekti')
-            getProjekti(idVlasnika);
-        }
-        
-        } catch (err) {
-            console.error(err.message);
-            
-        }
-
-    }
+    
 
     return (
        /* <Fragment>
@@ -118,33 +93,31 @@ const Projekti = () => {
 
         
         <Fragment>           
-           
+           <div className='svi-projekti'>           
                 {Object.values(listaProjekata).map((projekt) => {
-                    return (
-
-                        <div className='svi-projekti'>
+                    return (                        
                             <div class="card bg-c-custom2 order-card">
                                 <div class="card-block">
-                                     <div className="task-title">
-                                        
-                                         <Link to={`/svizadaci/` + projekt.idprojekta} className= 'a4 btn-4'> {projekt.nazivprojekta} zadaci</Link>
-                                    </div>                     
+                                     <div className="proj-title">                                        
+                                         <Link to={`/projektinfo/` + projekt.idprojekta} className= 'btn-4'> {projekt.nazivprojekta}</Link>
+                                    </div>      
+
+                                    <div className="proj-title">                                        
+                                        Status: {projekt.idstatusa === 1 ? 'Nije započet' : projekt.idstatusa === 2 ? 'Rad u tijeku' : 'Završen'}
+                                    </div>                 
                                     <hr className="dashed"></hr>     
 
-                                    <div className="task-title">                     
-                                    <Link to={`/projektinfo/` + projekt.idprojekta} className= 'a4 btn-4'>INFO</Link>
+                                    <div className="proj-title">                     
+                                    <Link to={`/svizadaci/` + projekt.idprojekta} className= 'btn-4'>Pregled zadataka</Link>
                                     </div>   
+                                   
+                                    
                                 </div>
-                            </div>
-
-                            
-
-
-
-                        </div>                        
+                            </div>                       
+                                                
                     )
                 })}                                    
-               
+               </div>
         </Fragment>
 
     );

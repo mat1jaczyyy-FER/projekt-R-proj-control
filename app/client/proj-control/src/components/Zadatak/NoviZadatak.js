@@ -4,10 +4,36 @@ import {withRouter} from 'react-router-dom';
 
 const NoviZadatak = () => {
   const projectid = JSON.parse(localStorage.getItem("projectID"));
+    var [odabrano, setOdabrano] = useState(1);
 
+    //pomocni kod za filipa c
+    /*const start = new Date(`${projekt.datPoc}`);
+    const pomocni = new Date();
+    const end = pomocni.toISOString().split('T')[0]
 
+    lista = []
+    let loop = new Date(start);
+    while (loop <= end) {
+      let newDate = loop.setDate(loop.getDate() + 1);
+      loop = new Date(newDate);
+      let ukupnoZadataka = 0;
+      let rijesenihZadataka = 0;
+      for (const zad of zadaci) {
+        if (zad.datPoc && zad.datPoc < newDate) {
+          ukupnoZadataka++;
+        }
+        if (zad.datKraj && zad.datKraj < newDate) {
+          rijesenihZadataka++;
+        }
+      }
+      lista.push({
+        newDate,
+        ukupnoZadataka,
+        rijesenihZadataka
+      })
+    }*/
 
-    const [inputs, setInputs] = useState({
+    var [inputs, setInputs] = useState({
         opisZadatka: "",
         planDatPoc: Date,
         planDatKraj: Date,
@@ -16,9 +42,10 @@ const NoviZadatak = () => {
         planBrSati: 1,
         idStatusa: 1,
         idVrste: 1,
+        idPrioriteta: "1"
     });
 
-    const {opisZadatka, planDatPoc, planDatKraj, planBrSati} = inputs;
+    var {opisZadatka, planDatPoc, planDatKraj, planBrSati, idPrioriteta, idStatusa} = inputs;
 
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -29,8 +56,10 @@ const NoviZadatak = () => {
             const idproj = localStorage.getItem("projectID")
             console.log(idproj);
           const idProjekta = projectid
+          idPrioriteta = parseInt(odabrano)
           
-          const body = { opisZadatka, planDatPoc, planDatKraj, planBrSati, idProjekta};
+          const body = { opisZadatka, planDatPoc, planDatKraj, planBrSati, idProjekta, idStatusa, idPrioriteta};
+          console.log(body)
           const response = await fetch(
             "http://localhost:5000/task/add",
             {
@@ -103,6 +132,42 @@ const NoviZadatak = () => {
                             className="form-control-newProject"
                             placeholder = 'Odredite planirano trajanje zadatka'
                             />
+                            <div defaultValue={odabrano}
+                            onChange={(novoOdabrano) => {
+                              setOdabrano(novoOdabrano.target.value);
+                          }}
+>
+                            <br />
+                            <label className="newProject-label">Odaberite prioritet:</label>
+                            <input
+                            type="radio"
+                            name="idPrioriteta"
+                            id="nizak"
+                            value="1"
+                            className="form-control-newProject"
+                            
+                            />
+                            <label for="nizak" className="form-control-newProject">Nizak</label>
+                            <input
+                            type="radio"
+                            name="idPrioriteta"
+                            id="srednji"
+                            value="2"
+                            className="form-control-newProject"
+                            
+                            />
+                            <label for="srednji" className="form-control-newProject">Srednji</label>
+                            <input
+                            type="radio"
+                            name="idPrioriteta"
+                            id="visok"
+                            value="3"
+                            className="form-control-newProject"
+                            />
+                            <label for="visok" className="form-control-newProject">Visok</label>
+                            </div>
+                            <br />
+                            <br />
                             <button className='anew btn btn-2 navlinkother btn-noborder' type='submit' >Dodaj zadatak</button>
                         
                     </form>
