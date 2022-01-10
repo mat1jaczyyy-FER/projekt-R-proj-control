@@ -190,7 +190,7 @@ const ProjektINFO = () => {
                                     <GoGraph size={60} color="black" />
                                 </div>                    
                                 <div className="task-title">                    
-                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Pregled statističkih grafova</Link>
+                                    <Link to={`/chart/` + projectid} className="navlinkother btn btn-2">Pregled statističkih grafova</Link>
                                 </div>   
                             </div>                          
 

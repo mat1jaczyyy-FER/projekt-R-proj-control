@@ -21,6 +21,7 @@ import SviZadaci from "./components/Zadatak/SviZadaci";
 import EditProjekt from "./components/Projekt/EditProjekt";
 import EditTask from "./components/Zadatak/EditTask";
 import ProjektINFO from "./components/Projekt/ProjektINFO";
+import Charts from "./components/Grafovi/Chart";
 
 toast.configure();
 
@@ -111,6 +112,17 @@ function App() {
               render={props =>
                 isAuthenticated ? (
                   <LandingPage {...props} setAuth={setAuth} />
+                 ) : (
+                  <Redirect to="/login" />
+                 )
+              }
+            />
+            <Route
+              exact
+              path="/chart/:pid"
+              render={props =>
+                isAuthenticated ? (
+                  <Charts {...props} setAuth={setAuth} />
                  ) : (
                   <Redirect to="/login" />
                  )
