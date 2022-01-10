@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validNewTask = require("../middleware/validNewTask");
 const Zadatak = require("../models/Zadatak");
+const Projekt = require("../models/Projekt");
 const Zaposlenik = require("../models/Zaposlenik");
 const dodijeljenJe = require("../models/dodijeljenJe");
 
@@ -52,7 +53,11 @@ router.get("/allusertasks/:idZaposlenika", async (req, res) => {
         let results = [];
 
         for (const i of ids) {
-            results.push((await Zadatak.getZadatak(i.idzadatka))[0]);
+            let zadatak = (await Zadatak.getZadatak(i.idzadatka))[0];
+            results.push({
+                zadatak: zadatak,
+                projekt: (await Projekt.getProjekt(zadatak.idprojekta))[0]
+            });
         }
 
         return res.json(results);
@@ -91,7 +96,6 @@ router.post("/editzadatka/:idzadatka", async (req, res) => {
     }
 });
 
-
 router.post("/update/:idzadatka", async (req, res) => {
     const { opisZadatka, planDatPoc, planDatKraj, planBudzet, budzet, datPoc, datKraj, planBrSati, brSati, idVrste, idStatusa, idPrioriteta, idProjekta } = req.body;
 
@@ -118,5 +122,21 @@ router.get("/:idzadatka", async (req, res) => {
         res.status(500).send("Server error");
     }
 });
+
+router.post("/dodijeli", async (req, res) => {
+    const { idzadatka, idzaposlenika } = req.body;
+
+    try {
+        await dodijeljenJe.insert(idzadatka, idzaposlenika);
+        await Zadatak.startWorking(idzadatka);
+
+        return res.json("success");
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
+
 
 module.exports = router;
