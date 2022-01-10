@@ -136,4 +136,18 @@ router.get("/getUsersStatistics/:idProjekta", async (req, res) => {
   }
 });
 
+router.post("/dodajNaProjekt", async (req, res) => {
+    const { idProjekta, idZaposlenika } = req.body;
+
+    try {
+        let newRadiNa = new radiNa(idProjekta, idZaposlenika);
+        await newRadiNa.apply();
+        return res.json("success");
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
+
 module.exports = router;
