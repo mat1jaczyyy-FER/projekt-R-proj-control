@@ -15,6 +15,9 @@ const SviZadaci = () => {
     localStorage.setItem("projectID", projectid)
     console.log(projectid);
 
+    const idZaposlenika = JSON.parse(localStorage.getItem("user")).idzaposlenika;
+    console.log(idZaposlenika)
+
     let history = useHistory(); 
     const [satiInput, setSatiInput] = useState({
         brsati : ""
@@ -136,6 +139,39 @@ useEffect(() => {
         console.error(err.message);
         
     }
+
+}
+
+    const dodijeliZad = async (idzadatka, idzaposlenika) => {
+        try {   
+            const body = {idzadatka, idzaposlenika}  
+            console.log(body);
+            const response = await fetch(
+                `http://localhost:5000/task/dodijeli`,
+            {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+                
+                
+            }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+    
+        if (response.status === 200) {
+            toast.success("Zadatak obrisan!")
+            history.push('/svizadaci/' + projectid)
+            getZadaci(projectid);
+        }
+        
+        } catch (err) {
+            console.error(err.message);
+            
+        }
 
 
 
@@ -374,8 +410,8 @@ useEffect(() => {
                                             
                                             <div className="button-flex-container">
                                                 <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {         
-                                                    console.log(zadatak.idzadatka)                          
-                                                    brisanjeZadatka(zadatak.idzadatka)
+                                                                           
+                                                    dodijeliZad(zadatak.idzadatka, idZaposlenika)
                                                     close();
                                                 }}>
                                                     <div className="popup-button">Potvrdi</div>
