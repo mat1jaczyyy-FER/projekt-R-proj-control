@@ -20,6 +20,7 @@ import NoviZadatak from "./components/Zadatak/NoviZadatak";
 import SviZadaci from "./components/Zadatak/SviZadaci";
 import EditProjekt from "./components/Projekt/EditProjekt";
 import EditTask from "./components/Zadatak/EditTask";
+import EditTaskUser from "./components/Zadatak/EditTaskUser";
 import ProjektINFO from "./components/Projekt/ProjektINFO";
 
 import Charts from "./components/Grafovi/Chart";
@@ -29,6 +30,7 @@ import Charts from "./components/Grafovi/Chart";
 //<Route exact path="/projektinfo/zaposlenici/:id" render={props => isAuthenticated ? (<Zaposlenici {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
 import Zaposlenici from "./components/Projekt/Zaposlenici";
 import TaskFinish from "./components/Zadatak/TaskFinish";
+import TaskFinishUser from "./components/Zadatak/TaskFinishUser";
 
 
 toast.configure();
@@ -144,10 +146,12 @@ function App() {
             <Route exact path="/svizadaci/:id" render={props => isAuthenticated ? (<SviZadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/projekti/izmjena/:id" render={props => isAuthenticated ? (<EditProjekt {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/zadaci/izmjena/:pid/:id" render={props => isAuthenticated ? (<EditTask {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/userzadatak/izmjena/:id" render={props => isAuthenticated ? (<EditTaskUser {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/projektinfo/:id" render={props => isAuthenticated ? (<ProjektINFO {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
             <Route exact path="/projektinfo/zaposlenici/:id" render={props => isAuthenticated ? (<Zaposlenici {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/zadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinish {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/userzadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinishUser {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
             </Switch>
             </Layout>

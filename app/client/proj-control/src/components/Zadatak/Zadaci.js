@@ -60,11 +60,16 @@ const Zadaci = () => {
                 }
             );
             const jsonData = await response.json();
+            console.log(Object.values(jsonData)[0].zadatak)
             for (const data of Object.values(jsonData)) {
-                if (data.idstatusa === 2) {
+                data.zadatak.imeprojekta = data.projekt.nazivprojekta;
+                if (data.zadatak.idstatusa === 2) {
                     setAktivniZadaci(true);
                 }
             }
+            Object.values(jsonData).sort(function(a, b) {
+                return (a.zadatak.idprojekta - b.zadatak.idprojekta);
+            });
 
             setListaZadataka(jsonData);
             console.log(jsonData)
@@ -89,10 +94,6 @@ const Zadaci = () => {
               
 
         <div class="container-zadaci">
-        
-
- 
-         
  
          <div class="radni">
  
@@ -101,11 +102,15 @@ const Zadaci = () => {
                 <h1>Aktivni zadaci: </h1>   
                 <Fragment>
          
-         {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 2).map((zadatak) => {
+         {Object.values(listaZadataka).map(e => e.zadatak).filter(zadatak => zadatak.idstatusa === 2).map((zadatak) => {
              return (
+                 
 
                  <div class="card bg-c-blue order-card">
                  <div class="card-block">
+                 <div className="task-title">
+                         Projekt: {zadatak.imeprojekta}
+                     </div>
                      <div className="task-title">
                          {zadatak.opiszadatka}
                      </div>
@@ -130,10 +135,13 @@ const Zadaci = () => {
                      </div>   
 
                      <div className="edit-box">
+                            <Link to={`/userzadatak/finish/${zadatak.idzadatka}`}>        
+                            <AiIcons.AiOutlineCheck size={28} color="black"/>
+                            </Link>
 
-                     <AiIcons.AiOutlineCheck size={28} color="black"/>
-
-                     <AiIcons.AiOutlineEdit size={28} color="black"/>
+                            <Link to={`/userzadatak/izmjena/${zadatak.idzadatka}`}>
+                            <AiIcons.AiOutlineEdit size={28} color="black"/>
+                            </Link>
                          
                          </div>     
 
