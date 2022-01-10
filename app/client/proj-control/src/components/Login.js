@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
+import { useHistory } from 'react-router-dom';
 
 const Login = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
       email: "",
       password: ""
     });
+
+    let history = useHistory(); 
 
     const { email, password } = inputs;
 
@@ -35,6 +38,7 @@ const Login = ({ setAuth }) => {
             localStorage.setItem("user", JSON.stringify(parseRes.data));
             setAuth(true);
             toast.success("Uspjesna prijava!");
+            history.push('/landingpage')
             window.location.reload(false);
           } else {
             setAuth(false);

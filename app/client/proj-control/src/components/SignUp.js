@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
+import { useHistory } from 'react-router-dom';
 
 
 const SignUp = ({ setAuth }) => {
@@ -10,6 +11,8 @@ const SignUp = ({ setAuth }) => {
       name: "",
       surname: ""
     });
+
+    let history = useHistory(); 
 
     const {username, email, password, name, surname } = SignupData;
 
@@ -36,11 +39,9 @@ const SignUp = ({ setAuth }) => {
           const parseRes = await response.json();
     
           if (parseRes.jwtToken) {
-            localStorage.setItem("token", parseRes.jwtToken);
-            localStorage.setItem("user", JSON.stringify(parseRes.data));
-            setAuth(true);
+            setAuth(false);
             toast.success("Uspjesna registracija!");
-            window.location.reload(false);
+            history.push('/login');
           } else {
             setAuth(false);
             toast.error(parseRes);
