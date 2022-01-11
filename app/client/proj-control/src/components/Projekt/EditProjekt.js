@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import {withRouter, useHistory, useParams} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const EditProjekt = () => {
     const idProjekta = useParams().id;
@@ -109,27 +110,52 @@ const EditProjekt = () => {
     return (
         <Fragment>
           <div className='newProject'>
-            <div className = 'newProject-naslov'>
-                <h1>Izmjena stanja projekta {projekt.nazivprojekta}</h1>
-                <h3>Odaberite trenutno stanje projekta</h3>
-            </div>
-            <div className = 'form-box'>
-                    <form onSubmit={onSubmitForm} className='formtest'>
-                        <div >
+                <div className = 'newProject-naslov'>
+                    <h1>Izmjena stanja projekta: </h1> 
+                    <hr className="dashed"></hr>
+                    <div className="card bg-c-custom1 order-card">
+                        <h1>{projekt.nazivprojekta}</h1> 
+                    </div>
+                    
+                    <hr className="dashed"></hr>
+                    </div>
                     {projekt.idstatusa === 1 ? (<>
-                        <h2 className="newProject-label">Projekt nije još započet...</h2>
-                        <br />
-                        <br />
-                    <button id="pokreniprojekt" className='anew btn btn-2 navlinkother btn-noborder' type='submit' value="2">Pokreni projekt</button>
-                    </>
-                    ) : (<>
-                        <h2 className="newProject-label">Projekt je u tijeku!</h2>
-                        <br />
-                        <br />
-                    <button id="zavrsiprojekt" className='anew btn btn-2 navlinkother btn-noborder' type='submit' value="3">Završi projekt</button>
-                    </>)}</div>      
+                      <h1>Projekt nije započet...</h1>
+                      <div className = 'card bg-c-custom1 order-card'>
+                    <form onSubmit={onSubmitForm} className='formtest'>
+
+                    <button id="završizad" className='anew btn btn-2 navlinkother btn-noborder' type='submit' value="2">Pokreni projekt</button>
+                    <div className="proj-title">                                        
+                            <Link to={`/projektinfo/` + projekt.idprojekta } className= 'btn-4'>Odustani</Link>
+                    </div>    
                     </form>
                 </div>
+                    </>) : (<>
+                    </>)}
+                    {projekt.idstatusa === 2 ? (<>
+                      <h1>Projekt je u tijeku..</h1>
+                      <div className = 'card bg-c-custom1 order-card'>
+                    <form onSubmit={onSubmitForm} className='formtest'>
+
+                    <button id="završizad" className='anew btn btn-2 navlinkother btn-noborder' type='submit' value="3">Završi projekt</button>
+                    <div className="proj-title">                                        
+                            <Link to={`/projektinfo/` + projekt.idprojekta } className= 'btn-4'>Odustani</Link>
+                    </div>    
+                    </form>
+                </div>
+                    </>) : (<>
+                    </>)}
+                    {projekt.idstatusa === 3 ? (<>
+                      <h1>Projekt je završen!</h1>
+                      <div className = 'card bg-c-custom1 order-card'>
+                      <div className="proj-title">                                        
+                            <Link to={`/projektinfo/` + projekt.idprojekta } className= 'btn-4'>Povratak</Link>
+                    </div>   
+                    </div>
+                    </>) : <></>}
+                   
+                
+            
             </div>
         </Fragment>
     );

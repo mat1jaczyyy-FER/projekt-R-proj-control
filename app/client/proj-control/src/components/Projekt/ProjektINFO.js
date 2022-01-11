@@ -8,6 +8,8 @@ import { BsPeopleFill} from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import { GrStatusInfo } from "react-icons/gr";
 import { AiFillDelete} from "react-icons/ai";
+import Popup from 'reactjs-popup';
+import * as AiIcons from 'react-icons/ai';
 
 
 const ProjektINFO = () => {
@@ -46,7 +48,7 @@ const ProjektINFO = () => {
                 }
             );
             const jsonData = await response.json();
-    
+            console.log(jsonData);
             setProjekt(jsonData);
             
             
@@ -253,9 +255,33 @@ const ProjektINFO = () => {
                             <div className="task-dates2">
                                  <div className="task-title">                     
                                     <AiFillDelete size={60} color="black" />
-                                </div>                    
-                                <div className="task-title">                    
-                                <a type="submit" className= 'navlinkother btn btn-2 btn-noborder' onClick={() => { if (window.confirm('Jeste li sigurni da želite obrisati projekt?')) brisanjeProjekta(projectid)}}>Obriši</a>
+                                </div>
+                                <div className="task-title">
+                                <Popup trigger={<a className= 'navlinkother btn btn-2 btn-noborder'>Obriši projekt</a>} modal className="popup">
+                                                {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Jeste li sigurni da želite trajno obrisati ovaj projekt?
+                                                            <hr className="dashed"></hr>
+                                                            --{p.nazivprojekta} --
+                                                        </div>
+                                                        <br />
+
+                                                        <div className="button-flex-container">
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {
+                                                                brisanjeProjekta(p.idprojekta);
+                                                                close();
+                                                            } }>
+                                                                <div className="popup-button">Potvrdi</div>
+                                                            </div>
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                                <div className="popup-button">Odustani</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                            </Popup>
                                 </div>   
                             </div>              
                         </div>                    
