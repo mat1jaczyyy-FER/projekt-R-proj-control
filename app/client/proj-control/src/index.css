@@ -138,6 +138,7 @@ body {
   cursor: pointer;
   color: #fff;
 }
+
 .button * {
   display: inline-block;
   box-sizing: border-box;
@@ -222,7 +223,7 @@ body {
   margin: 2% auto;
   padding: 2%;
   background: var(--secondary);
-  
+
 }
 
 .newProject {
@@ -249,6 +250,14 @@ body {
   margin: 0;
   box-sizing: border-box;
   border-radius: 0.3125em;
+}
+
+.projcontrol-naslov {
+  color: white;
+  font-size: large;
+  margin: 1%;
+  font-size: 35px;
+  font-family: Montserrat;
 }
 
 .login-naslov {
@@ -310,6 +319,7 @@ body {
   top: 0.3125em;
 
 }
+
 /*
 form {
   display: inline-block;
@@ -927,7 +937,8 @@ td {
   color: var(--secondary);
 }
 
-.project-overview {  display: grid;
+.project-overview {
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
@@ -939,21 +950,22 @@ td {
 }
 
 .project-info {
-  display: grid; 
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr 1fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
     "project-name project-name vlasnik"
     "status-projekta broj-zaposlenih datumi"
-    "opis-projekta opis-projekta opis-projekta"; 
-  grid-area: project-info; 
+    "opis-projekta opis-projekta opis-projekta";
+  grid-area: project-info;
   background-color: #97a3ad;
- 
+
 }
 
 
-.project-name { grid-area: project-name;  
+.project-name {
+  grid-area: project-name;
 }
 
 .project-name h1 {
@@ -965,7 +977,10 @@ td {
 }
 
 
-.vlasnik { grid-area: vlasnik; }
+.vlasnik {
+  grid-area: vlasnik;
+}
+
 .vlasnik h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2em;
@@ -976,28 +991,45 @@ td {
   border: 2px solid black;
 }
 
-.status-projekta { grid-area: status-projekta; }
-.opis-projekta { grid-area: opis-projekta; }
-.datumi { grid-area: datumi; }
-.broj-zaposlenih { grid-area: broj-zaposlenih; }
-
-.progress-chart {
-  display: grid; 
-  grid-template-columns: 0.5fr 2fr 0.5fr; 
-  grid-template-rows: 0.5fr 2fr 0.5fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    ". . ."
-    ". piechart-box ."
-    ". . ."; 
-  grid-area: progress-chart; 
+.status-projekta {
+  grid-area: status-projekta;
 }
 
-.piechart-box { grid-area: piechart-box; }
+.opis-projekta {
+  grid-area: opis-projekta;
+}
 
-.stats { grid-area: stats; }
+.datumi {
+  grid-area: datumi;
+}
 
-.gantt-chart { grid-area: gantt-chart; }
+.broj-zaposlenih {
+  grid-area: broj-zaposlenih;
+}
+
+.progress-chart {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . ."
+    ". piechart-box ."
+    ". . .";
+  grid-area: progress-chart;
+}
+
+.piechart-box {
+  grid-area: piechart-box;
+}
+
+.stats {
+  grid-area: stats;
+}
+
+.gantt-chart {
+  grid-area: gantt-chart;
+}
 
 
 .container {
@@ -1015,11 +1047,12 @@ hr.dashed {
 
 
 
-.dataproj{
+.dataproj {
   display: inline;
 }
 
-.container-zadaci {  display: grid;
+.container-zadaci {
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 5px 5px;
@@ -1028,35 +1061,40 @@ hr.dashed {
     "gotovi-zadaci radni najavljeni"
     "gotovi-zadaci radni najavljeni"
     ". . .";
-    
+
 }
 
-.gotovi-zadaci { 
+.gotovi-zadaci {
 
-  grid-area: gotovi-zadaci; 
+  grid-area: gotovi-zadaci;
   text-align: center;
   width: 100%;
 }
 
-.gotovi-zadaci h1{
+.gotovi-zadaci h1 {
   font-family: 'Montserrat', sans-serif;
   color: #2ed8b6;
   text-align: center;
 }
 
-.radni { grid-area: radni;
+.radni {
+  grid-area: radni;
   text-align: center;
-  width: 100%; }
+  width: 100%;
+}
 
-.radni h1{
+.radni h1 {
   font-family: 'Montserrat', sans-serif;
   color: #4099ff;
 }
 
-.najavljeni { grid-area: najavljeni; 
+.najavljeni {
+  grid-area: najavljeni;
   text-align: center;
-  overflow: auto;}
-.najavljeni h1{
+  overflow: auto;
+}
+
+.najavljeni h1 {
   font-family: 'Montserrat', sans-serif;
   color: #FFB64D;
 }
@@ -1066,38 +1104,39 @@ hr.dashed {
 }
 
 .bg-c-blue {
-  background: linear-gradient(45deg,#4099ff,#73b4ff);
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
 }
 
 .bg-c-green {
-  background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+  background: linear-gradient(45deg, #2ed8b6, #59e0c5);
 }
 
 .bg-c-yellow {
-  background: linear-gradient(45deg,#FFB64D,#ffcb80);
+  background: linear-gradient(45deg, #FFB64D, #ffcb80);
 }
 
 .bg-c-pink {
-  background: linear-gradient(45deg,#FF5370,#ff869a);
+  background: linear-gradient(45deg, #FF5370, #ff869a);
 }
 
-.bg-c-custom1{
+.bg-c-custom1 {
   background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
 }
-.bg-c-custom2{
+
+.bg-c-custom2 {
   background-color: #FA8BFF;
   background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
 }
 
-.bg-c-custom3{
+.bg-c-custom3 {
   background-color: #b3b0b3;
- 
+
 }
 
 
-.bg-c-custom4{
+.bg-c-custom4 {
   background-color: #0093E9;
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
 }
 
@@ -1108,8 +1147,8 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 .card {
   width: 80%;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
-  box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+  -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+  box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
   border: none;
   margin-bottom: 30px;
   -webkit-transition: all 0.3s ease-in-out;
@@ -1122,8 +1161,8 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
 .card .card-block {
   padding: 20px;
-  
-  
+
+
 }
 
 .order-card i {
@@ -1138,33 +1177,33 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   float: right;
 }
 
-.task-title{
-  font-size: 1.2em;   
+.task-title {
+  font-size: 1.2em;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  
+
 }
 
-.task-info{
-  font-size: 1em;     
+.task-info {
+  font-size: 1em;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  display:inline-block;
+  display: inline-block;
   text-align: left;
-  
+
 }
 
-.task-info-box{
-  text-align:left;
+.task-info-box {
+  text-align: left;
 }
 
-.edit-box{
-  text-align:right;
-  
+.edit-box {
+  text-align: right;
+
 }
 
-.edit-box button{  
+.edit-box button {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -1176,53 +1215,53 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 
 
 
-.btn-add-task{
+.btn-add-task {
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
 }
 
 
-.div-neki{  
+.div-neki {
   text-align: center;
 }
 
-.div-neki-child{
+.div-neki-child {
   display: inline-block;
 }
 
-.div-neki-child2{
+.div-neki-child2 {
   display: inline-block;
   margin-left: 5em;
 }
 
 
-.task-dates{
+.task-dates {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.project-box{
+.project-box {
   display: grid;
-  grid-template-columns: 1fr ;
+  grid-template-columns: 1fr;
   text-align: center;
 }
 
-.task-dates2{
+.task-dates2 {
   display: grid;
   grid-template-columns: 0.15fr 1fr;
   text-align: center;
 }
 
-.project-title{
-  font-size: 4em;   
+.project-title {
+  font-size: 4em;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 
-.project-desc{
-  font-size: 2em;   
+.project-desc {
+  font-size: 2em;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -1245,35 +1284,35 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   text-align: center;
   position: relative;
   right: 0.35em;
-} 
+}
 
 
-.svi-projekti{
+.svi-projekti {
 
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   text-align: center;
 }
 
 
 .zaposlenici-title {
   display: block;
-  
+
   color: #2BFF88;
-  text-align: center; 
+  text-align: center;
   font-family: 'Montserrat', sans-serif;
 }
 
 
-.task-title2{
+.task-title2 {
   display: flex;
   align-items: center;
-  font-size: 1.2em;   
+  font-size: 1.2em;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 
-  
+
 }
 
 .loader {
@@ -1286,14 +1325,19 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   margin: -76px 0 0 -76px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #0093E9 ;
+  border-top: 16px solid #0093E9;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
@@ -1302,12 +1346,12 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   background: rgba(255, 255, 255, 0);
   border-bottom: 0.125em solid;
   color: #fff;
-  line-height: 2.5em;  
+  line-height: 2.5em;
   text-decoration: none;
   max-height: 3.75em;
 }
 
-.btn-6{
+.btn-6 {
   color: var(--ligher-dark);
   cursor: pointer;
   font-size: 1em;
@@ -1319,7 +1363,7 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   text-decoration: none;
   text-transform: uppercase;
   width: 100%;
-  text-align: center;  
+  text-align: center;
   font-weight: bold;
 }
 
@@ -1358,7 +1402,7 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 
 
-.add-btn{
+.add-btn {
   background-color: transparent;
 
 }

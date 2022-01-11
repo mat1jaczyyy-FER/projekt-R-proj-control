@@ -97,9 +97,11 @@ function NavigationBar(){
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
+            {isAuthenticated ? <>
             <Link to='#' className='menu-bars1'>
-              <FaIcons.FaBars onClick={showSidebar} />
-            </Link>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link></> : <h1 className="projcontrol-naslov">ProjControl</h1>}
+            
             <div className="right-navbar">       
                 {isAuthenticated ? authLinks() : guestLinks()}
             </div>
