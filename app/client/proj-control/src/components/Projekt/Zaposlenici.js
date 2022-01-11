@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch, useHistory} from 'rea
 import { toast } from 'react-toastify';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { BsListTask } from 'react-icons/bs';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 const Zaposlenici = () => {
 
@@ -44,6 +45,8 @@ const Zaposlenici = () => {
         <div className="zaposlenici-title"><h1>Pregled rada zaposlenika</h1> 
     
         <div className='svi-projekti'>
+
+        {zaposleniciData === '' ? <div class="loader"></div> :
              
              
         <Fragment>  
@@ -73,13 +76,35 @@ const Zaposlenici = () => {
                              
 
                         </div>                    
-                </div>
+                    </div>
                                              
                                              
                  )
-             })}                                    
+             })}  
+             <div class="card bg-c-custom4 order-card ">
+                        <div class="card-block">
+
+                            
+                                                  
+
+                            <div className="task-dates2">
+                                 <div className="task-title">                     
+                                    <AiOutlinePlusCircle size={60} color="white" />
+                                </div>                    
+                                <div className="task-title">                    
+                                    <Link to={`/addzaposlenik/` + projectid} className="navlinkother btn btn-2">Dodaj zaposlenika na projekt</Link>
+                                </div>  
+                                </div> 
+
+                           
+
+                             
+
+                        </div>                    
+                    </div>                                  
             
      </Fragment>
+}
      </div>
      </div>
 

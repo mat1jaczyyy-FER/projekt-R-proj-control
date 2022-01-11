@@ -31,6 +31,7 @@ import Charts from "./components/Grafovi/Chart";
 import Zaposlenici from "./components/Projekt/Zaposlenici";
 import TaskFinish from "./components/Zadatak/TaskFinish";
 import TaskFinishUser from "./components/Zadatak/TaskFinishUser";
+import AddZaposlenik from "./components/Projekt/AddZaposlenik";
 
 
 toast.configure();
@@ -152,6 +153,8 @@ function App() {
             <Route exact path="/projektinfo/zaposlenici/:id" render={props => isAuthenticated ? (<Zaposlenici {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/zadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinish {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/userzadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinishUser {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/addzaposlenik/:pid" render={props => isAuthenticated ? (<AddZaposlenik {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            
             
             </Switch>
             </Layout>

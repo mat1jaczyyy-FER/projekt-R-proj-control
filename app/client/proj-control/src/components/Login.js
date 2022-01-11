@@ -88,11 +88,11 @@ const Login = ({ setAuth }) => {
             <br />
             <div className = 'ostaloLogin'>
                 <div className='sign-up-option'>
-                    Nemaš račun?<a href="/signup" className= 'a4 btn-4'>Registriraj se</a>
+                    Nemaš račun?<a href="/signup" className= 'a6 btn-6'>Registriraj se</a>
                 </div>
                 
                 <div className='pass-reset-option'>
-                    Zaboravljena lozinka? <a href="/reset-password" className= 'a4 btn-4'>Obnovi lozinku</a>
+                    Zaboravljena lozinka? <a href="/reset-password" className= 'a6 btn-6'>Obnovi lozinku</a>
                 </div>
             </div>
           </div>

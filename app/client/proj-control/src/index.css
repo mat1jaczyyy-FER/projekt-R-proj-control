@@ -1295,3 +1295,70 @@ background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+
+.a6 {
+  background: rgba(255, 255, 255, 0);
+  border-bottom: 0.125em solid;
+  color: #fff;
+  line-height: 2.5em;  
+  text-decoration: none;
+  max-height: 3.75em;
+}
+
+.btn-6{
+  color: var(--ligher-dark);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 400;
+  max-width: 22.5em;
+  max-height: 3.75em;
+  padding-bottom: 0.125em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;  
+  font-weight: bold;
+}
+
+.btn-6:hover {
+  text-decoration: none;
+  color: var(--ligher-dark);
+}
+
+.btn-6:after,
+.btn-6:before {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 0.0625em solid rgba(255, 255, 255, 0);
+  bottom: 0em;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn-6:hover:after,
+.btn-6:hover:before {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-color: var(--ligher-dark);
+  transition: width 350ms ease-in-out;
+  width: 90%;
+}
+
+.btn-6:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 90%;
+}
+
+
+.add-btn{
+  background-color: transparent;
+
+}
