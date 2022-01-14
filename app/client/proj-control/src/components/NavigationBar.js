@@ -13,8 +13,39 @@ function NavigationBar(){
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  const[projekt, setProjekt] = useState('');
+  const projectid = localStorage.getItem("projectID");
 
-  const projectid = localStorage.getItem("projecID");
+  const getProjekt = async (projectid) => {
+    try {       
+            const response = await fetch(
+                `http://localhost:5000/project/${projectid}`,
+
+            {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                "Content-type": "application/json"
+              },
+              
+            }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+        setProjekt(jsonData);
+        
+        
+    } catch (err) {
+        console.error(err.message);
+        
+    }
+}
+useEffect(() => {
+    getProjekt(projectid);
+  }, []);
+
+  console.log(projekt)
+
 
 
   
@@ -88,6 +119,7 @@ function NavigationBar(){
                     Odjava
                 </a>
             </div>
+           
         </Fragment>
       );
 

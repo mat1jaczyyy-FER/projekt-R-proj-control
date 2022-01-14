@@ -27,56 +27,19 @@ const SviZadaci = () => {
     const onChange = e =>
     setSatiInput({ ...satiInput, [e.target.name]: e.target.value });
 
-    const [sortedField, setSortedField] = useState(null);
-
-
-
-/*dohvat svih zadataka za zadani zadatak*/
-
-const priorityData = [
-    {
-        id: 1,
-        color: 'white',
-        label: 'nizak'
-    },
-    {
-        id: 2,
-        color: 'yellow',
-        label: 'srednji'
-    },
-    {
-        id: 3,
-        color: 'red',
-        label: 'visok'
-    }
     
-]
 
-const[zadatak, setZadatak] = useState([]);
 
-const getZadatak = async idzadatka => {
-    try {       
-            const response = await fetch(
-                `http://localhost:5000/task/${idzadatka}`,
-            {
-              method: "GET",
-              mode: "cors",
-              headers: {
-                "Content-type": "application/json"
-              },
-              
-            }
-        );
-        const jsonData = await response.json();
-        console.log(jsonData[0]);
 
-        setZadatak(jsonData[0]);
-        
-    } catch (err) {
-        console.error(err.message);
-        
-    }
-}
+
+let gotoviZadaci = [];
+let aktivniZadaci = [];
+let planiraniZadaci = [];
+
+
+
+
+
     
 const getZadaci = async projectid => {
     try {       
@@ -95,7 +58,7 @@ const getZadaci = async projectid => {
         const jsonData = await response.json();
 
         setListaZadataka(jsonData);
-        console.log(listaZadataka)
+        
         
     } catch (err) {
         console.error(err.message);
@@ -107,10 +70,23 @@ useEffect(() => {
   }, []);
 
   if(listaZadataka !== ''){
-  Object.values(listaZadataka)
-    .filter(zadatak => zadatak.idstatusa === 2)
-    .map((zadatak) => {console.log(zadatak)})
-  }
+      for(const zad of listaZadataka){
+         if(zad.idstatusa === 1){
+             var o = zad;            
+             gotoviZadaci.push(o);
+         }
+         else if(zad.idstatusa === 2){
+            var o = zad;            
+            aktivniZadaci.push(o);
+         }else if(zad.idstatusa === 3){
+            var o = zad;            
+            planiraniZadaci.push(o);
+         }
+      }
+      console.log(gotoviZadaci);
+    }
+    
+  
 
 
   const brisanjeZadatka = async (idZadatka) => {
@@ -171,24 +147,23 @@ useEffect(() => {
         } catch (err) {
             console.error(err.message);
             
-        }
-
-
-
-    
-    
+        }           
 }  
 
-    return (       
-              
+
+
+    return (                
 
        <div class="container-zadaci">
+           
 
            {listaZadataka === '' ? <div class="loader"></div> : <><div class="gotovi-zadaci">
-                <h1>Završeni</h1>
-                <Fragment>
+           <div className="div-neki">
+                <h1>Završeni</h1>              
+            </div>
+                <Fragment>               
 
-                    {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 1).sort().map((zadatak) => {
+                    {Object.values(gotoviZadaci).map((zadatak) => {
 
                         return (
 
@@ -235,7 +210,7 @@ useEffect(() => {
 
                     <Fragment>
 
-                        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 2).map((zadatak) => {
+                        {Object.values(aktivniZadaci).map((zadatak) => {
                             return (
 
                                 <div class="card bg-c-blue order-card">
@@ -339,7 +314,7 @@ useEffect(() => {
 
                     <Fragment>
 
-                        {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 3).map((zadatak) => {
+                        {Object.values(planiraniZadaci).map((zadatak) => {
                             return (
 
                                 <div class="card bg-c-yellow order-card">

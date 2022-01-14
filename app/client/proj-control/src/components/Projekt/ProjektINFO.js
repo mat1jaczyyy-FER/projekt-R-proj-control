@@ -8,6 +8,7 @@ import { BsPeopleFill} from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import { GrStatusInfo } from "react-icons/gr";
 import { AiFillDelete} from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
 import Popup from 'reactjs-popup';
 import * as AiIcons from 'react-icons/ai';
 
@@ -114,9 +115,12 @@ const ProjektINFO = () => {
                         <br/>
                 <div class="card bg-c-green order-card">
                     <div class="card-block">
-                        <div className="project-title">
+                        <div className="div-neki"> 
+                        <div className="project-title div-neki-child">
                             {p.nazivprojekta}
-                        </div>                     
+                        </div>   
+                        <Link to={`/projekti/izmjena/` + projectid} className="div-neki-child2"><AiFillEdit size={28} /></Link></div>
+                                         
                         <hr className="dashed"></hr>     
 
                         <div className="project-desc">                     

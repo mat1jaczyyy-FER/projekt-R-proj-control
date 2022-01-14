@@ -63,37 +63,11 @@ const Projekti = () => {
       console.log(Object.values(listaProjekata))
 
     
-    //pomocna funkcija za izbrisat kasnije
+  
     
 
     return (
-       /* <Fragment>
-        <div className="container">
-        {Object.values(listaProjekata).map((projekt) => {
-            return (
-
-            <div className="card">
-                <h3 className="title">{projekt.nazivprojekta}</h3>                             
-                <h4 className="title">Status: {projekt.idstatusa == '1' ? "Nije započet" : "U tijeku" }</h4>
-                <h4 className="title">ID: {projekt.idprojekta}</h4>
-                
-               
-                <div className="bar">
-                
-                    <div className="emptybar"></div>
-                    <div className="filledbar"></div>
-                </div>
-
-                <a href="/svizadaci" className= 'a4 btn-4' onClick={localStorage.setItem("projectID", JSON.stringify(projekt.idprojekta))}>KRENI</a>
-
-               
-            </div>
-            )
-        })}
-                
-        </div>
-        </Fragment>*/      
-
+      
         <Fragment>             
            <div className='svi-projekti'> 
            {loading ? <div class="loader"></div> : <>

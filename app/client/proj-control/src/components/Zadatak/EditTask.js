@@ -14,17 +14,23 @@ const EditTask = () => {
     let history = useHistory(); 
 
     const[zadatak, setZadatak] = useState([]);
+    const [opis, setOpis] = useState('');
 
     const [inputs, setInputs] = useState({
-        brojsati: 0       
-      });
+      
+    });
 
-    const { brojsati } = inputs;
+
+    const { brojsati, opiszadatka, plandatpoc } = inputs;
+
+
+
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
 
-
+    
+   
     const getZadatak = async idzadatka => {
         try {       
                 const response = await fetch(
@@ -43,16 +49,25 @@ const EditTask = () => {
 
             setZadatak(jsonData[0]);
             
+            
+            
         } catch (err) {
             console.error(err.message);
             
         }
     }
+    if(opis){
+      console.log(opis)
+    }
+    
 
     useEffect(() => {
         getZadatak(idzadatka);
       }, []);
 
+     
+      
+    
 
 
       const onSubmitForm = async e => {
@@ -60,7 +75,7 @@ const EditTask = () => {
         try {
          const body = {
 
-            brSati: brojsati,
+            brSati: document.getElementById("brojsati").value,
             budzet: zadatak.budzet,
             datKraj: zadatak.datkraj,
             datPoc: zadatak.datpoc,
@@ -68,11 +83,11 @@ const EditTask = () => {
             idProjekta: zadatak.idprojekta,
             idStatusa: zadatak.idstatusa,
             idVrste: zadatak.idvrste,            
-            opisZadatka: zadatak.opiszadatka,
-            planBrSati: zadatak.planbrsati,
+            opisZadatka: document.getElementById("opiszadatka").value,
+            planBrSati: document.getElementById("planbrojsati").value,
             planBudzet: zadatak.planbudzet,
-            planDatKraj: zadatak.plandatkraj,
-            planDatPoc: zadatak.plandatpoc          
+            planDatKraj: document.getElementById("plandatkraj").value,
+            planDatPoc: document.getElementById("plandatpoc").value,      
         }
 
         console.log(body)
@@ -105,56 +120,98 @@ const EditTask = () => {
 
 
 
-    return (
+  
+      return (
 
         <Fragment>
             <div className='newProject'>
                 <div className = 'newProject-naslov'>
-                <h1>Unos radnih sati za zadatak</h1>
+                <h1>Uređivanje podataka o zadatku : {zadatak.opiszadatka}</h1>
                 
                 </div>
 
-                <div class="card bg-c-custom1 order-card">
+                <div class="card bg-c-custom1 order-card ">
                         <div class="card-block">
-                            <div className="task-title">
-                                {zadatak.opiszadatka}
-                            </div>
+                           
 
-                            <hr className="dashed"></hr>
+
                             <div className="task-info-box">
-                                <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                 <div className="task-info" style={zadatak.idprioriteta === 1 ? {color:"green"} : zadatak.idprioriteta === 2 ? {color:"yellow"} : {color:"red"}}>
-                                {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
+                               <form onSubmit={onSubmitForm} className="center-text" id ="edit-task" >
+                               <div  className="task-info"> 
+                               <div className="form__group field">
+                                  <input  className="form__field"
+                                                id="opiszadatka"                                              
+                                                type = 'textarea'
+                                                name = 'opiszadatka'
+                                                defaultValue = {zadatak.opiszadatka}                                        
+                                                onChange = {e => onChange(e)}                           
+                                                min="0"                                            
+                                            /> 
+                                            <label for="name" class="form__label">Opis zadatka</label>
+                                           
+                               </div>
+
+
+                               <div className="form__group field">
+                                          <input    
+                                           className="form__field"
+                                                id="planbrojsati"                                            
+                                                type = 'number'
+                                                name = 'planbrojsati'
+                                                defaultValue = {zadatak.planbrsati}                                            
+                                                pattern="[0-9]*"
+                                                onChange = {e => onChange(e)}                                        
+                                                min="0"
+                                              
+                                            />
+                                             <label for="name" class="form__label">Broj radnih sati</label>
                                 </div>
-                            </div>
-
-                            <div className="task-info-box">
-                                <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                <div className="task-info">{zadatak.planbrsati} h</div>
-                            </div>
-
-                            <div className="task-info-box">
-                                <div className="task-info">TREUNTNI BROJ RADNIH SATI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
-                            </div> 
-
-                            <hr className="dashed"></hr>
-
-
-                            <div className="task-info-box">
-                               <form onSubmit={onSubmitForm} >
-                               <div  className="task-info">
-                                          <span >Novi broj radnih sati </span>
-                                          <input                                                
+                                          
+                                         
+                               <div className="form__group field">
+                                          <input    
+                                           className="form__field"
+                                                id="brojsati"                                            
                                                 type = 'number'
                                                 name = 'brojsati'
-                                                value = {brojsati}
+                                                defaultValue = {zadatak.brsati}                                            
                                                 pattern="[0-9]*"
-                                                onChange = {e => onChange(e)}                                           
-                                                size = '5'     
+                                                onChange = {e => onChange(e)}                                        
                                                 min="0"
-                                                required
+                                              
                                             />
+                                             <label for="name" class="form__label">Broj radnih sati</label>
+                                </div>
+
+                                <div className="form__group field">
+                                          <input    
+                                           className="form__field"
+                                                id="plandatpoc"                                            
+                                                type = 'date'
+                                                name = 'plandatpoc'
+                                                defaultValue = {zadatak.plandatpoc}                                            
+                                                pattern="[0-9]*"
+                                                onChange = {e => onChange(e)}                                        
+                                                min="0"
+                                              
+                                            />
+                                             <label for="name" class="form__label">Planirani datum početka</label>
+                                </div>
+
+                                <div className="form__group field">
+                                          <input    
+                                           className="form__field"
+                                                id="plandatkraj"                                            
+                                                type = 'date'
+                                                name = 'plandatkraj'
+                                                defaultValue = {zadatak.plandatkraj}                                            
+                                                pattern="[0-9]*"
+                                                onChange = {e => onChange(e)}                                        
+                                                min="0"
+                                              
+                                            />
+                                             <label for="name" class="form__label">Planirani datum završetka</label>
+                                </div>
 
                                             <button className="task-info"  type='submit' >Potvrdi</button>    
                                 </div>
@@ -172,7 +229,9 @@ const EditTask = () => {
 
             </div>
         </Fragment>
-    )
+      );
+    
+    
 
     
 }
