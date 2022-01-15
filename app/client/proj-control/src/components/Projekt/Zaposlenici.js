@@ -26,8 +26,10 @@ const Zaposlenici = () => {
                 }
             );
             const jsonData = await response.json();
+            console.log(jsonData);
     
             setZaposleniciData(jsonData);
+            
             
             
         } catch (err) {
@@ -60,7 +62,7 @@ const Zaposlenici = () => {
                         <div class="card-block">
 
                             <div className="task-title">                     
-                                {zaposlenik.ime} {zaposlenik.prezime}
+                                {zaposlenik.imezaposlenika} {zaposlenik.prezimezaposlenika}
                             </div>
 
                             <hr className="dashed"></hr>

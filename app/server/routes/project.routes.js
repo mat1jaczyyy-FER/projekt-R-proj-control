@@ -120,8 +120,10 @@ router.get("/getUsersStatistics/:idProjekta", async (req, res) => {
       let obavljenoZadataka = await dodijeljenJe.getGetFinishedProjectTasksCountForUser(fullUser[0].idzaposlenika, idProjekta);
 
       let stat = {
-        "ime": fullUser[0].imezaposlenika,
-        "prezime": fullUser[0].prezimezaposlenika,
+        "idzaposlenika": fullUser[0].idzaposlenika,
+        "korisnickoime": fullUser[0].korisnickoime,
+        "imezaposlenika": fullUser[0].imezaposlenika,
+        "prezimezaposlenika": fullUser[0].prezimezaposlenika,
         "ukupnoZad": ukupnoZadataka[0].count,
         "obavljenoZad": obavljenoZadataka[0].count
       }
@@ -148,6 +150,20 @@ router.post("/dodajNaProjekt", async (req, res) => {
         console.error(err.message);
         res.status(500).send("Server error");
     }
+});
+
+router.post("/obrisiSProjekta", async (req, res) => {
+    const {idProjekta, idZaposlenika} = req.body;
+
+    try {
+        let newRadiNa = new radiNa(idProjekta, idZaposlenika);
+        await newRadiNa.delete();
+        return res.json("success");
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+
 });
 
 module.exports = router;

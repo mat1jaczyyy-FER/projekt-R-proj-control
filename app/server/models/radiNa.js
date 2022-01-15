@@ -13,6 +13,14 @@ module.exports = class radiNa {
         );
     }
 
+    async delete() {
+        return await db.query(
+            `DELETE FROM radiNa WHERE idprojekta = $1 AND idzaposlenika = $2 RETURNING *`,
+            [this.idProjekta, this.idZaposlenika]
+        );
+    }
+    
+
     async getradiNaInfo(idProjekta, idZaposlenika) {
         return (await db.query(
             `SELECT * FROM Projekt NATURAL JOIN Zaposlenik WHERE Projekt.idProjekta = $1 AND Zaposlenik.idZaposlenika = $2`,
