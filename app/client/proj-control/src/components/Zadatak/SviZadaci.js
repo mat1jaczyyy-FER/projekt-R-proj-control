@@ -5,6 +5,7 @@ import { MdWorkOutline  } from "react-icons/md";
 import Popup from 'reactjs-popup';
 import { BrowserRouter as Router, Route,Redirect, Switch, useHistory} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Select from 'react-select';
 
 
 
@@ -26,6 +27,43 @@ const SviZadaci = () => {
     const {brsati} = satiInput;
     const onChange = e =>
     setSatiInput({ ...satiInput, [e.target.name]: e.target.value });
+
+
+    const prioData = [
+        {
+            value: '',
+            label: 'bez filtera'
+        },
+        {
+            value:1,
+            label:"nizak"
+        },
+        {
+            value:2,
+            label:"srednji"
+        },
+        {
+            value:3,
+            label:"visok"
+        }
+    ];
+
+    const [prio1, setPrio1] = useState('');
+    const handleChange1 = e => {
+        setPrio1(e.value);
+      }
+
+    const [prio2, setPrio2] = useState('');
+    const handleChange2 = e => {
+        setPrio2(e.value);
+    }
+
+    const [prio3, setPrio3] = useState('');
+    const handleChange3 = e => {
+        setPrio3(e.value);
+      }
+
+    
 
     
 
@@ -148,7 +186,40 @@ useEffect(() => {
             console.error(err.message);
             
         }           
-}  
+}
+
+const [sortConfig1, setSortConfig1] = useState('');
+const requestSort1 = key => {
+    let direction = 'ascending';
+    if (sortConfig1.key === key && sortConfig1.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig1({ key, direction });
+  }
+
+const [sortConfig2, setSortConfig2] = useState('');
+const requestSort2 = key => {
+    let direction = 'ascending';
+    if (sortConfig2.key === key && sortConfig2.direction === 'ascending') {
+        direction = 'descending';
+    }
+    setSortConfig2({ key, direction });
+    }
+
+const [sortConfig3, setSortConfig3] = useState('');
+const requestSort3 = key => {
+    let direction = 'ascending';
+    if (sortConfig3.key === key && sortConfig3.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig3({ key, direction });
+  }
+
+  const [filterx, setFilterx] = useState('');
+  const onChangeFilterx = e =>
+  setFilterx(e.target.value);
+  console.log(filterx)
+
 
 
 
@@ -158,12 +229,37 @@ useEffect(() => {
            
 
            {listaZadataka === '' ? <div class="loader"></div> : <><div class="gotovi-zadaci">
-           <div className="div-neki">
-                <h1>Završeni</h1>              
+           <div className="sort-btn-box">
+                <h1>Završeni</h1>   
+                <button type="button" className="task-title sort-btn" onClick={() => requestSort1('opiszadatka')}>OPIS</button>     
+                <button type="button" className="task-title sort-btn" onClick={() => requestSort1('idprioriteta')}>PRIORITET</button>      
+                <button type="button" className="task-title sort-btn" onClick={() => requestSort1('plandatkraj')}>PLANIRANI ROK</button>            
             </div>
+            <Select       
+              className="filter-box"    
+              placeholder="Odaberite prioritet"
+              value={prioData.find(obj => obj.value === prio1)}
+              options={prioData} 
+              onChange={handleChange1}
+            /> 
                 <Fragment>               
 
-                    {Object.values(gotoviZadaci).map((zadatak) => {
+                    {Object.values(gotoviZadaci).sort((a, b) => {
+                        if (a[sortConfig1.key] < b[sortConfig1.key]) {
+                            return sortConfig1.direction === 'ascending' ? -1 : 1;
+                          }
+                          if (a[sortConfig1.key] > b[sortConfig1.key]) {
+                            return sortConfig1.direction === 'ascending' ? 1 : -1;
+                          }
+                          return 0;
+                        
+    }).filter((zad) => {
+        if(prio1 == ''){
+            return zad;
+        } else if (zad.idprioriteta == prio1){
+            return zad;
+        }
+    }).map((zadatak) => {
 
                         return (
 
@@ -206,11 +302,36 @@ useEffect(() => {
             </div><div class="radni">
 
                     <h1>U tijeku</h1>
+                    <button type="button" className="task-title sort-btn" onClick={() => requestSort2('opiszadatka')}>OPIS</button>     
+                    <button type="button" className="task-title sort-btn" onClick={() => requestSort2('idprioriteta')}>PRIORITET</button>      
+                    <button type="button" className="task-title sort-btn" onClick={() => requestSort2('plandatkraj')}>PLANIRANI ROK</button> 
+                    <Select     
+                        className="filter-box"        
+                        placeholder="Odaberite prioritet"
+                        value={prioData.find(obj => obj.value === prio2)}
+                        options={prioData} 
+                        onChange={handleChange2}
+                    /> 
 
 
                     <Fragment>
 
-                        {Object.values(aktivniZadaci).map((zadatak) => {
+                        {Object.values(aktivniZadaci).sort((a, b) => {
+                        if (a[sortConfig2.key] < b[sortConfig2.key]) {
+                            return sortConfig2.direction === 'ascending' ? -1 : 1;
+                          }
+                          if (a[sortConfig2.key] > b[sortConfig2.key]) {
+                            return sortConfig2.direction === 'ascending' ? 1 : -1;
+                          }
+                          return 0;
+                        
+    }).filter((zad) => {
+        if(prio2 == ''){
+            return zad;
+        } else if (zad.idprioriteta == prio2){
+            return zad;
+        }
+    }).map((zadatak) => {
                             return (
 
                                 <div class="card bg-c-blue order-card">
@@ -299,14 +420,25 @@ useEffect(() => {
 
                 </div><div class="najavljeni">
 
-                    <div className="div-neki">
+                    <div className="div-neki2">
                         <div className="div-neki-child"><h1>Planirani</h1></div>
                         <div className="div-neki-child2">
                             <Link to={'/novizadatak'}>
                                 <AiIcons.AiOutlineFileAdd size={28} color="white" />
                             </Link>
                         </div>
+                        
                     </div>
+                    <button type="button" className="task-title sort-btn" onClick={() => requestSort3('opiszadatka')}>OPIS</button>     
+                    <button type="button" className="task-title sort-btn" onClick={() => requestSort3('idprioriteta')}>PRIORITET</button>      
+                    <button type="button" className="task-title sort-btn" onClick={() => requestSort3('plandatkraj')}>PLANIRANI ROK</button> 
+                    <Select         
+                        className="filter-box"    
+                        placeholder="Odaberite prioritet"
+                        value={prioData.find(obj => obj.value === prio3)}
+                        options={prioData} 
+                        onChange={handleChange3}
+                    /> 
 
 
 
@@ -314,7 +446,22 @@ useEffect(() => {
 
                     <Fragment>
 
-                        {Object.values(planiraniZadaci).map((zadatak) => {
+                        {Object.values(planiraniZadaci).sort((a, b) => {
+                        if (a[sortConfig3.key] < b[sortConfig3.key]) {
+                            return sortConfig3.direction === 'ascending' ? -1 : 1;
+                          }
+                          if (a[sortConfig3.key] > b[sortConfig3.key]) {
+                            return sortConfig3.direction === 'ascending' ? 1 : -1;
+                          }
+                          return 0;
+                        
+    }).filter((zad) => {
+        if(prio3 == ''){
+            return zad;
+        } else if (zad.idprioriteta == prio3){
+            return zad;
+        }
+    }).map((zadatak) => {
                             return (
 
                                 <div class="card bg-c-yellow order-card">

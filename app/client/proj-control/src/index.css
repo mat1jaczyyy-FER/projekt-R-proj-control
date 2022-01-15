@@ -1225,6 +1225,9 @@ hr.dashed {
 .div-neki {
   text-align: left;
 }
+.div-neki2 {
+  text-align: center;
+}
 
 .div-neki-child {
   display: inline-block;
@@ -1472,3 +1475,22 @@ hr.dashed {
 .center-text{
   text-align: justify;
 }
+
+
+.sort-btn-box{
+  text-align: center;
+}
+
+
+.sort-btn{
+  display: inline-block;
+  margin: 7px;
+}
+
+
+.filter-box{
+  width: 80%;  
+  margin-left: 3.9em;
+  font-family: 'Montserrat', sans-serif;
+}
+

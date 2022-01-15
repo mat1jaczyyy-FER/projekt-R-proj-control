@@ -22,6 +22,7 @@ import EditProjekt from "./components/Projekt/EditProjekt";
 import EditTask from "./components/Zadatak/EditTask";
 import EditTaskUser from "./components/Zadatak/EditTaskUser";
 import ProjektINFO from "./components/Projekt/ProjektINFO";
+import FullProjektEdit from "./components/Projekt/FullProjektEdit"
 
 import Charts from "./components/Grafovi/Chart";
 
@@ -154,6 +155,7 @@ function App() {
             <Route exact path="/zadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinish {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/userzadatak/finish/:id" render={props => isAuthenticated ? (<TaskFinishUser {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/addzaposlenik/:pid" render={props => isAuthenticated ? (<AddZaposlenik {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/projekti/fullizmjena/:id" render={props => isAuthenticated ? (<FullProjektEdit {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
             
             </Switch>

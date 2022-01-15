@@ -80,7 +80,8 @@ const AddZaposlenik = () => {
 
             const jsonData3 = await response3.json();
             console.log(jsonData3);
-            setProjekt(jsonData3)
+            console.log('bok')
+            setProjekt(jsonData3[0])
                
         } catch (err) {
             console.error(err.message);
@@ -219,7 +220,7 @@ const AddZaposlenik = () => {
                          <td>{zaposlenik.imezaposlenika}</td>
                          <td>{zaposlenik.prezimezaposlenika}</td>
                          <td>{zaposlenik.korisnickoime}</td>
-                         {zaposlenik.idzaposlenika === projekt[0].idvlasnika ? <><td></td></> : <>
+                         {zaposlenik.idzaposlenika === projekt.idvlasnika ? <><td></td></> : <>
                             <td><Popup trigger={<button className= 'add-btn btn-noborder'><AiOutlineMinusCircle size={60} color="white" /></button>} modal className="popup">
                                                 {close => (
                                                     <div>

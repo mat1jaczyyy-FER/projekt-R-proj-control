@@ -16,12 +16,10 @@ const EditTask = () => {
     const[zadatak, setZadatak] = useState([]);
     const [opis, setOpis] = useState('');
 
-    const [inputs, setInputs] = useState({
-      
-    });
+    const [inputs, setInputs] = useState({});
 
 
-    const { brojsati, opiszadatka, plandatpoc } = inputs;
+    const { brojsati, opiszadatka, plandatpoc, plandatkraj } = inputs;
 
 
 

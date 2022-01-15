@@ -119,7 +119,7 @@ const ProjektINFO = () => {
                         <div className="project-title div-neki-child">
                             {p.nazivprojekta}
                         </div>   
-                        <Link to={`/projekti/izmjena/` + projectid} className="div-neki-child2"><AiFillEdit size={28} /></Link></div>
+                        <Link to={`/projekti/fullizmjena/` + projectid} className="div-neki-child2"><AiFillEdit size={28} /></Link></div>
                                          
                         <hr className="dashed"></hr>     
 
