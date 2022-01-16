@@ -13,6 +13,8 @@ const Charts = () => {
   var completed=0;
   var uncompleted=0;
   var planned=0;
+  var zastava=0;
+  console.log(zastava)
   const[listaZadataka, setListaZadataka] = useState('');
 
   
@@ -43,10 +45,14 @@ const Charts = () => {
 const[listaBurndown, setListaBurndown] = useState([]);
 const[listaPlanZad, setListaPlanZad] = useState([]);
 const[listaTime, setListaTime] = useState([]);
+//const[zastava, setZastava] = useState(0);
 
 
 
 const getBurndown = async projectid => {
+  setListaBurndown([]);
+  setListaTime([]);
+  setListaPlanZad([]);
   try {       
           const response = await fetch(
               `http://localhost:5000/project/getProjectStatistics/${projectid}`,
@@ -69,10 +75,96 @@ const getBurndown = async projectid => {
         //if(k.resolved>0 && k.total>0 ){
           setListaBurndown(t => [...t,k.total-k.resolved]);
           setListaTime(m => [...m,(new Date(Date.parse(k.ts))).toLocaleDateString() ]);
-          setListaPlanZad(f => [...f, k.totalplanned-k.resolvedplaned]);
+          setListaPlanZad(f => [...f, k.totalplanned-k.resolvedplanned]);
         //}
       }
-      //console.log(listaBurndown);
+
+      //listaTime.filter(t=>t>"01.01.2022.")
+      //console.log(listaTime);
+      //setListaBurndown(jsonData);
+      
+      //console.log(listaTime)
+  } catch (err) {
+      console.error(err.message);
+      
+  }
+}
+
+const getBurndownLastMonth = async projectid => {
+  setListaBurndown([]);
+  setListaTime([]);
+  setListaPlanZad([]);
+  
+  try {       
+          const response = await fetch(
+              `http://localhost:5000/project/getProjectStatisticsLastMonth/${projectid}`,
+          {
+            method: "GET",
+            mode: "cors",
+            headers: {
+              "Content-type": "application/json"
+            },
+            
+          }
+      );
+      const jsonData = await response.json();
+      //jsonData.filter(n => n.total>0);
+      //console.log(jsonData)
+
+      for(const k of jsonData.filter(t=> (t.total-t.resolved)>0)){
+        //listaBurndown.addItem(k.resolved)
+        //console.log(k);
+        //if(k.resolved>0 && k.total>0 ){
+          setListaBurndown(t => [...t,k.total-k.resolved]);
+          setListaTime(m => [...m,(new Date(Date.parse(k.ts))).toLocaleDateString() ]);
+          setListaPlanZad(f => [...f, k.totalplanned-k.resolvedplanned]);
+        //}
+      }
+
+      //listaTime.filter(t=>t>"01.01.2022.")
+      //console.log(listaTime);
+      //setListaBurndown(jsonData);
+      
+      //console.log(listaTime)
+  } catch (err) {
+      console.error(err.message);
+      
+  }
+}
+
+const getBurndownLastWeek = async projectid => {
+  setListaBurndown([]);
+  setListaTime([]);
+  setListaPlanZad([]);
+  
+  try {       
+          const response = await fetch(
+              `http://localhost:5000/project/getProjectStatisticsLastWeek/${projectid}`,
+          {
+            method: "GET",
+            mode: "cors",
+            headers: {
+              "Content-type": "application/json"
+            },
+            
+          }
+      );
+      const jsonData = await response.json();
+      //jsonData.filter(n => n.total>0);
+      //console.log(jsonData)
+
+      for(const k of jsonData.filter(t=> (t.total-t.resolved)>0)){
+        //listaBurndown.addItem(k.resolved)
+        //console.log(k);
+        //if(k.resolved>0 && k.total>0 ){
+          setListaBurndown(t => [...t,k.total-k.resolved]);
+          setListaTime(m => [...m,(new Date(Date.parse(k.ts))).toLocaleDateString() ]);
+          setListaPlanZad(f => [...f, k.totalplanned-k.resolvedplanned]);
+        //}
+      }
+
+      //listaTime.filter(t=>t>"01.01.2022.")
+      //console.log(listaTime);
       //setListaBurndown(jsonData);
       
       //console.log(listaTime)
@@ -85,7 +177,18 @@ const getBurndown = async projectid => {
 useEffect(() => {
   getZadatci(projectid);
   getBurndown(projectid);
-}, []);
+  
+  }, []);
+
+const month=(event)=>{
+  getBurndownLastMonth(projectid)
+}
+const total=(event)=>{
+  getBurndown(projectid)
+}
+const week=(event)=>{
+  getBurndownLastWeek(projectid)
+}
 
 if(listaZadataka !== ''){
 Object.values(listaZadataka)
@@ -132,7 +235,7 @@ function getMax(lista) {
 //______________________________________________________________________________________________
   return (
     <div>
-      <div>
+      <div className='Pie'>
       <Pie style={ { fontsize:"30" }}
         data={{
           labels: ['Završeni', 'U tijeku','Planirani'],
@@ -153,12 +256,15 @@ function getMax(lista) {
                 
               ],
               borderWidth: 1,
+              labelFontSize:20
             },
             
           ],
         }}
         height={400}
         width={600}
+        fontSize={30}
+        
         options={{
           title:{
             display:true
@@ -202,8 +308,9 @@ function getMax(lista) {
             lineTension: 0,
           },
           {
-            label: "Ukupan broj zadataka",
+            label: "Idealan broj nedovršenih zadataka",
             data:listaPlanZad,
+            fill:false,
             borderColor: "#6C8893",
             backgroundColor: "#6C8893",
             
@@ -229,16 +336,19 @@ function getMax(lista) {
           display:true,
           position:'top',
           labels:{
-            fontSize:25,
-            boxWidth:80,
-            fontColor:'black'
+            fontSize:50,
+            
           }
         },
         
       }}
     />
     </div>
-
+    <div className="btn-con" style={{text:"align"}}>
+      <button onClick={month}  className="anew navlinkother btn btn-2 " >ZADNJIH MJESEC DANA</button> 
+      <button onClick={week}  className="anew navlinkother btn btn-2 " >ZADNJIH TJEDAN DANA</button> 
+      <button onClick={total}   className="anew navlinkother btn btn-2 ">UKUPNO</button> 
+    </div>
     </div>
    
   )

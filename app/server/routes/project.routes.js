@@ -112,6 +112,74 @@ router.get("/getProjectStatistics/:idProjekta", async (req, res) => {
     }
 });
 
+router.get("/getProjectStatisticsLastMonth/:idProjekta", async (req, res) => {
+    try {
+        const { idProjekta } = req.params;
+
+        let projekt = (await Projekt.getProjekt(idProjekta))[0];
+        let zadaci = await Zadatak.getZadatakInfo(idProjekta);
+
+        zadaci.forEach(i => {
+            i.datpoc = new Date(Date.parse(i.datpoc));
+            i.datkraj = new Date(Date.parse(i.datkraj));
+            i.plandatpoc = new Date(Date.parse(i.plandatpoc));
+            i.plandatkraj = new Date(Date.parse(i.plandatkraj));
+        });
+
+        let results = [];
+        let dan = new Date();
+        dan.setMonth(dan.getMonth()-1)
+        for (let i = dan; i < new Date(); i.setUTCDate(i.getUTCDate() + 1)) {
+            results.push({
+                ts: new Date(i.getTime()),
+                total: zadaci.filter(j => j.datpoc && j.datpoc < i).length,
+                resolved: zadaci.filter(j => j.datkraj && j.datkraj < i).length,
+                totalplanned: zadaci.filter(j => j.plandatpoc && j.plandatpoc < i).length,
+                resolvedplanned: zadaci.filter(j => j.plandatkraj && j.plandatkraj < i).length
+            })
+        }
+        return res.json(results);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
+
+router.get("/getProjectStatisticsLastWeek/:idProjekta", async (req, res) => {
+    try {
+        const { idProjekta } = req.params;
+
+        let projekt = (await Projekt.getProjekt(idProjekta))[0];
+        let zadaci = await Zadatak.getZadatakInfo(idProjekta);
+
+        zadaci.forEach(i => {
+            i.datpoc = new Date(Date.parse(i.datpoc));
+            i.datkraj = new Date(Date.parse(i.datkraj));
+            i.plandatpoc = new Date(Date.parse(i.plandatpoc));
+            i.plandatkraj = new Date(Date.parse(i.plandatkraj));
+        });
+
+        let results = [];
+        let dan = new Date();
+        dan.setDate(dan.getDate()-7)
+        for (let i = dan; i < new Date(); i.setUTCDate(i.getUTCDate() + 1)) {
+            results.push({
+                ts: new Date(i.getTime()),
+                total: zadaci.filter(j => j.datpoc && j.datpoc < i).length,
+                resolved: zadaci.filter(j => j.datkraj && j.datkraj < i).length,
+                totalplanned: zadaci.filter(j => j.plandatpoc && j.plandatpoc < i).length,
+                resolvedplanned: zadaci.filter(j => j.plandatkraj && j.plandatkraj < i).length
+            })
+        }
+        return res.json(results);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
+
 router.get("/getUsersStatistics/:idProjekta", async (req, res) => {
   try {
     const { idProjekta } = req.params;
