@@ -115,6 +115,13 @@ router.get("/:idzadatka", async (req, res) => {
     try {
         const { idzadatka } = req.params;
         const results = await Zadatak.getZadatak(idzadatka);
+        for (const i of results) {
+            i.dodijeljenJe = [];
+            for (const j of await dodijeljenJe.getdodijeljenJeZadatak(i.idzadatka)) {
+                i.dodijeljenJe.push((await Zaposlenik.getKorisnikFromID(j.idzaposlenika))[0])
+                // TODO vuln lozinka korisnika se ovdje dohvaca...
+            }
+        }
         return res.json(results);
 
     } catch (err) {
@@ -129,6 +136,21 @@ router.post("/dodijeli", async (req, res) => {
     try {
         await dodijeljenJe.insert(idzadatka, idzaposlenika);
         await Zadatak.startWorking(idzadatka);
+
+        return res.json("success");
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
+
+router.post("/makni", async (req, res) => {
+    const { idzadatka, idzaposlenika } = req.body;
+
+    try {
+        await dodijeljenJe.delete(idzadatka, idzaposlenika);
+        //await Zadatak.startWorking(idzadatka);
 
         return res.json("success");
 

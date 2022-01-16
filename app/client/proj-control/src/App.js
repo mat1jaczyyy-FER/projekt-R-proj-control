@@ -34,6 +34,7 @@ import TaskFinish from "./components/Zadatak/TaskFinish";
 import TaskFinishUser from "./components/Zadatak/TaskFinishUser";
 import AddZaposlenik from "./components/Projekt/AddZaposlenik";
 import OstaliZadaci from "./components/Zadatak/OstaliZadaci";
+import AddUser from "./components/Zadatak/AddUser";
 
 
 
@@ -151,6 +152,7 @@ function App() {
             <Route exact path="/svizadaci/:id" render={props => isAuthenticated ? (<SviZadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/projekti/izmjena/:id" render={props => isAuthenticated ? (<EditProjekt {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/zadaci/izmjena/:pid/:id" render={props => isAuthenticated ? (<EditTask {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/zadaci/dodaj/:pid/:id" render={props => isAuthenticated ? (<AddUser {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/userzadatak/izmjena/:id" render={props => isAuthenticated ? (<EditTaskUser {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/projektinfo/:id" render={props => isAuthenticated ? (<ProjektINFO {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             
