@@ -41,7 +41,7 @@ const Charts = () => {
 }
 
 const[listaBurndown, setListaBurndown] = useState([]);
-const[listaBrojZad, setListaBrojZad] = useState([]);
+const[listaPlanZad, setListaPlanZad] = useState([]);
 const[listaTime, setListaTime] = useState([]);
 
 
@@ -69,7 +69,7 @@ const getBurndown = async projectid => {
         //if(k.resolved>0 && k.total>0 ){
           setListaBurndown(t => [...t,k.total-k.resolved]);
           setListaTime(m => [...m,(new Date(Date.parse(k.ts))).toLocaleDateString() ]);
-          setListaBrojZad(f => [...f, k.total]);
+          setListaPlanZad(f => [...f, k.totalplanned-k.resolvedplaned]);
         //}
       }
       //console.log(listaBurndown);
@@ -203,7 +203,7 @@ function getMax(lista) {
           },
           {
             label: "Ukupan broj zadataka",
-            data:listaBrojZad,
+            data:listaPlanZad,
             borderColor: "#6C8893",
             backgroundColor: "#6C8893",
             
@@ -220,7 +220,7 @@ function getMax(lista) {
             {
               ticks: {
                 beginAtZero:true,
-                max: Math.round(getMax(listaBrojZad)+1.1),
+                max: Math.round(getMax(listaPlanZad)+1.1),
               },
             },
           ],
