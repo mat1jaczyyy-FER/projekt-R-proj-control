@@ -1554,6 +1554,33 @@ hr.dashed {
 
 .filter-box {
   width: 80%;
-  margin-left: 3.9em;
+  display: inline-block; 
   font-family: 'Montserrat', sans-serif;
+  position: relative;
+}
+
+.task-col{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.task-title-popup {
+  font-size: 0.7em;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.popup2-content {
+  margin: auto;
+  background: #99c5fdd4;
+  width: 50%;
+  padding: 1.68em;
+  border: 0.336em solid rgb(43, 43, 43);
+  text-align: center;
+  font-family: 'Epilogue', sans-serif;
+  color: var(--secondary-text);
+  font-weight: bold;
+  font-size: 1.875em;
+  border-radius: 0.33em;
 }

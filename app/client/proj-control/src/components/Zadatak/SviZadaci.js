@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup';
 import { BrowserRouter as Router, Route,Redirect, Switch, useHistory} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
+import { BsInfoSquare } from "react-icons/bs";
 
 
 
@@ -215,10 +216,13 @@ const requestSort3 = key => {
     setSortConfig3({ key, direction });
   }
 
-  const [filterx, setFilterx] = useState('');
-  const onChangeFilterx = e =>
-  setFilterx(e.target.value);
-  console.log(filterx)
+  let izlaz = '';
+  function datumCheck(param) {
+      const [year, month, day] =  param.split('-')
+
+      izlaz =  `${day}.${month}.${year}`;
+      return izlaz;        
+   }
 
 
 
@@ -233,15 +237,16 @@ const requestSort3 = key => {
                 <h1>Završeni</h1>   
                 <button type="button" className="task-title sort-btn" onClick={() => requestSort1('opiszadatka')}>OPIS</button>     
                 <button type="button" className="task-title sort-btn" onClick={() => requestSort1('idprioriteta')}>PRIORITET</button>      
-                <button type="button" className="task-title sort-btn" onClick={() => requestSort1('plandatkraj')}>PLANIRANI ROK</button>            
+                <button type="button" className="task-title sort-btn" onClick={() => requestSort1('plandatkraj')}>PLANIRANI ROK</button>    
+                <Select       
+                className="filter-box"    
+                placeholder="Odaberite prioritet"
+                value={prioData.find(obj => obj.value === prio1)}
+                options={prioData} 
+                onChange={handleChange1}
+                />         
             </div>
-            <Select       
-              className="filter-box"    
-              placeholder="Odaberite prioritet"
-              value={prioData.find(obj => obj.value === prio1)}
-              options={prioData} 
-              onChange={handleChange1}
-            /> 
+           
                 <Fragment>               
 
                     {Object.values(gotoviZadaci).sort((a, b) => {
@@ -268,7 +273,9 @@ const requestSort3 = key => {
                                     <div className="task-title">
                                         {zadatak.opiszadatka}
                                     </div>
-
+                                    <div className="task-title">
+                                      Zaposlenik: {zadatak.dodijeljenJe[0] ? zadatak.dodijeljenJe[0].imezaposlenika + ' ' + zadatak.dodijeljenJe[0].prezimezaposlenika  : '-'}
+                                    </div>
                                     <hr className="dashed"></hr>
                                     <div className="task-info-box">
                                         <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -285,6 +292,60 @@ const requestSort3 = key => {
                                     <div className="task-info-box">
                                         <div className="task-info">RADNI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                         <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
+                                    </div>
+                                    <div className="edit-box">
+                                    <Popup trigger={<BsInfoSquare size={28} color="black" />} modal className="popup2">
+                                               {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Informacije o zadataku:
+                                                            <hr className="dashed"></hr>
+                                                            -- {zadatak.opiszadatka} --
+                                                        </div>
+                                                        <br />
+                                                        <div class="card bg-c-green order-card">
+                                                            <div class="card-block card-popup">
+                                                                <div className="task-title-popup">
+                                                                    Planirani datum početka: {zadatak.plandatpoc ? datumCheck(zadatak.plandatpoc) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Planirani datum završetka: {zadatak.plandatkraj ? datumCheck(zadatak.plandatkraj) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Datum početka: {zadatak.datpoc ? datumCheck(zadatak.datpoc) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    {zadatak.datpoc ? 'Datum završetka:' + ' ' + datumCheck(zadatak.datpoc) : ''}
+                                                                </div>
+                                                                <div className="task-title-popup" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
+                                                                   Prioritet: {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
+                                                                </div>  
+                                                                <hr className="dashed"></hr>
+                                                                <div className="task-title-popup">
+                                                                    Zaposlenik: {zadatak.dodijeljenJe[0] ? zadatak.dodijeljenJe[0].imezaposlenika + ' ' + zadatak.dodijeljenJe[0].prezimezaposlenika  : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Planirani broj radnih sati: {zadatak.planbrsati ? zadatak.planbrsati : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Broj radnih sati: {zadatak.brsati ? zadatak.brsati : '-'}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                            <div>Izlaz</div>
+                                                        </div>
+
+                                                    </div>
+                                                )}
+
+                                            </Popup>
+
+
                                     </div>
 
                                 </div>
@@ -339,10 +400,14 @@ const requestSort3 = key => {
                                         <div className="task-title">
                                             {zadatak.opiszadatka}
                                         </div>
+                                        <div className="task-title">
+                                            Zaposlenik: {zadatak.dodijeljenJe[0] ? zadatak.dodijeljenJe[0].imezaposlenika + ' ' + zadatak.dodijeljenJe[0].prezimezaposlenika  : '-'}
+                                        </div>
+
 
                                         <hr className="dashed"></hr>
                                         <div className="task-info-box">
-                                            <div className="task-info">PRIORITET:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">PRIORITET:&nbsp;</div>
                                             <div className="task-info" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
                                                 {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
                                             </div>
@@ -350,12 +415,12 @@ const requestSort3 = key => {
 
 
                                         <div className="task-info-box">
-                                            <div className="task-info">PLANIRANI BROJ SATI: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">PLANIRANI BROJ SATI: &nbsp;</div>
                                             <div className="task-info">{zadatak.planbrsati} h</div>
                                         </div>
 
                                         <div className="task-info-box">
-                                            <div className="task-info">BROJ RADNIH SATI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                            <div className="task-info">BROJ RADNIH SATI:&nbsp;</div>
                                             <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
                                         </div>
 
@@ -365,6 +430,54 @@ const requestSort3 = key => {
 
 
                                         <div className="edit-box">
+                                        <Popup trigger={<BsInfoSquare size={28} color="black" />} modal className="popup2">
+                                               {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Informacije o zadataku:
+                                                            <hr className="dashed"></hr>
+                                                            -- {zadatak.opiszadatka} --
+                                                        </div>
+                                                        <br />
+                                                        <div class="card bg-c-green order-card">
+                                                            <div class="card-block card-popup">
+                                                                <div className="task-title-popup">
+                                                                    Planirani datum početka: {zadatak.plandatpoc ? datumCheck(zadatak.plandatpoc) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Planirani datum završetka: {zadatak.plandatkraj ? datumCheck(zadatak.plandatkraj) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Datum početka: {zadatak.datpoc ? datumCheck(zadatak.datpoc) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
+                                                                   Prioritet: {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
+                                                                </div>  
+                                                                <hr className="dashed"></hr>
+                                                                <div className="task-title-popup">
+                                                                    Zaposlenik: {zadatak.dodijeljenJe[0] ? zadatak.dodijeljenJe[0].imezaposlenika + ' ' + zadatak.dodijeljenJe[0].prezimezaposlenika  : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Planirani broj radnih sati: {zadatak.planbrsati ? zadatak.planbrsati : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Broj radnih sati: {zadatak.brsati ? zadatak.brsati : '-'}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                            <div>Izlaz</div>
+                                                        </div>
+
+                                                    </div>
+                                                )}
+
+                                        
+                                            </Popup>
                                             <Link to={`/zadatak/finish/${zadatak.idzadatka}`}>
                                                 <AiIcons.AiOutlineCheck size={28} color="black" />
                                             </Link>
@@ -491,6 +604,53 @@ const requestSort3 = key => {
                                             <div className="task-info">{!zadatak.brsati ? 0 : zadatak.brsati} h</div>
                                         </div>
                                         <div className="edit-box">
+                                        <Popup trigger={<BsInfoSquare size={28} color="black" />} modal className="popup2">
+                                               {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Informacije o zadataku:
+                                                            <hr className="dashed"></hr>
+                                                            -- {zadatak.opiszadatka} --
+                                                        </div>
+                                                        <br />
+                                                        <div class="card bg-c-green order-card">
+                                                            <div class="card-block card-popup">
+                                                                <div className="task-title-popup">
+                                                                    Planirani datum početka: {zadatak.plandatpoc ? datumCheck(zadatak.plandatpoc) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Planirani datum završetka: {zadatak.plandatkraj ? datumCheck(zadatak.plandatkraj) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Datum početka: {zadatak.datpoc ? datumCheck(zadatak.datpoc) : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup" style={zadatak.idprioriteta === 1 ? { color: "green" } : zadatak.idprioriteta === 2 ? { color: "yellow" } : { color: "red" }}>
+                                                                   Prioritet: {zadatak.idprioriteta === 1 ? '  ' + 'nizak' : zadatak.idprioriteta === 2 ? ' ' + 'srednji' : '  visok'}
+                                                                </div>  
+                                                                <hr className="dashed"></hr>
+                                                                <div className="task-title-popup">
+                                                                    Zaposlenik: {zadatak.dodijeljenJe[0] ? zadatak.dodijeljenJe[0].imezaposlenika + ' ' + zadatak.dodijeljenJe[0].prezimezaposlenika  : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Planirani broj radnih sati: {zadatak.planbrsati ? zadatak.planbrsati : '-'}
+                                                                </div>
+                                                                <div className="task-title-popup">
+                                                                    Broj radnih sati: {zadatak.brsati ? zadatak.brsati : '-'}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                            <div>Izlaz</div>
+                                                        </div>
+
+                                                    </div>
+                                                )}
+
+                                            </Popup>
 
                                             <Popup trigger={<AiIcons.AiOutlineDelete size={28} color="black" />} modal className="popup">
                                                 {close => (
