@@ -57,7 +57,7 @@ const TaskFinishUser = () => {
                 datPoc: zadatak.datpoc,
                 idPrioriteta: zadatak.idprioriteta,
                 idProjekta: zadatak.idprojekta,
-                idStatusa: 1,
+                idStatusa: 3,
                 idVrste: zadatak.idvrste,            
                 opisZadatka: zadatak.opiszadatka,
                 planBrSati: zadatak.planbrsati,

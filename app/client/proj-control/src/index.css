@@ -1076,7 +1076,7 @@ hr.dashed {
   grid-template-areas:
     "odbaceni pauzirani"
     "odbaceni pauzirani"
-    ;
+  ;
 
 }
 
@@ -1109,7 +1109,7 @@ hr.dashed {
 }
 
 .bg-c-lyellow {
-  background: linear-gradient(45deg, #a7b300, #ecea4f);
+  background: linear-gradient(45deg, #cdd82e, #ecea4f);
 }
 
 .container-zadaci {

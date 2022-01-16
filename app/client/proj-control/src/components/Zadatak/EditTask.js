@@ -162,7 +162,7 @@ const EditTask = () => {
                                                 min="0"
                                               
                                             />
-                                             <label for="name" class="form__label">Broj radnih sati</label>
+                                             <label for="name" class="form__label">Planirani broj radnih sati</label>
                                 </div>
                                           
                                          
