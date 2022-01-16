@@ -13,7 +13,7 @@ import Homepage from "./components/Homepage";
 import LandingPage from "./components/LandingPage";
 import Layout from './hocs/Layout';
 import Timovi from "./components/Timovi";
-import Zadaci from "./components/Zadatak/Zadaci";
+import MojiZadaci from "./components/Zadatak/MojiZadaci";
 import Projekti from "./components/Projekt/Projekti"
 import NoviProjekt from "./components/Projekt/NoviProjekt";
 import NoviZadatak from "./components/Zadatak/NoviZadatak";
@@ -34,6 +34,8 @@ import TaskFinish from "./components/Zadatak/TaskFinish";
 import TaskFinishUser from "./components/Zadatak/TaskFinishUser";
 import AddZaposlenik from "./components/Projekt/AddZaposlenik";
 import OstaliZadaci from "./components/Zadatak/OstaliZadaci";
+
+
 
 
 toast.configure();
@@ -143,7 +145,7 @@ function App() {
             />
             <Route exact path='/projekti' render={props => isAuthenticated ? (<Projekti {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/timovi" render={props => isAuthenticated ? (<Timovi {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
-            <Route exact path="/zadaci" render={props => isAuthenticated ? (<Zadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            <Route exact path="/zadaci" render={props => isAuthenticated ? (<MojiZadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/noviprojekt" render={props => isAuthenticated ? (<NoviProjekt {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/novizadatak" render={props => isAuthenticated ? (<NoviZadatak {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
             <Route exact path="/svizadaci/:id" render={props => isAuthenticated ? (<SviZadaci {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>

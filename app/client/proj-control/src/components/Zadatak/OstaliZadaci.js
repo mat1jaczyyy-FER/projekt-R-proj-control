@@ -142,14 +142,14 @@ const OstaliZadaci = () => {
         }
 
     return (
-        <div class="container-zadaci">
+        <div class="container-zadaci-ostali">
  
          
  
              {loading ? <div class="loader"></div> : <>
              
              {imaZadataka === false ? <h1>Nema odbačenih ili pauziranih zadataka!</h1> : <>
-                <div class="radni">
+                <div class="pauzirani">
                 
                 <h1>Pauzirani: </h1>   
                 <Fragment>
@@ -253,7 +253,7 @@ const OstaliZadaci = () => {
          
  </Fragment>
  </div>
- <div class="gotovi-zadaci">
+ <div class="odbaceni">
     <h1>Odbačeni: </h1>   
                 <Fragment>
                 {Object.values(listaZadataka).filter(zadatak => zadatak.idstatusa === 5).map((zadatak) => {
