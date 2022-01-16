@@ -14,6 +14,14 @@ module.exports = class dodijeljenJe {
         );
     }
 
+    static async delete(idZadatka, idZaposlenika) {
+        return await db.query(
+            `DELETE FROM dodijeljenJe
+             WHERE idzaposlenika = $1 AND idzadatka = $2 RETURNING *`,
+            [idZaposlenika, idZadatka]
+        );
+    }
+
     static async getdodijeljenJeInfo(idZaposlenika, idZadatka) {
         return (await db.query(
             `SELECT * FROM Zadatak NATURAL JOIN Zaposlenik

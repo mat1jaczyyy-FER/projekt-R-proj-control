@@ -1104,6 +1104,14 @@ hr.dashed {
   text-align: center;
 }
 
+.bg-c-red {
+  background: linear-gradient(45deg, #ce3246, #d14d4d);
+}
+
+.bg-c-lyellow {
+  background: linear-gradient(45deg, #a7b300, #ecea4f);
+}
+
 .container-zadaci {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -1554,12 +1562,12 @@ hr.dashed {
 
 .filter-box {
   width: 80%;
-  display: inline-block; 
+  display: inline-block;
   font-family: 'Montserrat', sans-serif;
   position: relative;
 }
 
-.task-col{
+.task-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

@@ -158,7 +158,7 @@ const OstaliZadaci = () => {
              return (
                  
 
-                 <div class="card bg-c-blue order-card">
+                 <div class="card bg-c-lyellow order-card">
                  <div class="card-block">
                      <div className="task-title">
                          {zadatak.opiszadatka}
@@ -260,7 +260,7 @@ const OstaliZadaci = () => {
              return (
                  
 
-                 <div class="card bg-c-blue order-card">
+                 <div class="card bg-c-red order-card">
                  <div class="card-block">
                      <div className="task-title">
                          {zadatak.opiszadatka}
