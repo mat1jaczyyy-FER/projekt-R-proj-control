@@ -64,6 +64,7 @@ const ProjektINFO = () => {
 
       if(projekt !== ''){
             console.log(Object.values(projekt)[0].nazivprojekta)
+            document.title=Object.values(projekt)[0].nazivprojekta
       }
 
       const brisanjeProjekta = async (idProjekta) => {
@@ -95,14 +96,16 @@ const ProjektINFO = () => {
 
     }
     
+    
 
 
     return(    
+       
         
 
         <Fragment>
             {}
-
+           
             {Object.values(projekt).map((p) => {
 
                 return(
