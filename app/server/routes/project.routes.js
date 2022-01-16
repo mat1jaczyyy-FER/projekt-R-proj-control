@@ -89,6 +89,8 @@ router.get("/getProjectStatistics/:idProjekta", async (req, res) => {
         zadaci.forEach(i => {
             i.datpoc = new Date(Date.parse(i.datpoc));
             i.datkraj = new Date(Date.parse(i.datkraj));
+            i.plandatpoc = new Date(Date.parse(i.plandatpoc));
+            i.plandatkraj = new Date(Date.parse(i.plandatkraj));
         });
 
         let results = [];
@@ -97,7 +99,9 @@ router.get("/getProjectStatistics/:idProjekta", async (req, res) => {
             results.push({
                 ts: new Date(i.getTime()),
                 total: zadaci.filter(j => j.datpoc && j.datpoc < i).length,
-                resolved: zadaci.filter(j => j.datkraj && j.datkraj < i).length
+                resolved: zadaci.filter(j => j.datkraj && j.datkraj < i).length,
+                totalplanned: zadaci.filter(j => j.plandatpoc && j.plandatpoc < i).length,
+                resolvedplanned: zadaci.filter(j => j.plandatkraj && j.plandatkraj < i).length
             })
         }
         return res.json(results);
