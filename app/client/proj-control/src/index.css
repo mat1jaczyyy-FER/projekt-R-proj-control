@@ -1051,6 +1051,43 @@ hr.dashed {
   display: inline;
 }
 
+.container-zadaci-ostali {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "odbaceni pauzirani"
+    "odbaceni pauzirani"
+    ". . .";
+
+}
+
+.pauzirani {
+  grid-area: pauzirani;
+  text-align: center;
+  width: 100%;
+}
+
+.pauzirani h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: #cdd82e;
+  text-align: center;
+}
+
+.odbaceni {
+  grid-area: odbaceni;
+  text-align: center;
+  width: 100%;
+}
+
+.odbaceni h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: #ce3246;
+  text-align: center;
+}
+
 .container-zadaci {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -1225,6 +1262,7 @@ hr.dashed {
 .div-neki {
   text-align: left;
 }
+
 .div-neki2 {
   text-align: center;
 }
@@ -1260,8 +1298,8 @@ hr.dashed {
   font-size: 4em;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
-  font-weight: bold; 
-  
+  font-weight: bold;
+
 }
 
 .project-desc {
@@ -1431,10 +1469,12 @@ hr.dashed {
   background: transparent;
   transition: border-color 0.2s;
 }
+
 .form__field::placeholder {
   color: transparent;
 }
-.form__field:placeholder-shown ~ .form__label {
+
+.form__field:placeholder-shown~.form__label {
   font-size: 1.3rem;
   cursor: text;
   top: 20px;
@@ -1454,9 +1494,10 @@ hr.dashed {
   font-weight: 700;
   border-width: 3px;
   border-image: #ff7b00;
-  
+
 }
-.form__field:focus ~ .form__label {
+
+.form__field:focus~.form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -1467,30 +1508,30 @@ hr.dashed {
 }
 
 /* reset input */
-.form__field:required, .form__field:invalid {
+.form__field:required,
+.form__field:invalid {
   box-shadow: none;
 }
 
 
-.center-text{
+.center-text {
   text-align: justify;
 }
 
 
-.sort-btn-box{
+.sort-btn-box {
   text-align: center;
 }
 
 
-.sort-btn{
+.sort-btn {
   display: inline-block;
   margin: 7px;
 }
 
 
-.filter-box{
-  width: 80%;  
+.filter-box {
+  width: 80%;
   margin-left: 3.9em;
   font-family: 'Montserrat', sans-serif;
 }
-

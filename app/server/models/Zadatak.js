@@ -56,7 +56,7 @@ module.exports = class Zadatak {
     static async edit(idzadatka, idstatusa, brsati) {
         return await db.query(
             `UPDATE zadatak SET idstatusa = $1, brsati = $2 WHERE idzadatka = $3 RETURNING *`,
-            [idzadatka, idstatusa, brsati]
+            [idstatusa, brsati, idzadatka]
         );
     }
 

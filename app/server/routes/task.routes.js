@@ -87,7 +87,7 @@ router.post("/editzadatka/:idzadatka", async (req, res) => {
 
     try {
         const { idzadatka } = req.params;
-        const results = await Zadatak.edit(idzadatka, idStatusa, brSati);
+        const results = await Zadatak.edit(parseInt(idzadatka), idStatusa, brSati);
         return res.json(results);
 
     } catch (err) {

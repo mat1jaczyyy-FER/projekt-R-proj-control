@@ -109,14 +109,14 @@ useEffect(() => {
 
   if(listaZadataka !== ''){
       for(const zad of listaZadataka){
-         if(zad.idstatusa === 1){
+         if(zad.idstatusa === 3){
              var o = zad;            
              gotoviZadaci.push(o);
          }
          else if(zad.idstatusa === 2){
             var o = zad;            
             aktivniZadaci.push(o);
-         }else if(zad.idstatusa === 3){
+         }else if(zad.idstatusa === 1){
             var o = zad;            
             planiraniZadaci.push(o);
          }
@@ -425,6 +425,9 @@ const requestSort3 = key => {
                         <div className="div-neki-child2">
                             <Link to={'/novizadatak'}>
                                 <AiIcons.AiOutlineFileAdd size={28} color="white" />
+                            </Link>
+                            <Link to={'/ostalizadaci/' + projectid}>
+                                <AiIcons.AiOutlineOrderedList size={28} color="white" />
                             </Link>
                         </div>
                         
