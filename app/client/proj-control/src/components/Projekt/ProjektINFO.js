@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';import { BrowserRouter as Router, Route, Redirect, Switch, useHistory} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { GrSchedulePlay } from "react-icons/gr"
-import { GoTasklist } from "react-icons/go"
+import { GoTasklist, GoListUnordered } from "react-icons/go"
 import { GoGraph } from "react-icons/go"
 import { BsPeopleFill} from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
@@ -184,7 +184,7 @@ const ProjektINFO = () => {
                                     <GoTasklist size={60} color="black" />
                                 </div>                    
                                 <div className="task-title">                    
-                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Pregled svih zadataka</Link>
+                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Pregled aktivnih zadataka</Link>
                                 </div>   
                             </div>                          
 
@@ -197,10 +197,10 @@ const ProjektINFO = () => {
                         <div class="card-block">
                             <div className="task-dates2">
                                  <div className="task-title">                     
-                                    <GoGraph size={60} color="black" />
+                                    <GoListUnordered size={60} color="black" />
                                 </div>                    
                                 <div className="task-title">                    
-                                    <Link to={`/chart/` + projectid} className="navlinkother btn btn-2">Pregled statističkih grafova</Link>
+                                    <Link to={`/ostalizadaci/` + projectid} className="navlinkother btn btn-2">Pregled ostalih zadataka</Link>
                                 </div>   
                             </div>                          
 
@@ -234,11 +234,11 @@ const ProjektINFO = () => {
                     <div class="card bg-c-yellow order-card ">
                         <div class="card-block">
                             <div className="task-dates2">
-                                 <div className="task-title">                     
-                                    <GiMoneyStack size={60} color="black" />
+                            <div className="task-title">                     
+                                    <GoGraph size={60} color="black" />
                                 </div>                    
                                 <div className="task-title">                    
-                                    <Link to={`/svizadaci/` + projectid} className="navlinkother btn btn-2">Pregled financija</Link>
+                                    <Link to={`/chart/` + projectid} className="navlinkother btn btn-2">Pregled statističkih grafova</Link>
                                 </div>   
                             </div>              
                         </div>                    

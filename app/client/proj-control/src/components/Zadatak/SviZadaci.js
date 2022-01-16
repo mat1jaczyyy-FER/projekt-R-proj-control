@@ -621,7 +621,7 @@ const requestSort3 = key => {
                                 <AiIcons.AiOutlineFileAdd size={28} color="white" />
                             </Link>
                             <Link to={'/ostalizadaci/' + projectid}>
-                                <AiIcons.AiOutlineOrderedList size={28} color="white" />
+                                <AiIcons.AiOutlineUnorderedList size={28} color="white" />
                             </Link>
                         </div>
                         
