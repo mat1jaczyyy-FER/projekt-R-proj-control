@@ -19,6 +19,7 @@ const AddUser = () => {
     const[projekt, setProjekt] = useState('');
 
     const[odabrani, setOdabrani] = useState('');
+    let history = useHistory(); 
 
     const getZaposlenici = async () => {
         try {       
@@ -135,7 +136,8 @@ const AddUser = () => {
         if (response.status === 200) {
             toast.success("Zaposlenik dodan na zadatak!")
             //setListaZaposlenika(Object.values(listaKorisnika).filter((element) => element.idzaposlenika === idZaposlenika))
-            getZaposlenici();
+            //getZaposlenici();
+            history.push('/svizadaci/' + pid);
             
             
         }
@@ -191,62 +193,10 @@ const AddUser = () => {
 
         <Fragment>
             {listaZaposlenika !== '' ? console.log(listaZaposlenika) : <></>}
-            <h2 class="project-desc order-card">Zaposlenici koji rade na zadatku {zadatak.opiszadatka}:</h2>
-            <table>
-             <thead> 
-                 <tr>
-                 <th>Ime </th>
-                 <th>Prezime</th>
-                 <th>Korisničko ime</th>
-                 <th>Obriši</th>                 
-                 </tr>
-                 
-             </thead>
-             <tbody>
-                 
-             {Object.values(listaZaposlenikaNaZad).map((zaposlenik) => {
-                
-                 return (
-                     <tr key={zaposlenik.idzaposlenika}>
-                         <td>{zaposlenik.imezaposlenika}</td>
-                         <td>{zaposlenik.prezimezaposlenika}</td>
-                         <td>{zaposlenik.korisnickoime}</td>
-                         {zaposlenik.idzaposlenika === projekt.idvlasnika ? <><td></td></> : <>
-                            <td><Popup trigger={<button className= 'add-btn btn-noborder'><AiOutlineMinusCircle size={60} color="white" /></button>} modal className="popup">
-                                                {close => (
-                                                    <div>
-                                                        <div className="popup-text">
-                                                            Jeste li sigurni da želite maknuti zaposlenika sa zadatka?
-                                                            <hr className="dashed"></hr>
-                                                            --{zaposlenik.korisnickoime} --
-                                                        </div>
-                                                        <br />
-
-                                                        <div className="button-flex-container">
-                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {
-                                                                handleDelete(projectid, zaposlenik.idzaposlenika);
-                                                                close();
-                                                            } }>
-                                                                <div className="popup-button">Potvrdi</div>
-                                                            </div>
-                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
-                                                                <div className="popup-button">Odustani</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )}
-
-                                            </Popup></td>
-                         </>}
-                                               
-                      </tr>
-                 )
-             })}                                    
-             </tbody>
-         </table>
+            
            
         {" "}
-        <h2 class="project-desc order-card">Ostali zaposlenici:</h2>
+        <h2 class="project-desc order-card">Dodavanje zaposlenika na zadatak {zadatak.opiszadatka}:</h2>
          <table>
              <thead> 
                  <tr>
@@ -303,3 +253,57 @@ const AddUser = () => {
 
 
 export default AddUser;
+
+/*<h2 class="project-desc order-card">Zaposlenici koji rade na zadatku {zadatak.opiszadatka}:</h2>
+            <table>
+             <thead> 
+                 <tr>
+                 <th>Ime </th>
+                 <th>Prezime</th>
+                 <th>Korisničko ime</th>
+                 <th>Obriši</th>                 
+                 </tr>
+                 
+             </thead>
+             <tbody>
+                 
+             {Object.values(listaZaposlenikaNaZad).map((zaposlenik) => {
+                
+                 return (
+                     <tr key={zaposlenik.idzaposlenika}>
+                         <td>{zaposlenik.imezaposlenika}</td>
+                         <td>{zaposlenik.prezimezaposlenika}</td>
+                         <td>{zaposlenik.korisnickoime}</td>
+                         {zaposlenik.idzaposlenika === projekt.idvlasnika ? <><td></td></> : <>
+                            <td><Popup trigger={<button className= 'add-btn btn-noborder'><AiOutlineMinusCircle size={60} color="white" /></button>} modal className="popup">
+                                                {close => (
+                                                    <div>
+                                                        <div className="popup-text">
+                                                            Jeste li sigurni da želite maknuti zaposlenika sa zadatka?
+                                                            <hr className="dashed"></hr>
+                                                            --{zaposlenik.korisnickoime} --
+                                                        </div>
+                                                        <br />
+
+                                                        <div className="button-flex-container">
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => {
+                                                                handleDelete(projectid, zaposlenik.idzaposlenika);
+                                                                close();
+                                                            } }>
+                                                                <div className="popup-button">Potvrdi</div>
+                                                            </div>
+                                                            <div className="anew btn btn-2 navlinkother btn-noborder" onClick={() => { close(); } }>
+                                                                <div className="popup-button">Odustani</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                            </Popup></td>
+                         </>}
+                                               
+                      </tr>
+                 )
+             })}                                    
+             </tbody>
+         </table> */
