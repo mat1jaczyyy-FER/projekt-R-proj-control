@@ -27,7 +27,7 @@ const  NoviProjekt = () => {
           const idVlasnika = idzaposlenika
           const body = { nazivProjekta, planDatPoc, planDatKraj, idStatusa, idVlasnika, opisProjekta };
           const response = await fetch(
-            process.env.URL_PREFIX + "/project/add",
+            "/project/add",
             {
               method: "POST",
               mode: "cors",

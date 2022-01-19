@@ -30,7 +30,7 @@ const Projekti = () => {
     const getProjekti = async idVlasnika => {
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/project/alluserprojects/${idVlasnika}`,
+                    `/project/alluserprojects/${idVlasnika}`,
                 {
                   method: "GET",
                   mode: "cors",

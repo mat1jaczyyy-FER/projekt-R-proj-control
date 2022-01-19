@@ -14,7 +14,7 @@ const Zaposlenici = () => {
     const getZaposleniciData = async (projectid) => {
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/project/getUsersStatistics/${projectid}`,
+                    `/project/getUsersStatistics/${projectid}`,
     
                 {
                   method: "GET",

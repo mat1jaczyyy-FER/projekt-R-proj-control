@@ -15,7 +15,7 @@ const TaskFinishUser = () => {
     const getZadatak = async idzadatka => {
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/task/${idzadatka}`,
+                    `/task/${idzadatka}`,
                 {
                   method: "GET",
                   mode: "cors",
@@ -67,7 +67,7 @@ const TaskFinishUser = () => {
             }
             console.log(body)
           const response = await fetch(
-            process.env.URL_PREFIX + `/task/update/${idzadatka}`,
+            `/task/update/${idzadatka}`,
             {
               method: "POST",
               mode: "cors",

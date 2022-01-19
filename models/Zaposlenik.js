@@ -54,7 +54,7 @@ module.exports = class Zaposlenik {
 
     static async getKorisnikFromID(id) {
         return (await db.query(
-            `SELECT * FROM Zaposlenik WHERE idZaposlenika = $1`,
+            `SELECT idZaposlenika, korisnickoIme, email, imeZaposlenika, prezimeZaposlenika, idUloge, aktiviran FROM Zaposlenik WHERE idZaposlenika = $1`,
             [id]
         )).rows;
     }
