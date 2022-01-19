@@ -19,7 +19,7 @@ const devConfig = {
 pg.types.setTypeParser(1082, s => s);
 
 const proConfig = {
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL2
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
