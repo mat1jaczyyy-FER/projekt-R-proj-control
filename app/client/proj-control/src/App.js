@@ -49,7 +49,7 @@ function App() {
   
   const checkAuthenticated = async () => {
     try {
-      const res = await fetch(process.env.URL_PREFIX + "/auth/verify", {
+      const res = await fetch("/auth/verify", {
         method: "POST",
         headers: { jwt_token: localStorage.token }
       });

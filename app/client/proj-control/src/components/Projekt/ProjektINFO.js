@@ -37,7 +37,7 @@ const ProjektINFO = () => {
     const getProjekt = async (projectid) => {
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/project/${projectid}`,
+                    `/project/${projectid}`,
     
                 {
                   method: "GET",
@@ -70,7 +70,7 @@ const ProjektINFO = () => {
       const brisanjeProjekta = async (idProjekta) => {
         try {       
             const response = await fetch(
-                process.env.URL_PREFIX + `/project/delete/${idProjekta}`,
+                `/project/delete/${idProjekta}`,
             {
                 method: "GET",
                 mode: "cors",

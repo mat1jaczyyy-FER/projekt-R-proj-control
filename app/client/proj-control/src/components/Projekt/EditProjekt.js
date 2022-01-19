@@ -13,7 +13,7 @@ const EditProjekt = () => {
     const getProjekt = async idProjekta => {
         try {       
                 const response = await fetch(
-                  process.env.URL_PREFIX + `/project/${idProjekta}`,
+                  `/project/${idProjekta}`,
                 {
                   method: "GET",
                   mode: "cors",
@@ -81,7 +81,7 @@ const EditProjekt = () => {
 
         try {
           const response = await fetch(
-            process.env.URL_PREFIX + `/project/update/${idProjekta}`,
+            `/project/update/${idProjekta}`,
             {
               method: "POST",
               mode: "cors",

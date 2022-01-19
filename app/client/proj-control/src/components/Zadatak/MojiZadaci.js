@@ -58,7 +58,7 @@ const MojiZadaci = () => {
     const getZadaci = async () => {
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/task/allusertasks/${idZaposlenika}`,
+                    `/task/allusertasks/${idZaposlenika}`,
 
                 {
                 method: "GET",

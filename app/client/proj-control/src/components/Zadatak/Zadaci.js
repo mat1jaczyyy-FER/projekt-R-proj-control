@@ -49,7 +49,7 @@ const Zadaci = () => {
         console.log(idZaposlenika)
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/allusertasks/${idZaposlenika}`,
+                    `/allusertasks/${idZaposlenika}`,
 
                 {
                 method: "GET",

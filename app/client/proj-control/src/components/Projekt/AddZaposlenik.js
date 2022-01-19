@@ -20,7 +20,7 @@ const AddZaposlenik = () => {
     const getZaposlenici = async () => {
         try {       
                 const response = await fetch(
-                    process.env.URL_PREFIX + `/user/allusers`,
+                    `/user/allusers`,
     
                 {
                   method: "GET",
@@ -34,7 +34,7 @@ const AddZaposlenik = () => {
             const jsonData = await response.json();
 
             const response2 = await fetch(
-                process.env.URL_PREFIX + `/project/getUsersStatistics/${projectid}`,
+                `/project/getUsersStatistics/${projectid}`,
 
                 {
                 method: "GET",
@@ -66,7 +66,7 @@ const AddZaposlenik = () => {
             console.log(listaZaposlenika);
 
             const response3 = await fetch(
-                process.env.URL_PREFIX + `/project/${projectid}`,
+                `/project/${projectid}`,
 
                 {
                 method: "GET",
@@ -92,7 +92,7 @@ const AddZaposlenik = () => {
     const getProjekt = async () => {
         try {
             const response3 = await fetch(
-                process.env.URL_PREFIX + `/project/${projectid}`,
+                `/project/${projectid}`,
 
                 {
                 method: "GET",
@@ -127,7 +127,7 @@ const AddZaposlenik = () => {
             const body = {idProjekta, idZaposlenika}
             console.log(body)
             const response = await fetch(
-                process.env.URL_PREFIX + `/project/dodajNaProjekt`,
+                `/project/dodajNaProjekt`,
 
             {
               method: "POST",
@@ -160,7 +160,7 @@ const AddZaposlenik = () => {
             const body = {idProjekta, idZaposlenika}
             console.log(body)
             const response = await fetch(
-                process.env.URL_PREFIX + `/project/obrisiSProjekta`,
+                `/project/obrisiSProjekta`,
 
             {
               method: "POST",

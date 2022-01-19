@@ -20,7 +20,7 @@ const Login = ({ setAuth }) => {
         try {
           const body = { email, password };
           const response = await fetch(
-            process.env.URL_PREFIX + "/auth/login",
+            "/auth/login",
             {
               method: "POST",
               mode: "cors",
