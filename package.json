@@ -3,9 +3,14 @@
     "version": "1.0.0",
     "description": "proj-control",
     "main": "server.js",
+    "engines": {
+        "node": "16.4.0",
+        "npm": "7.19.0"
+    },
     "scripts": {
         "dev": "nodemon server.js",
         "start": "node server.js",
+        "heroku-postbuild": "cd client && npm install && npm run build",
         "seed-session": "node database/seed-session.js"
     },
     "keywords": [
