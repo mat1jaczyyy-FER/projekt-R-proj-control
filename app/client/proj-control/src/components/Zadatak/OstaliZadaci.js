@@ -40,7 +40,7 @@ const OstaliZadaci = () => {
     const getZadaci = async projectid => {
         try {       
                 const response = await fetch(
-                    `http://localhost:5000/task/allprojecttasks/${projectid}`,
+                    process.env.URL_PREFIX + `/task/allprojecttasks/${projectid}`,
     
                 {
                   method: "GET",
@@ -76,7 +76,7 @@ const OstaliZadaci = () => {
       const brisanjeZadatka = async (idZadatka) => {
         try {       
             const response = await fetch(
-                `http://localhost:5000/task/delete/${idZadatka}`,
+                process.env.URL_PREFIX + `/task/delete/${idZadatka}`,
             {
                 method: "GET",
                 mode: "cors",
@@ -109,7 +109,7 @@ const OstaliZadaci = () => {
         console.log(body)
         try {       
             const response = await fetch(
-                `http://localhost:5000/task/editzadatka/${idZadatka}`,
+                process.env.URL_PREFIX + `/task/editzadatka/${idZadatka}`,
             {
                 method: "POST",
                 mode: "cors",

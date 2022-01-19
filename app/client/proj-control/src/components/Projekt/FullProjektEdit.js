@@ -25,7 +25,7 @@ const FullProjektEdit = () => {
     const getProjekt = async projectid => {
         try {       
                 const response = await fetch(
-                    `http://localhost:5000/project/${projectid}`,
+                  process.env.URL_PREFIX + `/project/${projectid}`,
                 {
                   method: "GET",
                   mode: "cors",
@@ -71,7 +71,7 @@ const FullProjektEdit = () => {
 
         console.log(body)
           const response = await fetch(
-            `http://localhost:5000/project/update/${projectid}`,
+            process.env.URL_PREFIX + `/project/update/${projectid}`,
             {
               method: "POST",
               mode: "cors",

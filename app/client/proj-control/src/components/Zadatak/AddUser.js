@@ -25,7 +25,7 @@ const AddUser = () => {
         try {       
 
             const response = await fetch(
-                `http://localhost:5000/project/getUsersStatistics/${pid}`,
+                process.env.URL_PREFIX + `/project/getUsersStatistics/${pid}`,
 
                 {
                 method: "GET",
@@ -42,7 +42,7 @@ const AddUser = () => {
             
 
             const response2 = await fetch(
-                `http://localhost:5000/task/${id}`,
+                process.env.URL_PREFIX + `/task/${id}`,
 
                 {
                 method: "GET",
@@ -84,7 +84,7 @@ const AddUser = () => {
     const getProjekt = async () => {
         try {
             const response3 = await fetch(
-                `http://localhost:5000/project/${projectid}`,
+                process.env.URL_PREFIX + `/project/${projectid}`,
 
                 {
                 method: "GET",
@@ -119,7 +119,7 @@ const AddUser = () => {
             const body = {idzadatka, idzaposlenika}
             console.log(body)
             const response = await fetch(
-                `http://localhost:5000/task/dodijeli`,
+                process.env.URL_PREFIX + `/task/dodijeli`,
 
             {
               method: "POST",
@@ -153,7 +153,7 @@ const AddUser = () => {
             const body = {idzadatka, idzaposlenika}
             console.log(body)
             const response = await fetch(
-                `http://localhost:5000/task/makni`,
+                process.env.URL_PREFIX + `/task/makni`,
 
             {
               method: "POST",

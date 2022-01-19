@@ -32,7 +32,7 @@ const EditTask = () => {
     const getZadatak = async idzadatka => {
         try {       
                 const response = await fetch(
-                    `http://localhost:5000/task/${idzadatka}`,
+                    process.env.URL_PREFIX + `/task/${idzadatka}`,
                 {
                   method: "GET",
                   mode: "cors",
@@ -90,7 +90,7 @@ const EditTask = () => {
 
         console.log(body)
           const response = await fetch(
-            `http://localhost:5000/task/update/${idzadatka}`,
+            process.env.URL_PREFIX + `/task/update/${idzadatka}`,
             {
               method: "POST",
               mode: "cors",

@@ -87,7 +87,7 @@ let planiraniZadaci = [];
 const getZadaci = async projectid => {
     try {       
             const response = await fetch(
-                `http://localhost:5000/task/allprojecttasks/${projectid}`,
+                process.env.URL_PREFIX + `/task/allprojecttasks/${projectid}`,
 
             {
               method: "GET",
@@ -103,7 +103,7 @@ const getZadaci = async projectid => {
         setListaZadataka(jsonData);
 
         const response2 = await fetch(
-            `http://localhost:5000/project/${projectid}`,
+            process.env.URL_PREFIX + `/project/${projectid}`,
 
             {
             method: "GET",
@@ -151,7 +151,7 @@ useEffect(() => {
   const brisanjeZadatka = async (idZadatka) => {
     try {       
         const response = await fetch(
-            `http://localhost:5000/task/deletetask/${idZadatka}`,
+            process.env.URL_PREFIX + `/task/deletetask/${idZadatka}`,
         {
             method: "GET",
             mode: "cors",
@@ -184,7 +184,7 @@ const editZadatak = async (idZadatka, idStatusa, brSati) => {
     console.log(body)
     try {       
         const response = await fetch(
-            `http://localhost:5000/task/editzadatka/${idZadatka}`,
+            process.env.URL_PREFIX + `/task/editzadatka/${idZadatka}`,
         {
             method: "POST",
             mode: "cors",
@@ -216,7 +216,7 @@ const editZadatak = async (idZadatka, idStatusa, brSati) => {
             const body = {idzadatka, idzaposlenika}  
             console.log(body);
             const response = await fetch(
-                `http://localhost:5000/task/dodijeli`,
+                process.env.URL_PREFIX + `/task/dodijeli`,
             {
                 method: "POST",
                 mode: "cors",

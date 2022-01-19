@@ -22,7 +22,7 @@ const Charts = () => {
   const getZadatci = async projectid => {
     try {       
             const response = await fetch(
-                `http://localhost:5000/task/allprojecttasks/${projectid}`,
+              process.env.URL_PREFIX + `/task/allprojecttasks/${projectid}`,
             {
               method: "GET",
               mode: "cors",
@@ -55,7 +55,7 @@ const getBurndown = async projectid => {
   setListaPlanZad([]);
   try {       
           const response = await fetch(
-              `http://localhost:5000/project/getProjectStatistics/${projectid}`,
+            process.env.URL_PREFIX + `/project/getProjectStatistics/${projectid}`,
           {
             method: "GET",
             mode: "cors",
@@ -97,7 +97,7 @@ const getBurndownLastMonth = async projectid => {
   
   try {       
           const response = await fetch(
-              `http://localhost:5000/project/getProjectStatisticsLastMonth/${projectid}`,
+            process.env.URL_PREFIX + `/project/getProjectStatisticsLastMonth/${projectid}`,
           {
             method: "GET",
             mode: "cors",
@@ -139,7 +139,7 @@ const getBurndownLastWeek = async projectid => {
   
   try {       
           const response = await fetch(
-              `http://localhost:5000/project/getProjectStatisticsLastWeek/${projectid}`,
+            process.env.URL_PREFIX + `/project/getProjectStatisticsLastWeek/${projectid}`,
           {
             method: "GET",
             mode: "cors",

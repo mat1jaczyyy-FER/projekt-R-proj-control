@@ -26,7 +26,7 @@ const SignUp = ({ setAuth }) => {
         try {
           const body = { username, email, password, name, surname };
           const response = await fetch(
-            "http://localhost:5000/auth/signup",
+            process.env.URL_PREFIX + "/auth/signup",
             {
               method: "POST",
               mode: "cors",

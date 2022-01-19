@@ -20,7 +20,7 @@ const AddZaposlenik = () => {
     const getZaposlenici = async () => {
         try {       
                 const response = await fetch(
-                    `http://localhost:5000/user/allusers`,
+                    process.env.URL_PREFIX + `/user/allusers`,
     
                 {
                   method: "GET",
@@ -34,7 +34,7 @@ const AddZaposlenik = () => {
             const jsonData = await response.json();
 
             const response2 = await fetch(
-                `http://localhost:5000/project/getUsersStatistics/${projectid}`,
+                process.env.URL_PREFIX + `/project/getUsersStatistics/${projectid}`,
 
                 {
                 method: "GET",
@@ -66,7 +66,7 @@ const AddZaposlenik = () => {
             console.log(listaZaposlenika);
 
             const response3 = await fetch(
-                `http://localhost:5000/project/${projectid}`,
+                process.env.URL_PREFIX + `/project/${projectid}`,
 
                 {
                 method: "GET",
@@ -92,7 +92,7 @@ const AddZaposlenik = () => {
     const getProjekt = async () => {
         try {
             const response3 = await fetch(
-                `http://localhost:5000/project/${projectid}`,
+                process.env.URL_PREFIX + `/project/${projectid}`,
 
                 {
                 method: "GET",
@@ -127,7 +127,7 @@ const AddZaposlenik = () => {
             const body = {idProjekta, idZaposlenika}
             console.log(body)
             const response = await fetch(
-                `http://localhost:5000/project/dodajNaProjekt`,
+                process.env.URL_PREFIX + `/project/dodajNaProjekt`,
 
             {
               method: "POST",
@@ -160,7 +160,7 @@ const AddZaposlenik = () => {
             const body = {idProjekta, idZaposlenika}
             console.log(body)
             const response = await fetch(
-                `http://localhost:5000/project/obrisiSProjekta`,
+                process.env.URL_PREFIX + `/project/obrisiSProjekta`,
 
             {
               method: "POST",

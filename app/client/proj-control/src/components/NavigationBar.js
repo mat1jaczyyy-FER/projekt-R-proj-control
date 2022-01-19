@@ -19,7 +19,7 @@ function NavigationBar(){
   const getProjekt = async (projectid) => {
     try {       
             const response = await fetch(
-                `http://localhost:5000/project/${projectid}`,
+                process.env.URL_PREFIX + `/project/${projectid}`,
 
             {
               method: "GET",
@@ -65,7 +65,7 @@ useEffect(() => {
 
     const checkAuthenticated = async () => {
         try {
-          const res = await fetch("http://localhost:5000/auth/verify", {
+          const res = await fetch(process.env.URL_PREFIX + "/auth/verify", {
             method: "POST",
             headers: { jwt_token: localStorage.token }
           });

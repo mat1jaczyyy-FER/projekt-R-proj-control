@@ -63,7 +63,7 @@ const NoviZadatak = () => {
           const body = { opisZadatka, planDatPoc, planDatKraj, planBrSati, idProjekta, idStatusa, idPrioriteta};
           console.log(body)
           const response = await fetch(
-            "http://localhost:5000/task/add",
+            process.env.URL_PREFIX + "/task/add",
             {
               method: "POST",
               mode: "cors",
