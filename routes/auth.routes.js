@@ -52,7 +52,7 @@ router.post("/signup", validInfo, async (req, res) => {
     let newKod = new aktivacijskiKodovi(korisnik.rows[0].idzaposlenika, aktKod);
     await newKod.apply();
 
-    const confirmUrl = `http://localhost:5000/auth/emailConfirmation/${aktKod}`;
+    const confirmUrl = `https://projcontrol.herokuapp.com/auth/emailConfirmation/${aktKod}`;
 
     transporter.sendMail({
       from: "proj-control@outlook.com",
