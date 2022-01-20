@@ -46,6 +46,7 @@ const Login = ({ setAuth }) => {
           }
         } catch (err) {
           console.error(err.message);
+          toast.error(err.message);
         }
       };
 
