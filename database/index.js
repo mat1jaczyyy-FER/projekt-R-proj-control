@@ -2,27 +2,26 @@ const pg = require('pg');
 require("dotenv").config();
 const {Pool} = pg;
 
-const devConfig = {
-    user: process.env.PG_USER,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
-    ssl: {
-        rejectUnauthorized: false
-    }
-}
+
+
+const devConfig = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.
+PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`
+
 
 // hack koji vraca date kako je u bazi, bez pretvaranja zona s tocnim vremenom.
 // mozda promijeniti kasnije, ovisno jel radi...
 // https://github.com/brianc/node-pg-types/issues/50#issuecomment-492144917
 pg.types.setTypeParser(1082, s => s);
 
-const proConfig = {
-    connectionString: process.env.DATABASE_URL2
-}
+const proConfig = process.env.DATABASE_URL2
 
-const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
+
+const pool = new Pool({
+    connectionString: process.env.NODE_ENV === "production" ? proConfig : devConfig,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
 module.exports = {
     query: (text, params) => {
