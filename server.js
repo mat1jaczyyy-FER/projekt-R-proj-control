@@ -21,9 +21,6 @@ app.use(cors());
 app.use(express.json());
 app.use(urlencoded({ extended: true}));
 
-
-app.use(express.static(path.join(__dirname, "client/build")))
-
 //definicija ruta
 for (const path in routers) {
     app.use(path, routers[path]);
@@ -35,9 +32,6 @@ if (process.env.NODE_ENV === "production") {
       });
 }
 
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname,  "./client/build/index.html"));
-  });
 
 //pokretanje poslužitelja na portu 5000
 app.listen(PORT, () => {
