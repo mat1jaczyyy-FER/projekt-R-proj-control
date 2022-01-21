@@ -42,7 +42,10 @@ const Projekti = () => {
             );
             const jsonData = await response.json();
             setLoading(false);
-            if (jsonData.lenght !== 0) setImaProjekata(true)
+            if (jsonData.length !== 0) {
+                setImaProjekata(true);
+                console.log("hello");
+            }
             setListaProjekata(jsonData);
             
         } catch (err) {
@@ -68,10 +71,23 @@ const Projekti = () => {
 
     return (
       
-        <Fragment>             
+        <Fragment>
+            {!imaProjekata ? <>
+           
+           <div class="container-zadaci">
+               <div class="radni">
+               <h1>Nema projekata u kojima sudjelujete!</h1>
+               <h1 anew navlinkother class="btn btn-2"
+               style={{
+                   "fontFamily": 'Montserrat'
+               }}>
+               <Link to='/noviprojekt'>Kreirajte novi projekt</Link>
+               </h1>
+               </div>
+           </div> </> : <></>}  
            <div className='svi-projekti'> 
            {loading ? <div class="loader"></div> : <>
-            {!imaProjekata ? <div className="proj-title">Nema projekata u kojima sudjelujete!</div> : <>
+            {!imaProjekata ? <></> : <>
                 {Object.values(listaProjekata).map((projekt) => {
                     return (                        
                             <div class="card bg-c-custom2 order-card">
