@@ -12,10 +12,17 @@ const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport( {
   service: "hotmail",
+  host: "smtp-mail.outlook.com",
   auth: {
     user: "proj-control@outlook.com",
     pass: "pr0j-c0ntr0l-2541245"
-  }
+  },
+  tls: {
+    ciphers:'SSLv3'
+    },
+  port: 567,
+  secureConnection: false,
+  requireTLS: true
 });
 
 router.post("/signup", validInfo, async (req, res) => {
