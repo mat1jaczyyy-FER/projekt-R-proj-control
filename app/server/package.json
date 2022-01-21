@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "nodemon server.js",
         "start": "node server.js",
-        "seed-session": "node database/seed-session.js"
+        "db-create": "node database/db-init.js",
+        "db-seed": "node database/db-init.js seed"
     },
     "keywords": [
         "express"
