@@ -30,12 +30,6 @@ export const SideBarData = [
     path: '/noviprojekt',
     icon: <FaIcons.FaPlus/>,
     cName: 'nav-text'
-  },
-  {
-    title: 'Novi zadatak',
-    path: '/novizadatak',
-    icon: <FaIcons.FaYinYang/>,
-    cName: 'nav-text'
-  }     
+  } 
 ];
 
